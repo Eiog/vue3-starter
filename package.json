@@ -1,7 +1,7 @@
 {
-  "name": "unlit-music",
+  "name": "unlit-template",
   "private": true,
-  "version": "1.0.1",
+  "version": "0.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",

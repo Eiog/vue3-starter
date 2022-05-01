@@ -3,10 +3,12 @@ import { defineComponent } from 'vue';
 
 </script>
 <script setup lang='ts'>
-
+import helloWorld from '@/components/helloWorld.vue'
 </script>
 <template>
-    <h1>home</h1>
+    <div>
+        <hello-world></hello-world>
+    </div>
 </template>
 <style scoped lang='less'>
 

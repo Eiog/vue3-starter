@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import autoprefixer from 'autoprefixer'
 import { resolve } from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -45,6 +46,11 @@ export default defineConfig({
     }
   },
   css: {
+    postcss:{
+      plugins:[
+        autoprefixer()
+      ]
+    },
     // css预处理器
     preprocessorOptions: {
       less: {

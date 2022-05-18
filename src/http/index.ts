@@ -2,6 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } f
 import showCodeMessage from './code';
 import { formatJsonToUrlParams, instanceObject } from '@/utils/format';
 import { ElNotification } from 'element-plus'
+import {addPending,removePending} from './_methods'
 const BASE_PREFIX = import.meta.env.VITE_API_BASEURL;
 
 // 创建实例
@@ -26,6 +27,8 @@ axiosInstance.interceptors.request.use(
     // TODO 比如 loading 等
     const token = window.localStorage.getItem('unlit_token') as any
     config.headers.token = token
+    removePending(config)
+    addPending(config)
     return config;
   },
   (error: AxiosError) => {

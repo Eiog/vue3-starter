@@ -1,8 +1,9 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import NProgress from 'nprogress'
 import showCodeMessage from './code';
 import { formatJsonToUrlParams, instanceObject } from '@/utils/format';
 import { ElNotification } from 'element-plus'
-import {addPending,removePending} from './_methods'
+import { addPending, removePending,loadingStart,loadingDone } from './_methods'
 const BASE_PREFIX = import.meta.env.VITE_API_BASEURL;
 
 // 创建实例
@@ -29,6 +30,7 @@ axiosInstance.interceptors.request.use(
     config.headers.token = token
     removePending(config)
     addPending(config)
+    NProgress.start()
     return config;
   },
   (error: AxiosError) => {
@@ -39,26 +41,30 @@ axiosInstance.interceptors.request.use(
 // 响应拦截器
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => {
+    NProgress.done()
     if (response.status === 200) {
       return response;
     }
-    console.log(response);
-
     ElNotification.warning(response.data)
-    // console.log(response);
     return response;
   },
   (error: AxiosError) => {
-    const { response } = error;
+    if (error.code === "ERR_CANCELED") {
+      return false
+    }
+    const { response, request } = error;
+    NProgress.done()
     if (response) {
-      // console.log(showCodeMessage(response.status));
+      console.log(showCodeMessage(response.status));
       ElNotification.error(showCodeMessage(response.status) + response.data)
       console.log(response)
       return Promise.reject(response.data);
     }
-    ElNotification.error('链接失败')
-    return Promise.reject(error);
-  },
+    if (request) {
+      ElNotification.error('链接超时')
+      return Promise.reject(error);
+    }
+  }
 );
 const http = {
   get: (url: string, data?: object) => axiosInstance.get(url, { params: data }),

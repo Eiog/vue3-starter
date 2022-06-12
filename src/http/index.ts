@@ -1,9 +1,10 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig,AxiosRequestHeaders, AxiosResponse, AxiosError } from 'axios';
 import NProgress from 'nprogress'
 import showCodeMessage from './code';
-import { formatJsonToUrlParams, instanceObject } from '@/utils/format';
-import { ElNotification } from 'element-plus'
-import { addPending, removePending,loadingStart,loadingDone } from './_methods'
+import { formatJsonToUrlParams, instanceObject } from '@/utils/common/format';
+import { repeatRequestIntercept} from './_methods'
+const {addPending,removePending} = repeatRequestIntercept()
+import {getLocal} from '@/utils'
 const BASE_PREFIX = import.meta.env.VITE_API_BASEURL;
 
 // 创建实例
@@ -17,17 +18,13 @@ const axiosInstance: AxiosInstance = axios.create({
     'Content-Type': 'application/json',
   },
 });
-
-type T = {
-  headers: any
-}
 // 请求拦截器
 axiosInstance.interceptors.request.use(
-  (config: AxiosRequestConfig | T) => {
+  (config:AxiosRequestConfig) => {
     // TODO 在这里可以加上想要在请求发送前处理的逻辑
     // TODO 比如 loading 等
-    const token = window.localStorage.getItem('unlit_token') as any
-    config.headers.token = token
+    const token = getLocal('UNLIT-TOKEN')
+    config.headers!.Authorization = token as string
     removePending(config)
     addPending(config)
     NProgress.start()
@@ -43,10 +40,10 @@ axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => {
     NProgress.done()
     if (response.status === 200) {
-      return response;
+      return response.data;
     }
-    ElNotification.warning(response.data)
-    return response;
+    window.$notification.warning({title:response.statusText,content:response.data})
+    return Promise.reject(response.data);
   },
   (error: AxiosError) => {
     if (error.code === "ERR_CANCELED") {
@@ -56,12 +53,11 @@ axiosInstance.interceptors.response.use(
     NProgress.done()
     if (response) {
       console.log(showCodeMessage(response.status));
-      ElNotification.error(showCodeMessage(response.status) + response.data)
-      console.log(response)
+      window.$notification.error({title:showCodeMessage(response.status)})
       return Promise.reject(response.data);
     }
     if (request) {
-      ElNotification.error('链接超时')
+      window.$notification.error({content:'链接超时'})
       return Promise.reject(error);
     }
   }
@@ -80,5 +76,4 @@ const http = {
     window.location.href = downloadUrl;
   },
 };
-
 export default http;

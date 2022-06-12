@@ -1,13 +1,5 @@
-import { defineStore } from "pinia";
-export const defaultStore = defineStore({
-    id:'defaultStore',
-    state:()=>({
-
-    }),
-    actions:{
-
-    },
-    getters:{
-        
-    }
-})
+import { createPinia } from 'pinia'
+const store = createPinia()
+export default store
+export * from './modules'
+export * from './subscribe'

@@ -1,6 +1,8 @@
 import waterMarke  from "./waterMark"
+import lazyLoad from "./lazyLoad"
 const directives = {
-    waterMarke
+    waterMarke,
+    lazyLoad
 }
 export default {
     install(Vue){

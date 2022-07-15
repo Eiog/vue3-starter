@@ -14,7 +14,7 @@ import VueSetupExtend from 'vite-plugin-vue-setup-extend'
  */
 import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
-
+import AutoImport from "unplugin-auto-import/vite";
 /**
  * * unplugin-icons插件，自动引入iconify图标
  * usage: https://github.com/antfu/unplugin-icons
@@ -34,7 +34,27 @@ export function createVitePlugins(isBuild) {
     const plugin = [
         vue(),
         VueSetupExtend(),
+        AutoImport({
+            /* options */
+            include: [
+              /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+              /\.vue$/,
+              /\.vue\?vue/, // .vue
+            ],
+            imports: [
+              "vue",
+              "@vueuse/core",
+              "pinia",
+              "vue-router"
+            ],
+            dirs: ["src/hooks", "src/store", "src/utils", "src/api"],
+            dts: "src/typings/auto-import.d.ts",
+          }),
         Components({
+            dirs: ["src/components"],
+            extensions: ["vue"],
+            deep: true,
+            dts: "src/typings/components.d.ts",
             resolvers: [NaiveUiResolver()]
         }),
         Icons({ compiler: 'vue3', autoInstall: true }),

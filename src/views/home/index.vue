@@ -2,6 +2,8 @@
 import { watch } from "vue";
 import TwemojiBeamingFaceWithSmilingEyes from "~icons/twemoji/beaming-face-with-smiling-eyes";
 import TwemojiBabyChick from "~icons/twemoji/baby-chick";
+import TwemojiHatchingChick from '~icons/twemoji/hatching-chick'
+import TwemojiFrontFacingBabyChick from '~icons/twemoji/front-facing-baby-chick'
 import { useAppStore } from "@/store";
 import { useI18n } from "vue-i18n";
 const appStore = useAppStore();
@@ -59,6 +61,13 @@ const urls = [
     url: "https://vueuse.org/",
   },
 ];
+const count = ref(0)
+const show = ref(false)
+onMounted(()=>{
+  setTimeout(() => {
+    show.value = true
+  }, 2000);
+})
 </script>
 <i18n>
 {
@@ -72,9 +81,22 @@ const urls = [
   }
 }
 </i18n>
+
 <template>
   <div class="flex flex-col items-center justify-center">
-    <TwemojiBabyChick class="text-9xl"></TwemojiBabyChick>
+    <div class="relative">
+      <div class="absolute top-0 right-0 bg-purple-500 text-white select-none shadow-md rounded-full px-3 text-xl">
+        {{count}}
+      </div>
+      <n-popover :show="show" placement="left" >
+        <template #trigger>
+          <TwemojiHatchingChick class="text-9xl cursor-pointer outline-transparent " @click="()=>{count++;show=false}"></TwemojiHatchingChick>
+        </template>
+        <span class="">
+          点我试试
+        </span>
+      </n-popover>
+    </div>
     <div class="text-center">
       <h1 class="font-normal dark:text-gray-400">
         {{ t("welcome") }}

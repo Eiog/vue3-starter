@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import autoprefixer from 'autoprefixer'
 import { resolve } from 'path'
-import { createVitePlugins,configManualChunk } from './build'
+import { createVitePlugins, configManualChunk } from './build'
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   const isBuild = command === 'build'

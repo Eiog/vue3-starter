@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import { useAppStore } from "./store";
-import { subscribeStore } from "./store";
-import RiHomeHeartLine from "~icons/ri/home-heart-line";
-import MaterialSymbolsSunny from "~icons/material-symbols/sunny";
-import CilLanguage from "~icons/cil/language";
-import PhMoonStars from "~icons/ph/moon-stars";
-import SimpleIconsAboutdotme from "~icons/simple-icons/aboutdotme";
-import MdiGithub from "~icons/mdi/github";
-import { NTooltip } from "naive-ui";
-import { useRouter } from "vue-router";
-import { NaiveProvider } from "@/components";
+import { useAppStore } from './store';
+import { subscribeStore } from './store';
+import RiHomeHeartLine from '~icons/ri/home-heart-line';
+import MaterialSymbolsSunny from '~icons/material-symbols/sunny';
+import CilLanguage from '~icons/cil/language';
+import PhMoonStars from '~icons/ph/moon-stars';
+import SimpleIconsAboutdotme from '~icons/simple-icons/aboutdotme';
+import MdiGithub from '~icons/mdi/github';
+import { NTooltip } from 'naive-ui';
+import { useRouter } from 'vue-router';
+import { NaiveProvider } from '@/components';
 const router = useRouter();
 subscribeStore();
 const appStore = useAppStore();
 
 function changeLanguage() {
-  appStore.language = appStore.language === "cn" ? "en" : "cn";
+  appStore.language = appStore.language === 'cn' ? 'en' : 'cn';
 }
 </script>
 <template>
@@ -81,7 +81,7 @@ function changeLanguage() {
 }
 
 .fade-transform-enter-from {
-  transform: scale(.95);
+  transform: scale(0.95);
   opacity: 0;
 }
 

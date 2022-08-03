@@ -37,19 +37,19 @@ export function createVitePlugins(isBuild) {
         AutoImport({
             /* options */
             include: [
-              /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
-              /\.vue$/,
-              /\.vue\?vue/, // .vue
+                /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+                /\.vue$/,
+                /\.vue\?vue/, // .vue
             ],
             imports: [
-              "vue",
-              "@vueuse/core",
-              "pinia",
-              "vue-router"
+                "vue",
+                "@vueuse/core",
+                "pinia",
+                "vue-router"
             ],
             dirs: ["src/hooks", "src/store", "src/utils", "src/api"],
             dts: "src/typings/auto-import.d.ts",
-          }),
+        }),
         Components({
             dirs: ["src/components"],
             extensions: ["vue"],
@@ -77,14 +77,4 @@ export function createVitePlugins(isBuild) {
         })
     ]
     return plugin
-}
-export function createProxy(isBuild, prefix: string) {
-    const reg = new RegExp("/^" + prefix + "/")
-    const api = {
-        prefix: {
-            target: 'http://localhost:3000/' + prefix,
-            changeOrigin: true,
-            rewrite: path => path.replace(reg, '')
-        }
-    }
 }

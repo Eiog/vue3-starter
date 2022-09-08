@@ -4,9 +4,7 @@ import TwemojiHatchingChick from '~icons/twemoji/hatching-chick';
 import { useAppStore } from '@/store';
 import { useI18n } from 'vue-i18n';
 const appStore = useAppStore();
-const { locale, t } = useI18n({
-  inheritLocale: true,
-});
+const { locale, t } = useI18n();
 watch(
   () => appStore.language,
   (newValue) => {
@@ -66,18 +64,6 @@ onMounted(() => {
   }, 2000);
 });
 </script>
-<i18n>
-{
-  "en": {
-    "welcome":"welcome to unlit template",
-    "hello":"hello! World!"
-  },
-  "cn": {
-    "welcome":"欢迎使用unlit模板",
-    "hello":"你好！ 世界！"
-  }
-}
-</i18n>
 
 <template>
   <div flex="~ col" flex-center>

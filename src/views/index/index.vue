@@ -1,6 +1,5 @@
 <script setup lang="ts" name="Home">
 import { watch } from 'vue';
-import TwemojiHatchingChick from '~icons/twemoji/hatching-chick';
 import { useAppStore } from '@/store';
 import { useI18n } from 'vue-i18n';
 const appStore = useAppStore();

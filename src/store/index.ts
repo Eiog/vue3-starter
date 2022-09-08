@@ -1,5 +1,5 @@
 import { createPinia } from 'pinia'
-const store = createPinia()
+import { createPersistedState } from 'pinia-plugin-persistedstate'
+const store = createPinia().use(createPersistedState())
 export default store
 export * from './modules'
-export * from './subscribe'

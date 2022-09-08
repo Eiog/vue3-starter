@@ -1,90 +1,60 @@
 <script setup lang="ts">
 import { useAppStore } from './store';
-import { subscribeStore } from './store';
-import RiHomeHeartLine from '~icons/ri/home-heart-line';
-import MaterialSymbolsSunny from '~icons/material-symbols/sunny';
-import CilLanguage from '~icons/cil/language';
-import PhMoonStars from '~icons/ph/moon-stars';
-import SimpleIconsAboutdotme from '~icons/simple-icons/aboutdotme';
-import MdiGithub from '~icons/mdi/github';
-import { NTooltip } from 'naive-ui';
-import { useRouter } from 'vue-router';
-import { NaiveProvider } from '@/components';
 const router = useRouter();
-subscribeStore();
-const appStore = useAppStore();
+const { darkMode, language } = storeToRefs(useAppStore());
 
 function changeLanguage() {
-  appStore.language = appStore.language === 'cn' ? 'en' : 'cn';
+  language.value = language.value === 'cn' ? 'en' : 'cn';
 }
 </script>
 <template>
-  <div wfull hfull flex-center bg="white dark:gray-900">
-    <div max-w-xl hfull flex-center select-none flex="col">
-      <router-view v-slot="{ Component }">
-        <naive-provider>
-          <transition name="fade-transform" mode="out-in">
-            <component :is="Component"></component>
-          </transition>
-        </naive-provider>
-      </router-view>
-      <div flex-center gap5 mt4>
-        <n-tooltip trigger="hover">
-          <template #trigger>
-            <RiHomeHeartLine
-              class="btn"
-              @click="router.push('/home')"
-            ></RiHomeHeartLine>
-          </template>
-          首页
-        </n-tooltip>
-        <n-tooltip trigger="hover">
-          <template #trigger>
-            <CilLanguage class="btn" @click="changeLanguage"></CilLanguage>
-          </template>
-          中文
-        </n-tooltip>
-        <n-tooltip trigger="hover">
-          <template #trigger>
-            <MaterialSymbolsSunny
-              class="btn"
-              @click="appStore.darkMode = !appStore.darkMode"
-              v-if="!appStore.darkMode"
-            ></MaterialSymbolsSunny>
-            <PhMoonStars
-              class="btn"
-              @click="appStore.darkMode = !appStore.darkMode"
-              v-if="appStore.darkMode"
-            ></PhMoonStars>
-          </template>
-          暗黑模式
-        </n-tooltip>
-        <MdiGithub class="btn"></MdiGithub>
-        <SimpleIconsAboutdotme
-          class="btn"
-          @click="router.push('/about')"
-        ></SimpleIconsAboutdotme>
+  <naive-provider :dark="darkMode">
+    <div wfull hfull flex-center bg="white dark:gray-900">
+      <div max-w-xl hfull flex-center select-none flex="col">
+        <RouterEntry />
+        <div flex-center gap5 mt4>
+          <n-tooltip trigger="hover">
+            <template #trigger>
+              <i i-ri-home-2-line class="btn" @click="router.push('/home')"></i>
+            </template>
+            首页
+          </n-tooltip>
+          <n-tooltip trigger="hover">
+            <template #trigger>
+              <i i-ri-translate class="btn" @click="changeLanguage"></i>
+            </template>
+            中文
+          </n-tooltip>
+          <n-tooltip trigger="hover">
+            <template #trigger>
+              <i
+                class="btn"
+                :class="darkMode ? 'i-ri-moon-fill' : 'i-ri-sun-fill'"
+                @click="darkMode = !darkMode"
+              ></i>
+            </template>
+            暗黑模式
+          </n-tooltip>
+          <i
+            i-ri-user-heart-line
+            class="btn"
+            @click="router.push('/about')"
+          ></i>
+          <a
+            href="http://"
+            i-ri-github-fill
+            class="btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          ></a>
+        </div>
       </div>
     </div>
-  </div>
+  </naive-provider>
 </template>
 
 <style lang="less">
 .btn {
   @apply text-xl transition-colors cursor-pointer hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400;
-}
-.fade-transform-leave-active,
-.fade-transform-enter-active {
-  transition: all 0.3s ease-in-out;
-}
-
-.fade-transform-enter-from {
-  transform: scale(0.95);
-  opacity: 0;
-}
-
-.fade-transform-leave-to {
-  transform: scale(1.05);
-  opacity: 0;
 }
 </style>

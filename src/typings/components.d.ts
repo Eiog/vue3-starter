@@ -7,8 +7,14 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    NaiveConfig: typeof import('./../components/common/NaiveConfig.vue')['default']
     NaiveProvider: typeof import('./../components/common/NaiveProvider.vue')['default']
+    NConfigProvider: typeof import('naive-ui')['NConfigProvider']
+    NGlobalStyle: typeof import('naive-ui')['NGlobalStyle']
     NPopover: typeof import('naive-ui')['NPopover']
+    NTooltip: typeof import('naive-ui')['NTooltip']
+    RouterEntry: typeof import('./../components/common/RouterEntry.vue')['default']
+    RouterIntro: typeof import('./../components/common/RouterIntro.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

@@ -1,14 +1,20 @@
-import { defineStore } from "pinia";
-export const useAppStore = defineStore({
-    id: 'appStore',
-    state: () => ({
-        darkMode:false,
-        language:'cn'
-    }),
-    actions: {
+import { defineStore } from 'pinia'
+import { darkTheme } from 'naive-ui';
+export const useAppStore = defineStore(
+    'appStore',
+    () => {
+        const darkMode = ref(false)
+        const language = ref<'cn' | 'en'>('cn')
 
+        return {
+            language,
+            darkMode,
+        }
     },
-    getters: {
-
+    {
+        persist: {
+            key: '__app__',
+            paths: ['']
+        }
     }
-})
+)

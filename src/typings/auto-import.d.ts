@@ -95,7 +95,6 @@ declare global {
   const shallowRef: typeof import('vue')['shallowRef']
   const store: typeof import('../store/index')['default']
   const storeToRefs: typeof import('pinia')['storeToRefs']
-  const subscribeStore: typeof import('../store/subscribe/index')['subscribeStore']
   const syncRef: typeof import('@vueuse/core')['syncRef']
   const syncRefs: typeof import('@vueuse/core')['syncRefs']
   const templateRef: typeof import('@vueuse/core')['templateRef']

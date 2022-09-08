@@ -19,10 +19,8 @@ function changeLanguage() {
 }
 </script>
 <template>
-  <div
-    class="w-full h-full bg-white flex items-center justify-center dark:bg-gray-900"
-  >
-    <div class="max-w-xl h-full flex flex-col items-center justify-center">
+  <div wfull hfull flex-center bg="white dark:gray-900">
+    <div max-w-xl hfull flex-center select-none flex="col">
       <router-view v-slot="{ Component }">
         <naive-provider>
           <transition name="fade-transform" mode="out-in">
@@ -30,7 +28,7 @@ function changeLanguage() {
           </transition>
         </naive-provider>
       </router-view>
-      <div class="flex items-center justify-center gap-5 mt-4">
+      <div flex-center gap5 mt4>
         <n-tooltip trigger="hover">
           <template #trigger>
             <RiHomeHeartLine

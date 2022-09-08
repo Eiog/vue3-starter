@@ -1,7 +1,6 @@
 import path from 'path'
 import vue from '@vitejs/plugin-vue'
 import Unocss from 'unocss/vite'
-import { presetUno, presetAttributify, presetIcons } from 'unocss'
 /**
  * * 扩展setup插件，支持在script标签中使用name属性
  * usage: <script setup name="MyComp"></script>
@@ -45,7 +44,15 @@ export function createVitePlugins(isBuild) {
                 "vue",
                 "@vueuse/core",
                 "pinia",
-                "vue-router"
+                "vue-router",
+                {
+                    'naive-ui': [
+                        'useDialog',
+                        'useMessage',
+                        'useNotification',
+                        'useLoadingBar'
+                    ]
+                }
             ],
             dirs: ["src/hooks", "src/store", "src/utils", "src/api"],
             dts: "src/typings/auto-import.d.ts",
@@ -58,9 +65,7 @@ export function createVitePlugins(isBuild) {
             resolvers: [NaiveUiResolver()]
         }),
         Icons({ compiler: 'vue3', autoInstall: true }),
-        Unocss({
-            presets: [presetUno(), presetAttributify(), presetIcons()],
-        }),
+        Unocss(),
         createMockServe(isBuild),
         visualizer({
             filename: './node_modules/.cache/visualizer/stats.html',

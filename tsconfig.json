@@ -24,7 +24,8 @@
     },
     "allowSyntheticDefaultImports": true,
     "types": [
-      "unplugin-icons/types/vue"
+      "unplugin-icons/types/vue",
+      "naive-ui/volar"
     ]
   },
   "include": [

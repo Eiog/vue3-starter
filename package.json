@@ -1,7 +1,7 @@
 {
-  "name": "template-vue3.2-vite3-naiveui",
+  "name": "antrioe-vue3-template",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",

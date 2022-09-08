@@ -83,7 +83,8 @@ onMounted(() => {
       </div>
       <n-popover :show="show" placement="left">
         <template #trigger>
-          <TwemojiHatchingChick
+          <i
+            i-twemoji-hatching-chick
             text="9xl"
             cursor-pointer
             outline-transparent
@@ -93,16 +94,16 @@ onMounted(() => {
                 show = false;
               }
             "
-          ></TwemojiHatchingChick>
+          ></i>
         </template>
         <span> 点我试试 </span>
       </n-popover>
     </div>
     <div text="center">
-      <h1 text="dark:gray-4">
+      <h1 text="3xl dark:gray-4">
         {{ t('welcome') }}
       </h1>
-      <h1 text="dark:gray-4">{{ t('hello') }}</h1>
+      <h1 text="3xl dark:gray-4">{{ t('hello') }}</h1>
     </div>
     <div flex-center flex="wrap" gap3>
       <a

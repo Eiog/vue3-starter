@@ -11,7 +11,7 @@ function changeLanguage() {
   <div flex-center gap5 mt4>
     <n-tooltip trigger="hover">
       <template #trigger>
-        <i i-ri-home-2-line class="btn" @click="router.push('/home')"></i>
+        <i i-ri-home-2-line class="btn" @click="router.push('/')"></i>
       </template>
       首页
     </n-tooltip>

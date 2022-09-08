@@ -1,13 +1,7 @@
 import { createRouter, createWebHistory, Router, RouteRecordRaw } from 'vue-router';
-import {rootRoutes,commonRoutes} from './routes';
+import routes from './routes';
 import { createGuard } from './guard';
-import moduleRoutes from './modules';
 
-const routes: Array<RouteRecordRaw> = [
-    rootRoutes,
-    ...moduleRoutes,
-    ...commonRoutes,
-];
 const router: Router = createRouter({
     // 新的vue-router4 使用 history路由模式 和 base前缀
     history: createWebHistory(import.meta.env.VITE_BASE as string),
@@ -20,7 +14,6 @@ const router: Router = createRouter({
  * @return {*}
  */
 /**添加路由守卫 */
- createGuard(router)
+createGuard(router)
 
 export default router;
-export * from './modules'

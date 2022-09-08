@@ -8,4 +8,16 @@ import RouterEntry from '@/components/common/RouterEntry.vue';
   </DefaultLayout>
 </template>
 
-<style lang="less"></style>
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+}
+</style>

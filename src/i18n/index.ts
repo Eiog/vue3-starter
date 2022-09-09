@@ -1,13 +1,14 @@
-import { createI18n } from 'vue-i18n'
-import cn from '@/locales/cn.json'
-import en from '@/locales/en.json'
-type MessageSchema = typeof cn
-const i18n = createI18n<[MessageSchema], 'cn' | 'en'>({
-    legacy: false,
-    globalInjection: true,
-    locale: 'cn',
-    messages: {
-        cn, en
-    }
-})
-export default i18n
+import { createI18n } from 'vue-i18n';
+import zh_cn from '~/locales/cn.json';
+import en_us from '~/locales/en.json';
+type MessageSchema = typeof zh_cn;
+const i18n = createI18n<[MessageSchema], 'zh_cn' | 'en_us'>({
+  locale: 'zh_cn',
+  legacy: false,
+  fallbackLocale: 'zh_cn',
+  messages: {
+    zh_cn: zh_cn,
+    en_us: en_us,
+  },
+});
+export default i18n;

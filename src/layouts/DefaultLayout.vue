@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Menu from './Menu.vue';
-import { useAppStore } from '@/store';
+import { useAppStore } from '~/stores';
 const { darkMode } = storeToRefs(useAppStore());
 </script>
 <template>

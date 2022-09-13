@@ -104,7 +104,7 @@ export default defineConfig(() => {
       strictPort: true, // 如果端口已占用直接退出
       proxy: {
         '/api': {
-          target: 'http://localhost:3000/api/',
+          target: 'https://mock.apifox.cn/m1/476417-0-default',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
         },
@@ -136,18 +136,6 @@ export default defineConfig(() => {
       alias: {
         '~': resolve(__dirname, './src'), // 路径别名
         'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
-      },
-    },
-    css: {
-      postcss: {
-        plugins: [autoprefixer()],
-      },
-      // css预处理器
-      preprocessorOptions: {
-        less: {
-          charset: false,
-          // additionalData: '@import "./src/assets/style/index.less";',
-        },
       },
     },
   };

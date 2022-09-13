@@ -1,13 +1,14 @@
-import waterMarke  from "./waterMark"
-import lazyLoad from "./lazyLoad"
+import { App } from 'vue';
+import waterMarke from './waterMark';
+import lazyLoad from './lazyLoad';
 const directives = {
-    waterMarke,
-    lazyLoad
-}
+  waterMarke,
+  lazyLoad,
+};
 export default {
-    install(Vue){
-        Object.keys(directives).forEach(key=>{
-            Vue.directive(key,directives[key])
-        })
-    }
-}
+  install(app: App) {
+    Object.keys(directives).forEach((key) => {
+      app.directive(key, directives[key]);
+    });
+  },
+};

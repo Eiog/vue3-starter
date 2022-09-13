@@ -2,6 +2,8 @@
 import { watch } from 'vue';
 import { useAppStore } from '~/stores';
 import { useI18n } from 'vue-i18n';
+import { useAxios } from '~/hooks';
+const { loading } = useAxios('/api/useaxios', { id: 'a' });
 const appStore = useAppStore();
 const { locale, t } = useI18n();
 watch(
@@ -80,6 +82,7 @@ onMounted(() => {
       >
         {{ count }}
       </div>
+      {{ loading }}
       <n-popover :show="show" placement="left">
         <template #trigger>
           <i

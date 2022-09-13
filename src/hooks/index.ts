@@ -1,4 +1,3 @@
-import useImageVerify from './useImageVerify'
-export {
-    useImageVerify
-}
+import useImageVerify from './useImageVerify';
+import { useAxios } from './useAxios';
+export { useImageVerify, useAxios };

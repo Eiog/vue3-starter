@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useAxios, useGet, UseAxiosReturns } from '~/hooks';
+import { useGet, UseAxiosReturns } from '~/hooks';
 const {
   loading,
   error,

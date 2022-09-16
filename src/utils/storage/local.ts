@@ -8,8 +8,15 @@ interface StorageData {
 /** 默认缓存期限为7天 */
 const DEFAULT_CACHE_TIME = 60 * 60 * 24 * 1;
 
-export function setLocal(key: string, value: unknown, expire: number | null = DEFAULT_CACHE_TIME) {
-  const storageData: StorageData = { value, expire: expire !== null ? new Date().getTime() + expire * 1000 : null };
+export function setLocal(
+  key: string,
+  value: unknown,
+  expire: number | null = DEFAULT_CACHE_TIME,
+) {
+  const storageData: StorageData = {
+    value,
+    expire: expire !== null ? new Date().getTime() + expire * 1000 : null,
+  };
   const json = encrypto(storageData);
   window.localStorage.setItem(key, json);
 }

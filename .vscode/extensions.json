@@ -1,3 +1,5 @@
 {
-  "recommendations": ["vue.volar"]
+  "recommendations": [
+    "vue.volar"
+  ]
 }

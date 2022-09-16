@@ -1,5 +1,4 @@
 import { defineConfig } from 'vite';
-import autoprefixer from 'autoprefixer';
 import { resolve } from 'path';
 import path from 'path';
 import vue from '@vitejs/plugin-vue';
@@ -72,6 +71,11 @@ export default defineConfig(() => {
         ],
         dirs: ['src/hooks', 'src/store', 'src/utils', 'src/api'],
         dts: 'src/typings/auto-import.d.ts',
+        eslintrc: {
+          enabled: true,
+          filepath: './.eslintrc-auto-import.json',
+          globalsPropValue: true,
+        },
       }),
       Components({
         dirs: ['src/components'],

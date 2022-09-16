@@ -2,7 +2,7 @@
 export enum EnumContentType {
   json = 'application/json',
   formUrlencoded = 'application/x-www-form-urlencoded',
-  formData = 'multipart/form-data'
+  formData = 'multipart/form-data',
 }
 
 /** 数据类型 */
@@ -18,5 +18,5 @@ export enum EnumDataType {
   regexp = '[object RegExp]',
   set = '[object Set]',
   map = '[object Map]',
-  file = '[object File]'
+  file = '[object File]',
 }

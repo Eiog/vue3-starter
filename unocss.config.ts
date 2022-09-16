@@ -6,16 +6,17 @@ import {
   presetUno,
   presetWebFonts,
   transformerDirectives,
-  transformerVariantGroup
-} from 'unocss'
+  transformerVariantGroup,
+} from 'unocss';
 
 export default defineConfig({
   shortcuts: [
     {
-      'flex-center': 'flex items-center justify-center'
-    }, {
-      'gradient-bg': 'bg-gradient-to-tr from-#fdfbfb to-#ebedee'
-    }
+      'flex-center': 'flex items-center justify-center',
+    },
+    {
+      'gradient-bg': 'bg-gradient-to-tr from-#fdfbfb to-#ebedee',
+    },
   ],
   presets: [
     presetUno(),
@@ -24,17 +25,17 @@ export default defineConfig({
       scale: 1.2,
       extraProperties: {
         display: 'inline-block',
-        'vertical-align': 'middle'
-      }
+        'vertical-align': 'middle',
+      },
     }),
     presetTypography(),
     presetWebFonts({
       fonts: {
         sans: 'DM Sans',
         serif: 'DM Serif Display',
-        mono: 'DM Mono'
-      }
-    })
+        mono: 'DM Mono',
+      },
+    }),
   ],
-  transformers: [transformerDirectives(), transformerVariantGroup()]
-})
+  transformers: [transformerDirectives(), transformerVariantGroup()],
+});

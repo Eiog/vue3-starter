@@ -1,44 +1,31 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "ESNext",
     "module": "ESNext",
-    "useDefineForClassFields": true,
-    "strict": true, // 开启所有严格的类型检查
-    "alwaysStrict": true, // 在代码中注入'use strict'
-    "noImplicitAny": false, // 不允许隐式的any类型
-    "strictNullChecks": true, // 不允许把null、undefined赋值给其他类型的变量
-    "strictFunctionTypes": true, // 不允许函数参数双向协变
-    "strictPropertyInitialization": true, // 类的实例属性必须初始化
-    "strictBindCallApply": true, // 严格的bind/call/apply检查
-    "noImplicitThis": true, // 不允许this有隐式的any类型
-    "noUnusedLocals": true, // 检查只声明、未使用的局部变量(只提示不报错)
-    "noUnusedParameters": true, // 检查未使用的函数参数(只提示不报错)
-    "noFallthroughCasesInSwitch": true, // 防止switch语句贯穿(即如果没有break语句后面不会执行)
-    "noImplicitReturns": true, //每个分支都会有返回值
-    "esModuleInterop": true, // 允许export=导出，由import from 导入
-    "moduleResolution": "node", // 模块解析策略，ts默认用node的解析策略，即相对的方式导入
-    "jsx": "preserve",
-    "sourceMap": true, // 生成目标文件的sourceMap文件
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "allowSyntheticDefaultImports": true,
     "lib": [
       "ESNext",
       "DOM"
     ],
+    "strict": true, // 开启所有严格的类型检查
+    "esModuleInterop": true, // 允许export=导出，由import from 导入
+    "jsx": "preserve",
     "skipLibCheck": true,
-    "baseUrl": "./",
+    "moduleResolution": "node", // 模块解析策略，ts默认用node的解析策略，即相对的方式导入
+    "resolveJsonModule": true,
+    "noUnusedLocals": true, // 检查只声明、未使用的局部变量(只提示不报错)
+    "strictNullChecks": true, // 不允许把null、undefined赋值给其他类型的变量
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
     "paths": {
-      "~": [
-        "."
-      ],
       "~/*": [
         "./src/*"
       ],
     },
     "types": [
       "unplugin-icons/types/vue",
-      "naive-ui/volar"
+      "naive-ui/volar",
+      "vitest/globals"
     ]
   },
   "include": [

@@ -85,7 +85,7 @@ export default defineConfig(() => {
         deleteOriginFile: false,
       }),
       vueI18n({
-        include: path.resolve(__dirname, './src/locales/**'),
+        include: path.resolve(__dirname, './src/i18n/**'),
       }),
     ],
     server: {

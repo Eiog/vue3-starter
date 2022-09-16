@@ -1,4 +1,4 @@
-<script setup lang="ts" name="About">
+<script setup lang="ts">
 const list = ref([
   '😀',
   '😃',

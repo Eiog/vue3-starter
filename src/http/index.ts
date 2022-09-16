@@ -1,16 +1,13 @@
 import axios, {
   AxiosInstance,
   AxiosRequestConfig,
-  AxiosRequestHeaders,
   AxiosResponse,
   AxiosError,
 } from 'axios';
 import NProgress from 'nprogress';
 import showCodeMessage from './code';
-import { formatJsonToUrlParams, instanceObject } from '~/utils/common/format';
 import { repeatRequestIntercept } from './_methods';
 const { addPending, removePending } = repeatRequestIntercept();
-import { getLocal } from '~/utils';
 const BASE_PREFIX = import.meta.env.VITE_API_BASEURL;
 
 // 创建实例

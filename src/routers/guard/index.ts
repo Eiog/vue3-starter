@@ -1,6 +1,6 @@
 import { Router } from 'vue-router';
-import { useNProgress, useChangeTitle } from './_methods';
-export function createGuard(router: Router) {
+import { useNProgress, useChangeTitle } from './helps';
+const useGuard = (router: Router) => {
   const { start, done } = useNProgress();
   router.beforeEach((to, from, next) => {
     start();
@@ -10,4 +10,5 @@ export function createGuard(router: Router) {
     useChangeTitle(to);
     done();
   });
-}
+};
+export default useGuard;

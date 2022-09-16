@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
-const Index = () => import('~/views/index/index.vue');
+import Index from '~/views/index/index.vue';
 const routes: RouteRecordRaw[] = [
   {
     path: '/',

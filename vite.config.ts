@@ -15,19 +15,7 @@ import compressPlugin from 'vite-plugin-compression';
 const vendorLibs: { match: string[]; output: string }[] = [
   {
     match: ['naive-ui'],
-    output: 'naiveui',
-  },
-  {
-    match: ['xgplayer'],
-    output: 'xgplayer',
-  },
-  {
-    match: ['@wangeditor'],
-    output: 'wangeditor',
-  },
-  {
-    match: ['echarts'],
-    output: 'echarts',
+    output: 'naive-ui',
   },
 ];
 //分包
@@ -69,7 +57,7 @@ export default defineConfig(() => {
             ],
           },
         ],
-        dirs: ['src/hooks', 'src/store', 'src/utils', 'src/api'],
+        dirs: ['src/hooks', 'src/stores', 'src/utils'],
         dts: 'src/typings/auto-import.d.ts',
         eslintrc: {
           enabled: true,
@@ -78,7 +66,7 @@ export default defineConfig(() => {
         },
       }),
       Components({
-        dirs: ['src/components'],
+        dirs: ['src/components', 'src/layouts'],
         extensions: ['vue'],
         deep: true,
         dts: 'src/typings/components.d.ts',
@@ -115,6 +103,7 @@ export default defineConfig(() => {
       },
     },
     build: {
+      minify: 'terser',
       brotliSize: false,
       // 消除打包大小超过500kb警告
       chunkSizeWarningLimit: 2000,

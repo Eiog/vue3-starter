@@ -19,4 +19,5 @@ export enum EnumDataType {
   set = '[object Set]',
   map = '[object Map]',
   file = '[object File]',
+  function = '[object Function]',
 }

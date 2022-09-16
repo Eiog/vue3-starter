@@ -1,11 +1,8 @@
-<script setup lang="ts">
-import DefaultLayout from '~/layouts/DefaultLayout.vue';
-import RouterEntry from '~/components/common/RouterEntry.vue';
-</script>
+<script setup lang="ts"></script>
 <template>
-  <DefaultLayout>
-    <RouterEntry />
-  </DefaultLayout>
+  <default-layout>
+    <router-entry />
+  </default-layout>
 </template>
 
 <style>

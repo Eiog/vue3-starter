@@ -5,6 +5,7 @@ specifiers:
   '@iconify-json/ri': ^1.1.3
   '@iconify-json/twemoji': ^1.1.5
   '@intlify/vite-plugin-vue-i18n': ^6.0.1
+  '@types/crypto-js': ^4.1.1
   '@types/nprogress': ^0.2.0
   '@typescript-eslint/eslint-plugin': ^5.37.0
   '@typescript-eslint/parser': ^5.37.0
@@ -49,7 +50,6 @@ dependencies:
   '@formkit/auto-animate': 1.0.0-beta.3
   '@vueuse/core': 9.2.0_vue@3.2.39
   axios: 0.27.2
-  crypto-js: 4.1.1
   nprogress: 0.2.0
   pinia: 2.0.22_arz4dztosvwy2ghjrlh2wdhejm
   pinia-plugin-persistedstate: 2.2.0_pinia@2.0.22
@@ -61,6 +61,7 @@ devDependencies:
   '@iconify-json/ri': 1.1.3
   '@iconify-json/twemoji': 1.1.5
   '@intlify/vite-plugin-vue-i18n': 6.0.1_vite@3.1.0+vue-i18n@9.2.2
+  '@types/crypto-js': 4.1.1
   '@types/nprogress': 0.2.0
   '@typescript-eslint/eslint-plugin': 5.37.0_22c5fnooleyfkzrkkgdmel5kmi
   '@typescript-eslint/parser': 5.37.0_irgkl5vooow2ydyo6aokmferha
@@ -71,6 +72,7 @@ devDependencies:
   '@vue/eslint-config-prettier': 7.0.0_lpvhfrfofky3e6gkwtrv5gvhfa
   '@vue/eslint-config-typescript': 11.0.1_lt74cxsrofekofa4xcjvnzkbqy
   '@vue/test-utils': 2.0.2_vue@3.2.39
+  crypto-js: 4.1.1
   eslint: 8.23.1
   eslint-define-config: 1.7.0
   eslint-plugin-prettier: 4.2.1_lpvhfrfofky3e6gkwtrv5gvhfa
@@ -415,6 +417,10 @@ packages:
 
   /@types/chai/4.3.3:
     resolution: {integrity: sha512-hC7OMnszpxhZPduX+m+nrx+uFoLkWOMiR4oa/AZF3MuSETYTZmFfJAHqZEM8MVlvfG7BEUcgvtwoCTxBp6hm3g==}
+    dev: true
+
+  /@types/crypto-js/4.1.1:
+    resolution: {integrity: sha512-BG7fQKZ689HIoc5h+6D2Dgq1fABRa0RbBWKBd9SP/MVRVXROflpm5fhwyATX5duFmbStzyzyycPB8qUYKDH3NA==}
     dev: true
 
   /@types/json-schema/7.0.11:
@@ -1180,7 +1186,7 @@ packages:
 
   /crypto-js/4.1.1:
     resolution: {integrity: sha512-o2JlM7ydqd3Qk9CA0L4NL6mTzU2sdx96a+oOfPu8Mkl/PK51vSyoi8/rQ8NknZtk44vq15lmhAj9CIAGwgeWKw==}
-    dev: false
+    dev: true
 
   /css-render/0.15.11:
     resolution: {integrity: sha512-hnLrHPUndVUTF5nmNPRey6hpixK02IPUGdEsm2xRjvJuewToyrVFx9Nmai8rgfVzhTFo5SJVh2PHAtzaIV8JKw==}

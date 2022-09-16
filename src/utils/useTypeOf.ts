@@ -1,4 +1,4 @@
-import { EnumDataType } from '@/enum';
+import { EnumDataType } from './useEnum';
 
 export function isNumber(data: unknown) {
   return Object.prototype.toString.call(data) === EnumDataType.number;
@@ -35,4 +35,7 @@ export function isMap(data: unknown) {
 }
 export function isFile(data: unknown) {
   return Object.prototype.toString.call(data) === EnumDataType.file;
+}
+export function isFunction(data: unknown) {
+  return Object.prototype.toString.call(data) === EnumDataType.function;
 }

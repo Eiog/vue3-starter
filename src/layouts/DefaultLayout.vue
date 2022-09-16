@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import Menu from './Menu.vue';
-import { useAppStore } from '~/stores';
 const { darkMode } = storeToRefs(useAppStore());
 </script>
 <template>
@@ -8,7 +6,7 @@ const { darkMode } = storeToRefs(useAppStore());
     <div wfull hfull flex-center bg="white dark:gray-900">
       <div max-w-xl hfull flex-center select-none flex="col">
         <slot />
-        <Menu />
+        <default-menu />
       </div>
     </div>
   </naive-provider>

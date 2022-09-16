@@ -1,11 +1,6 @@
-import {
-  createRouter,
-  createWebHistory,
-  Router,
-  RouteRecordRaw,
-} from 'vue-router';
+import { createRouter, createWebHistory, Router } from 'vue-router';
 import routes from './routes';
-import { createGuard } from './guard';
+import useGuard from './guard';
 
 const router: Router = createRouter({
   // 新的vue-router4 使用 history路由模式 和 base前缀
@@ -19,6 +14,6 @@ const router: Router = createRouter({
  * @return {*}
  */
 /**添加路由守卫 */
-createGuard(router);
+useGuard(router);
 
 export default router;

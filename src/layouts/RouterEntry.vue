@@ -1,23 +1,27 @@
 <script setup lang="ts"></script>
 <template>
   <router-view v-slot="{ Component }">
-    <transition name="fade-transform" mode="out-in">
-      <component :is="Component"></component>
-    </transition>
+    <template v-if="Component">
+      <transition mode="out-in">
+        <keep-alive>
+          <component :is="Component"></component>
+        </keep-alive>
+      </transition>
+    </template>
   </router-view>
 </template>
 <style scoped lang="less">
-.fade-transform-leave-active,
-.fade-transform-enter-active {
+.v-leave-active,
+.v-enter-active {
   transition: all 0.3s ease-in-out;
 }
 
-.fade-transform-enter-from {
+.v-enter-from {
   transform: scale(0.95);
   opacity: 0;
 }
 
-.fade-transform-leave-to {
+.v-leave-to {
   transform: scale(1.05);
   opacity: 0;
 }

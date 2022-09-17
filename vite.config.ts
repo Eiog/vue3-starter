@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
-import path from 'path';
 import vue from '@vitejs/plugin-vue';
 import Unocss from 'unocss/vite';
 import VueSetupExtend from 'vite-plugin-vue-setup-extend';
@@ -85,7 +84,7 @@ export default defineConfig(() => {
         deleteOriginFile: false,
       }),
       vueI18n({
-        include: path.resolve(__dirname, './src/i18n/**'),
+        include: resolve(__dirname, './src/i18n/**'),
       }),
     ],
     server: {

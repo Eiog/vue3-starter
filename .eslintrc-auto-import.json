@@ -149,6 +149,7 @@
     "useAsyncState": true,
     "useAttrs": true,
     "useAxios": true,
+    "useBScroll": true,
     "useBase64": true,
     "useBattery": true,
     "useBluetooth": true,

@@ -102,7 +102,7 @@ export default defineConfig(() => {
       },
     },
     build: {
-      minify: 'terser',
+      minify: 'esbuild',
       brotliSize: false,
       // 消除打包大小超过500kb警告
       chunkSizeWarningLimit: 2000,

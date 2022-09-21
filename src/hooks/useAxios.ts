@@ -1,11 +1,11 @@
-import { Ref } from 'vue';
+import { Ref, ref } from 'vue';
 import axios, {
   AxiosRequestConfig,
   AxiosResponse,
   AxiosError,
   Method,
 } from 'axios';
-type ProgressEvent = {
+export type ProgressEvent = {
   loaded: number;
   total: number;
 };
@@ -33,14 +33,11 @@ export type UseAxios<REQ = any, RES = any> = (
   data?: REQ,
   option?: UseAxiosoOption<RES>,
 ) => UseAxiosReturns<REQ, RES>;
-export type UseGet<REQ = any, RES = any> = (
-  url: string,
-  data?: REQ,
-) => UseAxiosReturns<REQ, RES>;
-export type UsePost<REQ = any, RES = any> = (
-  url: string,
-  data?: REQ,
-) => UseAxiosReturns<REQ, RES>;
+
+const _calcProgress = (progressEvent: ProgressEvent) => {
+  const { loaded, total } = progressEvent;
+  return Math.round((loaded / total) * 100) / 100;
+};
 
 const _config: AxiosRequestConfig = {
   baseURL: '',
@@ -51,7 +48,7 @@ const _config: AxiosRequestConfig = {
     'Content-Type': 'application/json',
   },
 };
-export const useAxios: UseAxios = (url, data, option) => {
+const useAxios: UseAxios = (url, data, option) => {
   let controller = new AbortController();
   const loading = ref(true);
   const error = ref(false);
@@ -74,10 +71,14 @@ export const useAxios: UseAxios = (url, data, option) => {
     downloadProgress.value = _calcProgress(progressEvent);
     progress.value = _calcProgress(progressEvent);
   };
-  let _onSuccess = (response: AxiosResponse): void => {};
-  let _onError = (error: AxiosError): void => {};
+  let _onSuccess = (response: AxiosResponse): void => {
+    response;
+  };
+  let _onError = (error: AxiosError): void => {
+    error;
+  };
   const _transform =
-    option?.transform && _isFunction(option?.transform)
+    option?.transform && isFunction(option?.transform)
       ? option.transform
       : (res: AxiosResponse) => {
           return res.data;
@@ -139,7 +140,7 @@ export const useAxios: UseAxios = (url, data, option) => {
       : _config.data;
     axios(_config)
       .then((res) => {
-        responseData.value = _transform(res);
+        responseData.value = _transform !== true ? _transform(res) : res;
         _onSuccess(res);
       })
       .catch((err) => {
@@ -168,18 +169,5 @@ export const useAxios: UseAxios = (url, data, option) => {
     },
   };
 };
-export const useGet: UseGet = (url, data) => {
-  return useAxios(url, data);
-};
-export const usePost: UsePost = (url, data) => {
-  return useAxios(url, data, {
-    method: 'post',
-  });
-};
-const _calcProgress = (progressEvent: ProgressEvent) => {
-  const { loaded, total } = progressEvent;
-  return Math.round((loaded / total) * 100) / 100;
-};
-function _isFunction(input: unknown): input is Function {
-  return '[object Function]' === Object.prototype.toString.call(input);
-}
+
+export default useAxios;

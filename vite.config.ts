@@ -8,7 +8,6 @@ import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 import AutoImport from 'unplugin-auto-import/vite';
 import Icons from 'unplugin-icons/vite';
 import vueI18n from '@intlify/vite-plugin-vue-i18n';
-import visualizer from 'rollup-plugin-visualizer';
 import compressPlugin from 'vite-plugin-compression';
 // https://vitejs.dev/config/
 const vendorLibs: { match: string[]; output: string }[] = [
@@ -73,12 +72,6 @@ export default defineConfig(() => {
       }),
       Icons({ compiler: 'vue3', autoInstall: true }),
       Unocss(),
-      visualizer({
-        filename: './node_modules/.cache/visualizer/stats.html',
-        open: true,
-        gzipSize: true,
-        brotliSize: true,
-      }),
       compressPlugin({
         ext: '.gz',
         deleteOriginFile: false,

@@ -19,6 +19,7 @@ specifiers:
   '@vue/test-utils': ^2.0.2
   '@vueuse/core': ^9.2.0
   axios: ^0.27.2
+  colord: ^2.9.3
   crypto-js: ^4.1.1
   eslint: ^8.24.0
   eslint-plugin-prettier: ^4.2.1
@@ -52,6 +53,7 @@ dependencies:
   '@formkit/auto-animate': 1.0.0-beta.3
   '@vueuse/core': 9.2.0_vue@3.2.39
   axios: 0.27.2
+  colord: 2.9.3
   nprogress: 0.2.0
   pinia: 2.0.22_arz4dztosvwy2ghjrlh2wdhejm
   pinia-plugin-persistedstate: 2.2.0_pinia@2.0.22
@@ -262,8 +264,8 @@ packages:
       - supports-color
     dev: true
 
-  /@intlify/bundle-utils/3.1.2_vue-i18n@9.2.2:
-    resolution: {integrity: sha512-amgSo0NN5OKWYdcgFmfJqo2tcUcZ6C66Bxm5ALQnB0m3MUQtS9aJzKoIo+EU9XQiOVmlBFxRtNoZm+psHa5FNA==}
+  /@intlify/bundle-utils/3.2.1_vue-i18n@9.2.2:
+    resolution: {integrity: sha512-rf4cLBOnbqmpXVcCdcYHilZpMt1m82syh3WLBJlZvGxN2KkH9HeHVH4+bnibF/SDXCHNh6lM6wTpS/qw+PkcMg==}
     engines: {node: '>= 12'}
     peerDependencies:
       petite-vue-i18n: '*'
@@ -336,7 +338,7 @@ packages:
       vue-i18n:
         optional: true
     dependencies:
-      '@intlify/bundle-utils': 3.1.2_vue-i18n@9.2.2
+      '@intlify/bundle-utils': 3.2.1_vue-i18n@9.2.2
       '@intlify/shared': 9.3.0-beta.3
       '@rollup/pluginutils': 4.2.1
       debug: 4.3.4
@@ -1211,6 +1213,10 @@ packages:
   /color-name/1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
     dev: true
+
+  /colord/2.9.3:
+    resolution: {integrity: sha512-jeC1axXpnb0/2nn/Y1LPuLdgXBLH7aDcHu4KEKfqw3CUhX7ZpfBSlPKyqXE6btIgEzfWtrX3/tyBCaCvXvMkOw==}
+    dev: false
 
   /colorette/2.0.19:
     resolution: {integrity: sha512-3tlv/dIP7FWvj3BsbHrGLJ6l/oKh1O3TcgBqMn+yyCagOxc23fyzDS6HypQbgxWbkpDnf52p1LuR4eWDQ/K9WQ==}

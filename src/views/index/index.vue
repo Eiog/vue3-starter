@@ -1,18 +1,5 @@
 <script setup lang="ts">
-import { watch } from 'vue';
-import { useI18n } from 'vue-i18n';
-
-const appStore = useAppStore();
-const { locale, t } = useI18n();
-watch(
-  () => appStore.language,
-  (newValue) => {
-    locale.value = newValue;
-  },
-  {
-    immediate: true,
-  },
-);
+const { t } = useI18n();
 const urls = [
   {
     title: 'Vite2',

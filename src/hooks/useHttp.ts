@@ -47,7 +47,7 @@ axiosInstance.interceptors.response.use(
     }
   },
 );
-const http = {
+export const http = {
   get: (url: string, data?: object) => axiosInstance.get(url, { params: data }),
   post: (url: string, data?: object) => axiosInstance.post(url, data),
   put: (url: string, data?: object) => axiosInstance.put(url, data),
@@ -62,4 +62,3 @@ const http = {
     window.location.href = downloadUrl;
   },
 };
-export default http;

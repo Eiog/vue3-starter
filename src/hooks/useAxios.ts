@@ -12,21 +12,22 @@ export type ProgressEvent = {
 type Transform<T = any> = (res: AxiosResponse) => T;
 type UseAxiosoOption<REQ = any, RES = any> = {
   method?: Method;
+  lazy?: boolean;
   config?: AxiosRequestConfig<REQ>;
   before?: (config: AxiosRequestConfig<REQ>) => AxiosRequestConfig<REQ>;
   after?: (response: AxiosResponse<REQ, RES>) => AxiosResponse<REQ, RES>;
   transform?: boolean | Transform<RES>;
 };
 export type UseAxiosReturns<REQ = any, RES = any> = {
-  loading: Ref<boolean>;
+  pending: Ref<boolean>;
   error: Ref<boolean>;
   data: Ref<RES>;
   uploadProgress: Ref<number>;
   downloadProgress: Ref<number>;
   resend: (url?: string, data?: REQ) => void;
   abort: () => void;
-  onSuccess: (cb: (response: AxiosResponse) => void) => void;
-  onError: (cb: (error: AxiosError) => void) => void;
+  onSuccess: (cb: (response: AxiosResponse<RES, REQ>) => void) => void;
+  onError: (cb: (error: AxiosError<RES, REQ>) => void) => void;
 };
 export type UseAxios<REQ = any, RES = any> = (
   url: string,
@@ -50,7 +51,7 @@ const _config: AxiosRequestConfig = {
 };
 const useAxios: UseAxios = (url, data, option) => {
   let controller = new AbortController();
-  const loading = ref(true);
+  const pending = ref(true);
   const error = ref(false);
   const responseData = ref();
   const progress = ref(0);
@@ -96,12 +97,12 @@ const useAxios: UseAxios = (url, data, option) => {
     onUploadProgress: onUploadProgress,
     onDownloadProgress: onDownloadProgress,
   });
-
-  axios.interceptors.request.use(
+  const instance = axios.create(_config);
+  instance.interceptors.request.use(
     (config: AxiosRequestConfig) => {
       // TODO 在这里可以加上想要在请求发送前处理的逻辑
-      // TODO 比如 loading 等
-      loading.value = true;
+      // TODO 比如 pending 等
+      pending.value = true;
       error.value = false;
       progress.value = 0;
       uploadProgress.value = 0;
@@ -115,10 +116,9 @@ const useAxios: UseAxios = (url, data, option) => {
     },
   );
   // 响应拦截器
-  axios.interceptors.response.use(
+  instance.interceptors.response.use(
     (response: AxiosResponse) => {
       response = option?.after ? option?.after(response) : response;
-
       return response;
     },
     (error: AxiosError) => {
@@ -138,7 +138,8 @@ const useAxios: UseAxios = (url, data, option) => {
         ? data
         : undefined
       : _config.data;
-    axios(_config)
+    instance
+      .request(_config)
       .then((res) => {
         responseData.value = _transform !== true ? _transform(res) : res;
         _onSuccess(res);
@@ -148,12 +149,12 @@ const useAxios: UseAxios = (url, data, option) => {
         _onError(err);
       })
       .finally(() => {
-        loading.value = false;
+        pending.value = false;
       });
   };
   send();
   return {
-    loading,
+    pending,
     data: responseData,
     progress,
     uploadProgress,

@@ -12,7 +12,6 @@ export const useBScroll = (option?: Options) => {
   const y = ref(0);
   const scrolling = ref(false);
   const refresh = () => {
-    console.log('refresh');
     if (!bsRef.value) return;
     bsRef.value.refresh();
   };

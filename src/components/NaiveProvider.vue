@@ -7,6 +7,7 @@ import {
   NMessageProvider,
   darkTheme,
   GlobalTheme,
+  GlobalThemeOverrides,
 } from 'naive-ui';
 import {
   useLoadingBar,
@@ -16,6 +17,7 @@ import {
 } from 'naive-ui';
 type Props = {
   dark: boolean;
+  themeOverrides?: GlobalThemeOverrides;
 };
 const props = defineProps<Props>();
 const theme = ref<GlobalTheme | undefined>(undefined);
@@ -41,7 +43,9 @@ function registerNaiveTools() {
 }
 const NaiveProviderContent = defineComponent({
   setup() {
-    registerNaiveTools();
+    onMounted(() => {
+      registerNaiveTools();
+    });
   },
   render() {
     return h('div');
@@ -49,7 +53,11 @@ const NaiveProviderContent = defineComponent({
 });
 </script>
 <template>
-  <n-config-provider abstract :theme="theme">
+  <n-config-provider
+    abstract
+    :theme="theme"
+    :theme-overrides="props.themeOverrides"
+  >
     <n-loading-bar-provider>
       <n-dialog-provider>
         <n-notification-provider>

@@ -1,8 +1,14 @@
 <script setup lang="ts">
-const { darkMode, naiveThemeOverrides } = storeToRefs(useAppStore());
+const { darkMode, naiveThemeOverrides, naiveLocale, naiveDateLocale } =
+  storeToRefs(useAppStore());
 </script>
 <template>
-  <naive-provider :dark="darkMode" :theme-overrides="naiveThemeOverrides">
+  <naive-provider
+    :dark="darkMode"
+    :theme-overrides="naiveThemeOverrides"
+    :locale="naiveLocale"
+    :date-locale="naiveDateLocale"
+  >
     <div wfull hfull flex-center bg="white dark:gray-900">
       <div max-w-xl hfull flex-center select-none flex="col">
         <slot />

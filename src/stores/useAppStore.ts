@@ -1,6 +1,14 @@
 import { defineStore } from 'pinia';
 import { Ref } from 'vue';
-import { darkTheme, GlobalThemeOverrides, useOsTheme } from 'naive-ui';
+import {
+  darkTheme,
+  GlobalThemeOverrides,
+  useOsTheme,
+  zhCN,
+  enUS,
+  dateZhCN,
+  dateEnUS,
+} from 'naive-ui';
 import { getSatusColor } from './helps';
 export const useAppStore = defineStore(
   'appStore',
@@ -53,7 +61,12 @@ export const useAppStore = defineStore(
     const { locale } = useI18n();
     const language = ref<'zh_cn' | 'en_us'>('zh_cn');
     watch(language, (language) => (locale.value = language));
-
+    const naiveLocale = computed(() =>
+      language.value === 'zh_cn' ? zhCN : enUS,
+    );
+    const naiveDateLocale = computed(() =>
+      language.value === 'zh_cn' ? dateZhCN : dateEnUS,
+    );
     return {
       language,
       darkMode,
@@ -62,6 +75,8 @@ export const useAppStore = defineStore(
       themeColor,
       naiveThemeMode,
       naiveThemeOverrides,
+      naiveLocale,
+      naiveDateLocale,
     };
   },
   {

@@ -7,6 +7,7 @@ specifiers:
   '@iconify-json/twemoji': ^1.1.5
   '@intlify/vite-plugin-vue-i18n': ^6.0.3
   '@types/crypto-js': ^4.1.1
+  '@types/node': 18.8.0
   '@types/nprogress': ^0.2.0
   '@typescript-eslint/eslint-plugin': ^5.40.0
   '@typescript-eslint/parser': ^5.40.0
@@ -68,6 +69,7 @@ devDependencies:
   '@iconify-json/twemoji': 1.1.5
   '@intlify/vite-plugin-vue-i18n': 6.0.3_vite@3.1.8+vue-i18n@9.2.2
   '@types/crypto-js': 4.1.1
+  '@types/node': 18.8.0
   '@types/nprogress': 0.2.0
   '@typescript-eslint/eslint-plugin': 5.40.0_25sstg4uu2sk4pm7xcyzuov7xq
   '@typescript-eslint/parser': 5.40.0_z4bbprzjrhnsfa24uvmcbu7f5q
@@ -466,6 +468,10 @@ packages:
 
   /@types/node/18.11.0:
     resolution: {integrity: sha512-IOXCvVRToe7e0ny7HpT/X9Rb2RYtElG1a+VshjwT00HxrM2dWBApHQoqsI6WiY7Q03vdf2bCrIGzVrkF/5t10w==}
+    dev: true
+
+  /@types/node/18.8.0:
+    resolution: {integrity: sha512-u+h43R6U8xXDt2vzUaVP3VwjjLyOJk6uEciZS8OSyziUQGOwmk+l+4drxcsDboHXwyTaqS1INebghmWMRxq3LA==}
     dev: true
 
   /@types/nprogress/0.2.0:

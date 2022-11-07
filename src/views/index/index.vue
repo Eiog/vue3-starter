@@ -91,6 +91,7 @@ onMounted(() => {
       </h1>
       <h1 text="3xl dark:gray-4">{{ t('hello') }}</h1>
     </div>
+    <n-button type="primary">Primary</n-button>
     <div flex-center flex="wrap" gap3>
       <a
         transition-colors

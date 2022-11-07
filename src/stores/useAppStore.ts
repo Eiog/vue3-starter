@@ -20,11 +20,11 @@ export const useAppStore = defineStore(
       return darkMode.value;
     });
     const themeColor = ref({
-      primary: '#88ada6',
-      info: '#44cef6',
-      success: '#7bcfa6',
-      warning: '#eacd76',
-      error: '#dc3023',
+      primary: '#64748B',
+      info: '#06b6d4',
+      success: '#10b981',
+      warning: '#fbbf24',
+      error: '#f43f5e',
     });
     const naiveThemeMode = computed(() => {
       darkMode.value

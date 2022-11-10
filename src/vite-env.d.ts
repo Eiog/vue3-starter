@@ -6,6 +6,11 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>;
   export default component;
 }
+declare module '*.md' {
+  import type { ComponentOptions } from 'vue';
+  const Component: ComponentOptions;
+  export default Component;
+}
 // 声明 vite 环境变量
 declare interface ImportMetaEnv {
   readonly VITE_BASE: string;

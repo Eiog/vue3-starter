@@ -35,7 +35,6 @@ export default defineConfig(() => {
     plugins: [
       vue(),
       VueSetupExtend(),
-      RemoteAssets(),
       AutoImport({
         /* options */
         include: [

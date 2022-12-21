@@ -7,9 +7,8 @@ import Components from 'unplugin-vue-components/vite';
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 import AutoImport from 'unplugin-auto-import/vite';
 import Icons from 'unplugin-icons/vite';
-import vueI18n from '@intlify/vite-plugin-vue-i18n';
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite';
 import compressPlugin from 'vite-plugin-compression';
-import RemoteAssets from 'vite-plugin-remote-assets';
 // https://vitejs.dev/config/
 const vendorLibs: { match: string[]; output: string }[] = [
   {
@@ -78,7 +77,7 @@ export default defineConfig(() => {
         ext: '.gz',
         deleteOriginFile: false,
       }),
-      vueI18n({
+      VueI18nPlugin({
         include: resolve(__dirname, './src/i18n/**'),
       }),
     ],

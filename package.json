@@ -2,7 +2,6 @@
   "name": "antrioe-vue3-template",
   "private": true,
   "version": "0.0.1",
-  "type": "module",
   "author": "xsrole",
   "scripts": {
     "dev": "vite",
@@ -29,7 +28,7 @@
   },
   "devDependencies": {
     "@iconify-json/ri": "^1.1.4",
-    "@iconify-json/twemoji": "^1.1.7",
+    "@iconify-json/twemoji": "^1.1.8",
     "@intlify/unplugin-vue-i18n": "^0.8.1",
     "@types/crypto-js": "^4.1.1",
     "@types/node": "18.11.18",
@@ -38,13 +37,13 @@
     "@typescript-eslint/parser": "^5.47.1",
     "@unocss/reset": "^0.48.0",
     "@vitejs/plugin-vue": "^4.0.0",
-    "@vitest/ui": "^0.26.2",
+    "@vitest/ui": "^0.26.3",
     "@vue/compiler-sfc": "^3.2.45",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^11.0.2",
     "@vue/test-utils": "^2.2.6",
     "crypto-js": "^4.1.1",
-    "eslint": "^8.30.0",
+    "eslint": "^8.31.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.8.0",
     "express": "^4.18.2",
@@ -62,7 +61,7 @@
     "vite": "^4.0.3",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-vue-setup-extend": "^0.4.0",
-    "vitest": "^0.26.2",
-    "vue-tsc": "^1.0.18"
+    "vitest": "^0.26.3",
+    "vue-tsc": "^1.0.19"
   }
 }

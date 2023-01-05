@@ -74,6 +74,7 @@ onMounted(() => {
             text="9xl"
             cursor-pointer
             outline-transparent
+            animated="~ bounce infinite"
             @click="
               () => {
                 count++;

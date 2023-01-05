@@ -37,6 +37,8 @@ specifiers:
   prettier: ^2.8.1
   typescript: ^4.9.4
   unocss: ^0.48.0
+  unocss-preset-extra: ^0.4.3
+  unocss-preset-scrollbar: ^0.2.1
   unplugin-auto-import: ^0.12.1
   unplugin-icons: ^0.14.15
   unplugin-vue-components: ^0.22.12
@@ -92,6 +94,8 @@ devDependencies:
   prettier: registry.npmmirror.com/prettier/2.8.1
   typescript: registry.npmmirror.com/typescript/4.9.4
   unocss: registry.npmmirror.com/unocss/0.48.0_vite@4.0.3
+  unocss-preset-extra: registry.npmmirror.com/unocss-preset-extra/0.4.3_unocss@0.48.0
+  unocss-preset-scrollbar: registry.npmmirror.com/unocss-preset-scrollbar/0.2.1_unocss@0.48.0
   unplugin-auto-import: registry.npmmirror.com/unplugin-auto-import/0.12.1_@vueuse+core@9.9.0
   unplugin-icons: registry.npmmirror.com/unplugin-icons/0.14.15_@vue+compiler-sfc@3.2.45
   unplugin-vue-components: registry.npmmirror.com/unplugin-vue-components/0.22.12_vue@3.2.45
@@ -1055,6 +1059,12 @@ packages:
       unconfig: registry.npmmirror.com/unconfig/0.3.7
     dev: true
 
+  registry.npmmirror.com/@unocss/core/0.31.17:
+    resolution: {integrity: sha512-DJ3Uk2ePVXvV1qQmgoLK44aqB6f0s+naOEvouI97nzVXDZgxDQPBxIPB/L4vvE4U+gQxEiHwwE3gJ75iPqVzXw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@unocss/core/-/core-0.31.17.tgz}
+    name: '@unocss/core'
+    version: 0.31.17
+    dev: true
+
   registry.npmmirror.com/@unocss/core/0.48.0:
     resolution: {integrity: sha512-WvAvChbJ65l97mHismyApeFVgNeGR4uSZl1BzVY+E/fRmyooE4QxiCm3g2akox6mQryzxvBvgSpP9aPzH676ZQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@unocss/core/-/core-0.48.0.tgz}
     name: '@unocss/core'
@@ -1088,6 +1098,14 @@ packages:
       ohmyfetch: registry.npmmirror.com/ohmyfetch/0.4.21
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  registry.npmmirror.com/@unocss/preset-mini/0.31.17:
+    resolution: {integrity: sha512-gVgMTOKLt3O1ym348QIBmR5sS9W0Ozkk5xelhH6e0VXcpg0dXDPDrl4hFErMy4x6IB86yyJG6Dz5JhcwQB13Ig==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@unocss/preset-mini/-/preset-mini-0.31.17.tgz}
+    name: '@unocss/preset-mini'
+    version: 0.31.17
+    dependencies:
+      '@unocss/core': registry.npmmirror.com/@unocss/core/0.31.17
     dev: true
 
   registry.npmmirror.com/@unocss/preset-mini/0.48.0:
@@ -4517,6 +4535,29 @@ packages:
     name: universalify
     version: 2.0.0
     engines: {node: '>= 10.0.0'}
+    dev: true
+
+  registry.npmmirror.com/unocss-preset-extra/0.4.3_unocss@0.48.0:
+    resolution: {integrity: sha512-22E70ah0ziSS9mOzyfxnC9DsWvlcyvRkZTu9Bq8m7Cis2O7T/riqJHdp95ybiSLNqhoq9nqUlfLkHpi7XCvZ6w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/unocss-preset-extra/-/unocss-preset-extra-0.4.3.tgz}
+    id: registry.npmmirror.com/unocss-preset-extra/0.4.3
+    name: unocss-preset-extra
+    version: 0.4.3
+    peerDependencies:
+      unocss: '>= 0.31.0 < 1'
+    dependencies:
+      unocss: registry.npmmirror.com/unocss/0.48.0_vite@4.0.3
+    dev: true
+
+  registry.npmmirror.com/unocss-preset-scrollbar/0.2.1_unocss@0.48.0:
+    resolution: {integrity: sha512-7ubHdOaUwr7xBn1glPpICNNsM2SZGjvWK5uRPNiQYsrZ9YFjsCGHk9x5S2R8pTkuMDQeiaSa/UQbYhjC8Fra5g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/unocss-preset-scrollbar/-/unocss-preset-scrollbar-0.2.1.tgz}
+    id: registry.npmmirror.com/unocss-preset-scrollbar/0.2.1
+    name: unocss-preset-scrollbar
+    version: 0.2.1
+    peerDependencies:
+      unocss: '>= 0.31.13 < 1'
+    dependencies:
+      '@unocss/preset-mini': registry.npmmirror.com/@unocss/preset-mini/0.31.17
+      unocss: registry.npmmirror.com/unocss/0.48.0_vite@4.0.3
     dev: true
 
   registry.npmmirror.com/unocss/0.48.0_vite@4.0.3:

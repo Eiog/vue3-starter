@@ -8,7 +8,8 @@ import {
   transformerDirectives,
   transformerVariantGroup,
 } from 'unocss';
-
+import { presetExtra } from 'unocss-preset-extra';
+import { presetScrollbar } from 'unocss-preset-scrollbar';
 export default defineConfig({
   exclude: ['node_modules', '.git'],
   shortcuts: {
@@ -45,7 +46,7 @@ export default defineConfig({
     'fixed-center': 'fixed-lt flex-center wh-full',
     'nowrap-hidden': 'whitespace-nowrap overflow-hidden',
     'ellipsis-text': 'nowrap-hidden overflow-ellipsis',
-    'transition-base': 'transition-all duration-300 ease-in-out'
+    'transition-base': 'transition-all duration-300 ease-in-out',
   },
   presets: [
     presetUno(),
@@ -65,6 +66,8 @@ export default defineConfig({
         mono: 'DM Mono',
       },
     }),
+    presetExtra(),
+    presetScrollbar(),
   ],
   transformers: [transformerDirectives(), transformerVariantGroup()],
 });

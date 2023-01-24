@@ -14,7 +14,7 @@ export const useAppStore = defineStore(
   'appStore',
   () => {
     const darkMode = ref(false);
-    const useOsDark = ref(false);
+    const useOsDark = ref(true);
     const useDarkMode = computed(() => {
       if (useOsDark.value) return useOsTheme().value === 'dark' ? true : false;
       return darkMode.value;

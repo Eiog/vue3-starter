@@ -1,10 +1,10 @@
 <script setup lang="ts">
-const { darkMode, naiveThemeOverrides, naiveLocale, naiveDateLocale } =
+const { useDarkMode, naiveThemeOverrides, naiveLocale, naiveDateLocale } =
   storeToRefs(useAppStore());
 </script>
 <template>
   <naive-provider
-    :dark="darkMode"
+    :dark="useDarkMode"
     :theme-overrides="naiveThemeOverrides"
     :locale="naiveLocale"
     :date-locale="naiveDateLocale"

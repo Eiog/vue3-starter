@@ -1,6 +1,7 @@
 import { Ref, ref } from 'vue';
 import axios, {
   AxiosRequestConfig,
+  InternalAxiosRequestConfig,
   AxiosResponse,
   AxiosError,
   Method,
@@ -14,7 +15,9 @@ type UseAxiosoOption<REQ = any, RES = any> = {
   method?: Method;
   lazy?: boolean;
   config?: AxiosRequestConfig<REQ>;
-  before?: (config: AxiosRequestConfig<REQ>) => AxiosRequestConfig<REQ>;
+  before?: (
+    config: InternalAxiosRequestConfig<REQ>,
+  ) => InternalAxiosRequestConfig<REQ>;
   after?: (response: AxiosResponse<REQ, RES>) => AxiosResponse<REQ, RES>;
   transform?: boolean | Transform<RES>;
 };
@@ -99,7 +102,7 @@ const useAxios: UseAxios = (url, data, option) => {
   });
   const instance = axios.create(_config);
   instance.interceptors.request.use(
-    (config: AxiosRequestConfig) => {
+    (config: InternalAxiosRequestConfig) => {
       // TODO 在这里可以加上想要在请求发送前处理的逻辑
       // TODO 比如 pending 等
       pending.value = true;

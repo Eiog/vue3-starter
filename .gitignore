@@ -13,3 +13,7 @@ dist-ssr
 *.local
 .output
 .nuxt
+.eslintrc-auto-import.json
+src/typings/auto-import.d.ts
+src/typings/components.d.ts
+pnpm-lock.yaml

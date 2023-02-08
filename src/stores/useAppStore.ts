@@ -1,37 +1,38 @@
-import { defineStore } from 'pinia';
-import { Ref } from 'vue';
+import { defineStore } from 'pinia'
+import type { Ref } from 'vue'
+import type { GlobalThemeOverrides } from 'naive-ui'
 import {
   darkTheme,
-  GlobalThemeOverrides,
+  dateEnUS,
+  dateZhCN,
+  enUS,
   useOsTheme,
   zhCN,
-  enUS,
-  dateZhCN,
-  dateEnUS,
-} from 'naive-ui';
-import { getSatusColor } from './helps';
+} from 'naive-ui'
+import { getSatusColor } from './helps'
 export const useAppStore = defineStore(
   'appStore',
   () => {
-    const darkMode = ref(false);
-    const useOsDark = ref(true);
+    const darkMode = ref(false)
+    const useOsDark = ref(true)
     const useDarkMode = computed(() => {
-      if (useOsDark.value) return useOsTheme().value === 'dark' ? true : false;
-      return darkMode.value;
-    });
+      if (useOsDark.value)
+        return useOsTheme().value === 'dark'
+      return darkMode.value
+    })
     const themeColor = ref({
       primary: '#64748B',
       info: '#06b6d4',
       success: '#10b981',
       warning: '#fbbf24',
       error: '#f43f5e',
-    });
+    })
     const naiveThemeMode = computed(() => {
       darkMode.value
         ? document.body.classList.add('dark')
-        : document.body.classList.remove('dark');
-      return darkMode.value ? darkTheme : undefined;
-    });
+        : document.body.classList.remove('dark')
+      return darkMode.value ? darkTheme : undefined
+    })
     const naiveThemeOverrides: Ref<GlobalThemeOverrides> = computed(() => {
       return {
         common: {
@@ -56,17 +57,17 @@ export const useAppStore = defineStore(
           errorColorPressed: getSatusColor(themeColor.value.error).pressed,
           errorColorSuppl: getSatusColor(themeColor.value.error).suppl,
         },
-      };
-    });
-    const { locale } = useI18n();
-    const language = ref<'zh_cn' | 'en_us'>('zh_cn');
-    watch(language, (language) => (locale.value = language));
+      }
+    })
+    const { locale } = useI18n()
+    const language = ref<'zh_cn' | 'en_us'>('zh_cn')
+    watch(language, language => (locale.value = language))
     const naiveLocale = computed(() =>
       language.value === 'zh_cn' ? zhCN : enUS,
-    );
+    )
     const naiveDateLocale = computed(() =>
       language.value === 'zh_cn' ? dateZhCN : dateEnUS,
-    );
+    )
     return {
       language,
       darkMode,
@@ -77,7 +78,7 @@ export const useAppStore = defineStore(
       naiveThemeOverrides,
       naiveLocale,
       naiveDateLocale,
-    };
+    }
   },
   {
     persist: {
@@ -85,4 +86,4 @@ export const useAppStore = defineStore(
       paths: [''],
     },
   },
-);
+)

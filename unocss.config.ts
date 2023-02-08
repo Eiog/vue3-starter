@@ -7,9 +7,9 @@ import {
   presetWebFonts,
   transformerDirectives,
   transformerVariantGroup,
-} from 'unocss';
-import { presetExtra } from 'unocss-preset-extra';
-import { presetScrollbar } from 'unocss-preset-scrollbar';
+} from 'unocss'
+import { presetExtra } from 'unocss-preset-extra'
+import { presetScrollbar } from 'unocss-preset-scrollbar'
 export default defineConfig({
   exclude: ['node_modules', '.git'],
   shortcuts: {
@@ -54,7 +54,7 @@ export default defineConfig({
     presetIcons({
       scale: 1.2,
       extraProperties: {
-        display: 'inline-block',
+        'display': 'inline-block',
         'vertical-align': 'middle',
       },
     }),
@@ -70,4 +70,4 @@ export default defineConfig({
     presetScrollbar(),
   ],
   transformers: [transformerDirectives(), transformerVariantGroup()],
-});
+})

@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
     "target": "ESNext",
     "module": "ESNext",
     "lib": [
@@ -19,8 +19,8 @@
     "forceConsistentCasingInFileNames": true,
     "paths": {
       "~/*": [
-        "./src/*"
-      ],
+        "src/*"
+      ]
     },
     "types": [
       "unplugin-icons/types/vue",
@@ -38,9 +38,4 @@
     "node_modules",
     "dist"
   ],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ]
 }

@@ -1,15 +1,17 @@
 <script setup lang="ts"></script>
+
 <template>
   <router-view v-slot="{ Component }">
     <template v-if="Component">
       <transition mode="out-in">
         <keep-alive>
-          <component :is="Component"></component>
+          <component :is="Component" />
         </keep-alive>
       </transition>
     </template>
   </router-view>
 </template>
+
 <style scoped lang="less">
 .v-leave-active,
 .v-enter-active {

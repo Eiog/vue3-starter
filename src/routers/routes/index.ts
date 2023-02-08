@@ -1,7 +1,7 @@
-import { RouteRecordRaw } from 'vue-router';
-import indexRoutes from './index.routes';
-import aboutRoutes from './about.routes';
-const _routes = [...indexRoutes, ...aboutRoutes];
+import type { RouteRecordRaw } from 'vue-router'
+import indexRoutes from './index.routes'
+import aboutRoutes from './about.routes'
+const _routes = [...indexRoutes, ...aboutRoutes]
 const routes: RouteRecordRaw[] = [
   ..._routes,
   {
@@ -13,5 +13,5 @@ const routes: RouteRecordRaw[] = [
     path: '/:pathMatch(.*)*',
     redirect: '/not-found',
   },
-];
-export default routes;
+]
+export default routes

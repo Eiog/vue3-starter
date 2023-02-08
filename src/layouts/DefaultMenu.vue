@@ -1,22 +1,23 @@
 <script setup lang="ts">
-const router = useRouter();
-const { darkMode, language } = storeToRefs(useAppStore());
+const router = useRouter()
+const { darkMode, language } = storeToRefs(useAppStore())
 
 function changeLanguage() {
-  language.value = language.value === 'zh_cn' ? 'en_us' : 'zh_cn';
+  language.value = language.value === 'zh_cn' ? 'en_us' : 'zh_cn'
 }
 </script>
+
 <template>
   <div flex-center gap5 mt4>
     <n-tooltip trigger="hover">
       <template #trigger>
-        <i i-ri-home-2-line class="btn" @click="router.push('/')"></i>
+        <i i-ri-home-2-line class="btn" @click="router.push('/')" />
       </template>
       首页
     </n-tooltip>
     <n-tooltip trigger="hover">
       <template #trigger>
-        <i i-ri-translate class="btn" @click="changeLanguage"></i>
+        <i i-ri-translate class="btn" @click="changeLanguage" />
       </template>
       中文
     </n-tooltip>
@@ -26,20 +27,21 @@ function changeLanguage() {
           class="btn"
           :class="darkMode ? 'i-ri-moon-fill' : 'i-ri-sun-fill'"
           @click="darkMode = !darkMode"
-        ></i>
+        />
       </template>
       暗黑模式
     </n-tooltip>
-    <i i-ri-user-heart-line class="btn" @click="router.push('/about')"></i>
+    <i i-ri-user-heart-line class="btn" @click="router.push('/about')" />
     <a
       href="https://github.com/xsrole/template-vue3"
       i-ri-github-fill
       class="btn"
       target="_blank"
       rel="noopener noreferrer"
-    ></a>
+    />
   </div>
 </template>
+
 <style scoped lang="less">
 .btn {
   @apply text-xl transition-colors cursor-pointer hover:text-gray-500 dark:text-gray-500 dark:hover:text-gray-400;

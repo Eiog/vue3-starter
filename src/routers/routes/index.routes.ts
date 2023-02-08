@@ -1,5 +1,5 @@
-import { RouteRecordRaw } from 'vue-router';
-import Index from '~/views/index/index.vue';
+import type { RouteRecordRaw } from 'vue-router'
+import Index from '~/views/index/index.vue'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -9,6 +9,6 @@ const routes: RouteRecordRaw[] = [
       title: '首页',
     },
   },
-];
+]
 
-export default routes;
+export default routes

@@ -1,5 +1,5 @@
-import { RouteRecordRaw } from 'vue-router';
-const About = () => import('~/views/about/about.vue');
+import type { RouteRecordRaw } from 'vue-router'
+const About = () => import('~/views/about/about.vue')
 const routes: RouteRecordRaw[] = [
   {
     path: '/about',
@@ -9,6 +9,6 @@ const routes: RouteRecordRaw[] = [
       title: '关于',
     },
   },
-];
+]
 
-export default routes;
+export default routes

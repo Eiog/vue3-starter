@@ -10,6 +10,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 import Markdown from 'vite-plugin-vue-markdown'
 import LinkAttributes from 'markdown-it-link-attributes'
 import Shiki from 'markdown-it-shiki'
+import Icons from 'unplugin-icons/vite'
 // https://vitejs.dev/config/
 const vendorLibs: { match: string[]; output: string }[] = [
   {
@@ -34,6 +35,7 @@ export default defineConfig(() => {
   return {
     plugins: [
       vue(),
+      Icons({ compiler: 'vue3' }),
       AutoImport({
         /* options */
         include: [

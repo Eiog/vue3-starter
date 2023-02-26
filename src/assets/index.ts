@@ -1,3 +1,4 @@
+export * from 'virtual:svg-icons-register'
 export * from 'uno.css?inline'
 export * from '@unocss/reset/tailwind.css?inline'
 export * from './style/nprogress.css?inline'

@@ -1,7 +1,9 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>Hello</div>
+  <div>
+    <SvgIcon name="home" />
+  </div>
 </template>
 
 <style scoped lang="less"></style>

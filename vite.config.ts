@@ -41,6 +41,7 @@ export default defineConfig(() => {
       }),
       vue(),
       Icons({ compiler: 'vue3' }),
+      // https://github.com/antfu/unplugin-auto-import
       AutoImport({
         /* options */
         include: [
@@ -52,6 +53,7 @@ export default defineConfig(() => {
           'vue',
           '@vueuse/core',
           '@vueuse/head',
+          'vue-i18n',
           'pinia',
           'vue-router',
           'vue-i18n',
@@ -68,6 +70,7 @@ export default defineConfig(() => {
         dts: 'src/typings/auto-import.d.ts',
         vueTemplate: true,
       }),
+      // https://github.com/antfu/unplugin-vue-components
       Components({
         dirs: ['src/components', 'src/layouts'],
         extensions: ['vue', 'md'],
@@ -76,13 +79,17 @@ export default defineConfig(() => {
         dts: 'src/typings/components.d.ts',
         resolvers: [NaiveUiResolver()],
       }),
+      // https://github.com/antfu/unocss
+      // see unocss.config.ts for config
       Unocss(),
+      // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
       VueI18nPlugin({
         runtimeOnly: true,
         compositionOnly: true,
         fullInstall: true,
         include: resolve(__dirname, './src/i18n/**'),
       }),
+      // https://github.com/antfu/vite-plugin-vue-markdown
       Markdown({
         wrapperClasses: 'prose prose-sm m-auto text-left',
         headEnabled: true,
@@ -103,6 +110,7 @@ export default defineConfig(() => {
           })
         },
       }),
+      // https://github.com/antfu/vite-plugin-pwa
       VitePWA({
         registerType: 'autoUpdate',
         includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],

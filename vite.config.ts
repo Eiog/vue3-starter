@@ -12,6 +12,7 @@ import LinkAttributes from 'markdown-it-link-attributes'
 import Shiki from 'markdown-it-shiki'
 import Icons from 'unplugin-icons/vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import DefineOptions from 'unplugin-vue-define-options/vite'
 // https://vitejs.dev/config/
 const vendorLibs: { match: string[]; output: string }[] = [
   {
@@ -35,6 +36,7 @@ const configManualChunk = (id: string) => {
 export default defineConfig(() => {
   return {
     plugins: [
+      DefineOptions(),
       createSvgIconsPlugin({
         iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
         symbolId: 'icon-[dir]-[name]',

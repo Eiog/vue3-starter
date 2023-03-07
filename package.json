@@ -1,5 +1,5 @@
 {
-  "name": "vite-vue3-ts-starter",
+  "name": "vue3-starter",
   "type": "module",
   "private": true,
   "scripts": {

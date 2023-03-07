@@ -9,3 +9,9 @@
 <style scoped lang='less'>
 
 </style>
+
+<route lang="yaml">
+meta:
+  layout: default
+  title: index
+</route>

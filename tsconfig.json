@@ -27,7 +27,8 @@
       "unplugin-icons/types/vue",
       "naive-ui/volar",
       "vitest/globals",
-      "vite-plugin-svg-icons/client"
+      "vite-plugin-svg-icons/client",
+      "vite-plugin-vue-layouts/client"
     ]
   },
   "include": [

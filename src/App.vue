@@ -19,9 +19,7 @@ useHead({
 </script>
 
 <template>
-  <default-layout>
-    <router-entry />
-  </default-layout>
+  <RouterView />
 </template>
 
 <style>

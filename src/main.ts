@@ -9,4 +9,5 @@ import directives from './directives'
 const head = createHead()
 const app = createApp(App)
 app.use(head)
-app.use(store).use(router).use(directives).use(i18n).mount('#app')
+app.use(store).use(router).use(directives).use(i18n)
+app.mount('#app')

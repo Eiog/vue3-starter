@@ -1,14 +1,9 @@
 import { createI18n } from 'vue-i18n'
-import zh_cn from './cn.json'
-import en_us from './en.json'
-type MessageSchema = typeof zh_cn
-const i18n = createI18n<[MessageSchema], 'zh_cn' | 'en_us'>({
+import messages from '@intlify/unplugin-vue-i18n/messages'
+const i18n = createI18n({
   locale: 'zh_cn',
   legacy: false,
   fallbackLocale: 'zh_cn',
-  messages: {
-    zh_cn,
-    en_us,
-  },
+  messages,
 })
 export default i18n

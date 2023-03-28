@@ -1,7 +1,7 @@
-export * from 'virtual:svg-icons-register'
-export * from 'uno.css?inline'
-export * from '@unocss/reset/tailwind.css?inline'
-export * from './style/nprogress.css?inline'
+import 'virtual:svg-icons-register'
+import 'uno.css'
+import '@unocss/reset/tailwind.css'
+import './style/nprogress.css'
 const meta = document.createElement('meta')
 meta.name = 'naive-ui-style'
 document.head.appendChild(meta)

@@ -96,7 +96,7 @@ export default defineConfig(() => {
         runtimeOnly: true,
         compositionOnly: true,
         fullInstall: true,
-        include: resolve(__dirname, './src/i18n/**'),
+        include: resolve(__dirname, './src/locales/**'),
       }),
       // https://github.com/antfu/vite-plugin-vue-markdown
       Markdown({
@@ -149,7 +149,7 @@ export default defineConfig(() => {
       }),
     ],
     server: {
-      port: 3000,
+      port: 5678,
       host: true, // host设置为true才可以使用network的形式，以ip访问项目
       open: false, // 自动打开浏览器
       cors: true, // 跨域设置允许
@@ -188,7 +188,7 @@ export default defineConfig(() => {
     resolve: {
       alias: {
         '~': resolve(__dirname, './src'), // 路径别名
-        'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js',
+        'vue-i18n': 'vue-i18n/dist/vue-i18n.runtime.esm-bundler.js',
       },
     },
   }

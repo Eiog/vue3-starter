@@ -28,7 +28,8 @@
       "naive-ui/volar",
       "vitest/globals",
       "vite-plugin-svg-icons/client",
-      "vite-plugin-vue-layouts/client"
+      "vite-plugin-vue-layouts/client",
+      "@intlify/unplugin-vue-i18n/messages"
     ]
   },
   "include": [

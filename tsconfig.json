@@ -29,7 +29,8 @@
       "vitest/globals",
       "vite-plugin-svg-icons/client",
       "vite-plugin-vue-layouts/client",
-      "@intlify/unplugin-vue-i18n/messages"
+      "@intlify/unplugin-vue-i18n/messages",
+      "@morev/vue-transitions/types/volar"
     ]
   },
   "include": [

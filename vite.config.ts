@@ -1,6 +1,7 @@
 import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import Unocss from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
@@ -12,7 +13,7 @@ import LinkAttributes from 'markdown-it-link-attributes'
 import Shiki from 'markdown-it-shiki'
 import Icons from 'unplugin-icons/vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-import DefineOptions from 'unplugin-vue-define-options/vite'
+import DefineOptions from 'unplugin-vue-define-options/dist/vite'
 import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
 // https://vitejs.dev/config/
@@ -23,7 +24,7 @@ const vendorLibs: { match: string[]; output: string }[] = [
   },
 ]
 // 分包
-const configManualChunk = (id: string) => {
+function configManualChunk(id: string) {
   if (/[\\/]node_modules[\\/]/.test(id)) {
     const matchItem = vendorLibs.find((item) => {
       const reg = new RegExp(
@@ -50,6 +51,7 @@ export default defineConfig(() => {
         symbolId: 'icon-[dir]-[name]',
       }),
       vue(),
+      vueJsx(),
       Icons({ compiler: 'vue3' }),
       // https://github.com/antfu/unplugin-auto-import
       AutoImport({

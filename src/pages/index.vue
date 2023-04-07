@@ -1,9 +1,10 @@
 <script setup lang='ts'>
-
+import HelloTsx from '~/components/HelloTsx'
 </script>
 
 <template>
   <div><Hello /></div>
+  <div><HelloTsx /></div>
 </template>
 
 <style scoped lang='less'>

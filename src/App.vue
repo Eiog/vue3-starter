@@ -19,7 +19,9 @@ useHead({
 </script>
 
 <template>
-  <default />
+  <default>
+    <router-entry />
+  </default>
 </template>
 
 <style>

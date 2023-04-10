@@ -3,8 +3,10 @@ import HelloTsx from '~/components/HelloTsx'
 </script>
 
 <template>
-  <div><Hello /></div>
-  <div><HelloTsx /></div>
+  <div flex-col-center>
+    <div><Hello /></div>
+    <div><HelloTsx /></div>
+  </div>
 </template>
 
 <style scoped lang='less'>

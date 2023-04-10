@@ -5,6 +5,11 @@ const { darkMode, language } = storeToRefs(useAppStore())
 function changeLanguage() {
   language.value = language.value === 'zh_cn' ? 'en_us' : 'zh_cn'
 }
+function toggleDark(e: MouseEvent) {
+  useToggleDark(e, (dark) => {
+    darkMode.value = !dark
+  })
+}
 </script>
 
 <template>
@@ -26,7 +31,7 @@ function changeLanguage() {
         <i
           class="btn"
           :class="darkMode ? 'i-ri-moon-fill' : 'i-ri-sun-fill'"
-          @click="darkMode = !darkMode"
+          @click="toggleDark"
         />
       </template>
       暗黑模式

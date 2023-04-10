@@ -10,6 +10,7 @@ import {
   zhCN,
 } from 'naive-ui'
 import { getSatusColor } from './helps'
+
 export const useAppStore = defineStore(
   'appStore',
   () => {
@@ -28,7 +29,6 @@ export const useAppStore = defineStore(
       error: '#f43f5e',
     })
     const naiveThemeMode = computed(() => {
-      useToggleDark(darkMode)
       return darkMode.value ? darkTheme : undefined
     })
     const naiveThemeOverrides: Ref<GlobalThemeOverrides> = computed(() => {

@@ -16,6 +16,8 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import DefineOptions from 'unplugin-vue-define-options/dist/vite'
 import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
+import WebfontDownload from 'vite-plugin-webfont-dl'
+import Inspector from 'unplugin-vue-inspector/vite'
 // https://vitejs.dev/config/
 const vendorLibs: { match: string[]; output: string }[] = [
   {
@@ -52,6 +54,12 @@ export default defineConfig(() => {
       }),
       vue(),
       vueJsx(),
+      // https://github.com/feat-agency/vite-plugin-webfont-dl
+      WebfontDownload(),
+      // https://github.com/webfansplz/vite-plugin-vue-inspector
+      Inspector({
+        toggleButtonVisibility: 'never',
+      }),
       Icons({ compiler: 'vue3' }),
       // https://github.com/antfu/unplugin-auto-import
       AutoImport({
@@ -147,6 +155,12 @@ export default defineConfig(() => {
               purpose: 'any maskable',
             },
           ],
+        },
+        devOptions: {
+          enabled: process.env.SW_DEV === 'true',
+          /* when using generateSW the PWA plugin will switch to classic */
+          type: 'module',
+          navigateFallback: 'index.html',
         },
       }),
     ],

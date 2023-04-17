@@ -112,11 +112,19 @@ onMounted(() => {
         class=""
       >{{ item.title }}</a>
     </div>
+    <div class="postcss-test">
+      PostCSS Test
+    </div>
   </div>
 </template>
 
 <style scoped lang="less">
 a {
   @apply text-purple-5 no-underline hover:text-purple-3;
+}
+.postcss-test {
+  height: 30px;
+  background: blueviolet;
+  user-select: none;
 }
 </style>

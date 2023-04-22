@@ -1,7 +1,8 @@
 import type { Ref } from 'vue'
 import type { Options } from '@better-scroll/core'
 import BScroll from '@better-scroll/core'
-export const useBScroll = (option?: Options) => {
+
+export function useBScroll(option?: Options) {
   const bsOption: Options = {
     scrollX: true,
     probeType: 3,

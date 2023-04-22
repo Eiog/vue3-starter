@@ -10,6 +10,7 @@ import {
 } from 'unocss'
 import { presetExtra } from 'unocss-preset-extra'
 import { presetScrollbar } from 'unocss-preset-scrollbar'
+
 export default defineConfig({
   exclude: ['node_modules', '.git'],
   shortcuts: {

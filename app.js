@@ -1,6 +1,7 @@
-import fs from 'fs'
+import fs from 'node:fs'
 import express from 'express'
 import { createProxyMiddleware } from 'http-proxy-middleware'
+
 const app = express()
 const port = process.env.PORT || 3602
 

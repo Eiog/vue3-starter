@@ -1,5 +1,6 @@
 import { resolve } from 'node:path'
-import { defineConfig } from 'vite'
+import type { Plugin } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import Unocss from 'unocss/vite'
@@ -18,6 +19,8 @@ import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
 import WebfontDownload from 'vite-plugin-webfont-dl'
 import Inspector from 'unplugin-vue-inspector/vite'
+import mockApp from './api'
+
 // https://vitejs.dev/config/
 const vendorLibs: { match: string[]; output: string }[] = [
   {
@@ -38,9 +41,22 @@ function configManualChunk(id: string) {
     return matchItem ? matchItem.output : null
   }
 }
-export default defineConfig(() => {
+function mock(): Plugin {
+  return {
+    name: 'mock',
+    configureServer: async (server) => {
+    // mount mock server, `/api` is the base url
+      server.middlewares.use('/api', mockApp)
+    },
+  }
+}
+// eslint-disable-next-line unused-imports/no-unused-vars
+export default defineConfig(({ command, mode }) => {
+  const { VITE_DEV_PORT } = loadEnv(mode, process.cwd(), '')
+
   return {
     plugins: [
+      mock(),
       // https://github.com/hannoeru/vite-plugin-pages
       Pages({
         extensions: ['vue', 'md'],
@@ -165,7 +181,7 @@ export default defineConfig(() => {
       }),
     ],
     server: {
-      port: 5678,
+      port: Number(VITE_DEV_PORT),
       host: true, // host设置为true才可以使用network的形式，以ip访问项目
       open: false, // 自动打开浏览器
       cors: true, // 跨域设置允许

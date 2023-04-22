@@ -8,6 +8,7 @@ import type {
   Method,
 } from 'axios'
 import axios from 'axios'
+
 export interface ProgressEvent {
   loaded: number
   total: number
@@ -40,7 +41,7 @@ export type UseAxios<REQ = any, RES = any> = (
   option?: UseAxiosoOption<RES>,
 ) => UseAxiosReturns<REQ, RES>
 
-const _calcProgress = (progressEvent: ProgressEvent) => {
+function _calcProgress(progressEvent: ProgressEvent) {
   const { loaded, total } = progressEvent
   return Math.round((loaded / total) * 100) / 100
 }

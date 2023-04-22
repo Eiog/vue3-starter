@@ -1,6 +1,7 @@
 import type { App } from 'vue'
 import waterMarke from './waterMark'
 import lazyLoad from './lazyLoad'
+
 const directives: { [key: string]: any } = {
   waterMarke,
   lazyLoad,

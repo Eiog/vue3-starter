@@ -1,5 +1,8 @@
 <script setup lang='ts'>
 import HelloTsx from '~/components/HelloTsx'
+
+// eslint-disable-next-line no-console
+get('/api').then(res => console.log(res))
 </script>
 
 <template>

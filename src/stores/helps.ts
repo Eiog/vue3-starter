@@ -1,5 +1,6 @@
 import { colord } from 'colord'
-export const getSatusColor = (color = '#ff461f') => {
+
+export function getSatusColor(color = '#ff461f') {
   return {
     color,
     hover: colord(color).lighten(0.1).toHex(),

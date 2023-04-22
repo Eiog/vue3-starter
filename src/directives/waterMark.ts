@@ -1,4 +1,5 @@
 import type { Ref } from 'vue'
+
 type Binding = Ref<{
   text: string
   font: string

@@ -6,6 +6,7 @@ import type {
   InternalAxiosRequestConfig,
 } from 'axios'
 import axios from 'axios'
+
 const BASE_PREFIX = import.meta.env.VITE_API_BASEURL || ''
 const STATUS_TEXT: { [key: number]: string } = {
   200: '200请求成功',

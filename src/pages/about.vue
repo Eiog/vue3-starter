@@ -112,7 +112,7 @@ const list = ref([
   '😿',
   '😾',
 ])
-const handleAdd = () => {
+function handleAdd() {
   const i = Math.round(Math.random() * list.value.length)
   list.value.splice(
     i,
@@ -120,7 +120,7 @@ const handleAdd = () => {
     list.value[Math.round(Math.random() * list.value.length)],
   )
 }
-const handleRemove = (index: number) => {
+function handleRemove(index: number) {
   list.value.splice(index, 1)
 }
 </script>

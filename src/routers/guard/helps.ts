@@ -1,5 +1,6 @@
 import NProgress from 'nprogress'
 import type { RouteLocation } from 'vue-router'
+
 /** 动态修改title */
 export function useChangeTitle(to: RouteLocation) {
   const title = useTitle()

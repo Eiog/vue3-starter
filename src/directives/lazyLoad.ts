@@ -1,4 +1,5 @@
 import type { Ref } from 'vue'
+
 const lazyLoad = {
   mounted(target: HTMLElement, binding: Ref<string>) {
     const lazyImageObserver = new IntersectionObserver((entries) => {

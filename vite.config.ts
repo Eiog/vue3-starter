@@ -19,6 +19,7 @@ import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
 import WebfontDownload from 'vite-plugin-webfont-dl'
 import Inspector from 'unplugin-vue-inspector/vite'
+import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 import mockApp from './api'
 
 // https://vitejs.dev/config/
@@ -58,15 +59,16 @@ export default defineConfig(({ command, mode }) => {
     plugins: [
       mock(),
       // https://github.com/hannoeru/vite-plugin-pages
-      Pages({
-        extensions: ['vue', 'md'],
-      }),
+      Pages(),
       // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
       Layouts(),
       DefineOptions(),
       createSvgIconsPlugin({
         iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
         symbolId: 'icon-[dir]-[name]',
+      }),
+      webUpdateNotice({
+        logVersion: true,
       }),
       vue(),
       vueJsx(),

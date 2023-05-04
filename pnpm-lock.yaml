@@ -63,6 +63,9 @@ devDependencies:
   '@intlify/unplugin-vue-i18n':
     specifier: ^0.10.0
     version: registry.npmmirror.com/@intlify/unplugin-vue-i18n@0.10.0(rollup@2.79.1)(vue-i18n@9.2.2)
+  '@plugin-web-update-notification/vite':
+    specifier: ^1.6.1
+    version: 1.6.1(vite@4.3.1)
   '@types/crypto-js':
     specifier: ^4.1.1
     version: registry.npmmirror.com/@types/crypto-js@4.1.1
@@ -165,6 +168,9 @@ devDependencies:
   vite-plugin-svg-icons:
     specifier: ^2.0.1
     version: registry.npmmirror.com/vite-plugin-svg-icons@2.0.1(vite@4.3.1)
+  vite-plugin-tips:
+    specifier: ^2.1.0
+    version: 2.1.0(vite@4.3.1)
   vite-plugin-vue-component-preview:
     specifier: ^1.1.6
     version: registry.npmmirror.com/vite-plugin-vue-component-preview@1.1.6(rollup@2.79.1)(vite@4.3.1)(vue@3.2.47)
@@ -1721,6 +1727,19 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
+    dev: true
+
+  /@plugin-web-update-notification/core@1.6.1:
+    resolution: {integrity: sha512-8Gxe3RRw0IUh5mPTr65Dp/lsSEck/Zc0MdIfq1R/WfeDmtDaR3ZtLVVyZBttPsZRztNe4iWUEIn4CLQd4kVTPg==}
+    dev: true
+
+  /@plugin-web-update-notification/vite@1.6.1(vite@4.3.1):
+    resolution: {integrity: sha512-uPHFZoyUkm7Fwm5Lqt2cF0w9a1alk31XGztmEPvTRvDawSA0bH6DnWJ3K1isZFKH7H88xD/ITxchNJv8qQuuHw==}
+    peerDependencies:
+      vite: '>4.0.0'
+    dependencies:
+      '@plugin-web-update-notification/core': 1.6.1
+      vite: registry.npmmirror.com/vite@4.3.1(@types/node@18.15.13)(less@4.1.3)
     dev: true
 
   /@rollup/plugin-babel@5.3.1(@babel/core@7.21.4)(rollup@2.79.1):
@@ -4336,6 +4355,14 @@ packages:
     dependencies:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
+    dev: true
+
+  /vite-plugin-tips@2.1.0(vite@4.3.1):
+    resolution: {integrity: sha512-3REhZT6keCdqroYC9tUwHf2vrQzAoF1YT9mLr8xbJ7S904DX0NKzpK1JtYUacs83x+B+6W3yjX+CKG4/766JWA==}
+    peerDependencies:
+      vite: ^2.6.14
+    dependencies:
+      vite: registry.npmmirror.com/vite@4.3.1(@types/node@18.15.13)(less@4.1.3)
     dev: true
 
   /vue-eslint-parser@9.1.1(eslint@8.39.0):

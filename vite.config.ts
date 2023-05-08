@@ -225,5 +225,11 @@ export default defineConfig(({ command, mode }) => {
         'vue-i18n': 'vue-i18n/dist/vue-i18n.runtime.esm-bundler.js',
       },
     },
+    css: {
+      modules: {
+        localsConvention: 'camelCase',
+        scopeBehaviour: 'local',
+      },
+    },
   }
 })

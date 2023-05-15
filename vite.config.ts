@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import Unocss from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+import { NaiveUiResolver, VantResolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { VitePWA } from 'vite-plugin-pwa'
@@ -114,7 +114,7 @@ export default defineConfig(({ command, mode }) => {
         deep: true,
         include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
         dts: 'src/typings/components.d.ts',
-        resolvers: [NaiveUiResolver()],
+        resolvers: [NaiveUiResolver(), VantResolver()],
       }),
       // https://github.com/antfu/unocss
       // see unocss.config.ts for config

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 useHead({
-  title: 'vue3 starter',
+  title: import.meta.env.VITE_APP_NAME,
   meta: [
-    { name: 'description', content: 'Opinionated Vite Starter Template' },
+    { name: 'description', content: import.meta.env.VITE_APP_DESCRIPTION },
     {
       name: 'theme-color',
       content: computed(() => isDark.value ? '#00aba9' : '#ffffff'),

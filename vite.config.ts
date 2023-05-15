@@ -53,7 +53,7 @@ function mock(): Plugin {
 }
 // eslint-disable-next-line unused-imports/no-unused-vars
 export default defineConfig(({ command, mode }) => {
-  const { VITE_DEV_PORT } = loadEnv(mode, process.cwd(), '')
+  const { VITE_APP_NAME, VITE_APP_DESCRIPTION, VITE_DEV_PORT } = loadEnv(mode, process.cwd(), '')
 
   return {
     plugins: [
@@ -152,8 +152,9 @@ export default defineConfig(({ command, mode }) => {
         registerType: 'autoUpdate',
         includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
         manifest: {
-          name: 'vue3-starter',
-          short_name: 'vue3-starter',
+          name: VITE_APP_NAME,
+          short_name: VITE_APP_NAME,
+          description: VITE_APP_DESCRIPTION,
           theme_color: '#ffffff',
           icons: [
             {

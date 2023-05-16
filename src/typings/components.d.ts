@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     Default: typeof import('./../layouts/default.vue')['default']
     DefaultMenu: typeof import('./../components/DefaultMenu.vue')['default']
+    DefineInput: typeof import('./../components/DefineInput.vue')['default']
     Hello: typeof import('./../components/Hello.vue')['default']
     NaiveProvider: typeof import('./../components/NaiveProvider.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
@@ -22,7 +23,5 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./../components/SvgIcon.vue')['default']
-    VanButton: typeof import('vant/es')['Button']
-    VanConfigProvider: typeof import('vant/es')['ConfigProvider']
   }
 }

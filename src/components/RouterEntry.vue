@@ -5,7 +5,12 @@
     <template v-if="Component">
       <transition mode="out-in">
         <keep-alive>
-          <component :is="Component" />
+          <Suspense>
+            <component :is="Component" />
+            <template #fallback>
+              Suspense 正在加载...
+            </template>
+          </Suspense>
         </keep-alive>
       </transition>
     </template>

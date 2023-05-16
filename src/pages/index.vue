@@ -9,6 +9,7 @@ get('/api').then(res => console.log(res))
   <div flex-col-center>
     <div><Hello /></div>
     <div><HelloTsx /></div>
+    <div><DefineInput /></div>
   </div>
 </template>
 

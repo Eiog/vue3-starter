@@ -3,13 +3,14 @@ import HelloTsx from '~/components/HelloTsx'
 
 // eslint-disable-next-line no-console
 get('/api').then(res => console.log(res))
+const value = ref(0)
 </script>
 
 <template>
   <div flex-col-center>
     <div><Hello /></div>
     <div><HelloTsx /></div>
-    <div><DefineInput /></div>
+    <div><DefineInput v-model:value="value" /></div>
   </div>
 </template>
 

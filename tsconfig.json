@@ -16,7 +16,6 @@
       "vite-plugin-vue-layouts/client",
       "@intlify/unplugin-vue-i18n/messages",
       "@morev/vue-transitions/types/volar",
-      "unplugin-vue-define-options/macros-global"
     ]
   },
   "include": [

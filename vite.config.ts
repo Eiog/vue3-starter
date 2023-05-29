@@ -14,7 +14,6 @@ import LinkAttributes from 'markdown-it-link-attributes'
 import Shiki from 'markdown-it-shiki'
 import Icons from 'unplugin-icons/vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-import DefineOptions from 'unplugin-vue-define-options/dist/vite'
 import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
 import WebfontDownload from 'vite-plugin-webfont-dl'
@@ -62,7 +61,6 @@ export default defineConfig(({ command, mode }) => {
       Pages(),
       // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
       Layouts(),
-      DefineOptions(),
       createSvgIconsPlugin({
         iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
         symbolId: 'icon-[dir]-[name]',
@@ -70,7 +68,11 @@ export default defineConfig(({ command, mode }) => {
       webUpdateNotice({
         logVersion: true,
       }),
-      vue(),
+      vue({
+        script: {
+          defineModel: true,
+        },
+      }),
       vueJsx(),
       // https://github.com/feat-agency/vite-plugin-webfont-dl
       WebfontDownload(),

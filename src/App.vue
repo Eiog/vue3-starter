@@ -30,10 +30,21 @@ useHead({
   margin: 0;
   padding: 0;
 }
+html{
+  overflow: hidden !important;
+}
 html,
 body,
 #app {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  align-items: center;
+  background:linear-gradient(to bottom,#d6dbdc,#FFFFFF);
+}
+.dark #app{
+  background-color: #000000;
 }
 </style>

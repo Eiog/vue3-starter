@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineOptions({
-  name: 'Hellooo',
+  name: 'HelloWorld',
 })
 const { t } = useI18n()
 const urls = [

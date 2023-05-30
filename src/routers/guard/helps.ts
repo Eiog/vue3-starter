@@ -1,3 +1,4 @@
+import '~/assets/style/nprogress.css'
 import NProgress from 'nprogress'
 import type { RouteLocation } from 'vue-router'
 

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const router = useRouter()
 const { darkMode, language } = storeToRefs(useAppStore())
 
 function changeLanguage() {
@@ -10,33 +9,17 @@ function toggleDark(e: MouseEvent) {
     darkMode.value = !dark
   })
 }
+const dark = ref(false)
 </script>
 
 <template>
   <div flex-center gap5 mt4>
-    <n-tooltip trigger="hover">
-      <template #trigger>
-        <i i-ri-home-2-line class="btn" @click="router.push('/')" />
-      </template>
-      首页
-    </n-tooltip>
-    <n-tooltip trigger="hover">
-      <template #trigger>
-        <i i-ri-translate class="btn" @click="changeLanguage" />
-      </template>
-      中文
-    </n-tooltip>
-    <n-tooltip trigger="hover">
-      <template #trigger>
-        <i
-          class="btn"
-          :class="darkMode ? 'i-ri-moon-fill' : 'i-ri-sun-fill'"
-          @click="toggleDark"
-        />
-      </template>
-      暗黑模式
-    </n-tooltip>
-    <i i-ri-user-heart-line class="btn" @click="router.push('/about')" />
+    <i i-ri-translate class="btn" @click="changeLanguage" />
+    <i
+      class="btn"
+      :class="darkMode ? 'i-ri-moon-fill' : 'i-ri-sun-fill'"
+      @click="toggleDark"
+    />
     <a
       href="https://github.com/xsrole/template-vue3"
       i-ri-github-fill
@@ -44,6 +27,7 @@ function toggleDark(e: MouseEvent) {
       target="_blank"
       rel="noopener noreferrer"
     />
+    <DarkModeToggle v-model:value="dark" />
   </div>
 </template>
 

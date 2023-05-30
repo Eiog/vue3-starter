@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import Unocss from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
-import { NaiveUiResolver, VantResolver } from 'unplugin-vue-components/resolvers'
+import { NaiveUiResolver, VantResolver, VueUseComponentsResolver, VueUseDirectiveResolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { VitePWA } from 'vite-plugin-pwa'
@@ -19,6 +19,7 @@ import Layouts from 'vite-plugin-vue-layouts'
 import WebfontDownload from 'vite-plugin-webfont-dl'
 import Inspector from 'unplugin-vue-inspector/vite'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
+import vuetify from 'vite-plugin-vuetify'
 import mockApp from './api'
 
 // https://vitejs.dev/config/
@@ -74,6 +75,8 @@ export default defineConfig(({ command, mode }) => {
         },
       }),
       vueJsx(),
+      // https://github.com/vuetifyjs/vuetify
+      vuetify({ autoImport: true }),
       // https://github.com/feat-agency/vite-plugin-webfont-dl
       WebfontDownload(),
       // https://github.com/webfansplz/vite-plugin-vue-inspector
@@ -116,7 +119,12 @@ export default defineConfig(({ command, mode }) => {
         deep: true,
         include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
         dts: 'src/typings/components.d.ts',
-        resolvers: [NaiveUiResolver(), VantResolver()],
+        resolvers: [
+          NaiveUiResolver(),
+          VantResolver(),
+          VueUseComponentsResolver(),
+          VueUseDirectiveResolver(),
+        ],
       }),
       // https://github.com/antfu/unocss
       // see unocss.config.ts for config

@@ -1,27 +1,48 @@
 <script setup lang="ts">
 import { defineComponent, h } from 'vue'
-import type {
-  GlobalTheme, GlobalThemeOverrides,
-  NDateLocale, zhCN,
-} from 'naive-ui'
+
 import {
   NDialogProvider,
   NLoadingBarProvider,
   NMessageProvider,
   NNotificationProvider,
+  darkTheme,
+  dateEnUS,
+  dateZhCN,
+  enUS,
   useDialog,
   useLoadingBar,
   useMessage,
   useNotification,
+  zhCN,
 } from 'naive-ui'
 
 interface Props {
-  themeOverrides?: GlobalThemeOverrides
-  theme?: GlobalTheme
-  locale?: typeof zhCN
-  dateLocale?: NDateLocale
+  locale?: string
+  dark?: boolean
 }
 const props = defineProps<Props>()
+const theme = computed(() => props.dark ? darkTheme : undefined)
+const locale = computed(() => {
+  switch (props.locale) {
+    case 'en':
+      return enUS
+    case 'cn':
+      return zhCN
+    default:
+      return undefined
+  }
+})
+const dateLocale = computed(() => {
+  switch (props.locale) {
+    case 'en':
+      return dateEnUS
+    case 'cn':
+      return dateZhCN
+    default:
+      return undefined
+  }
+})
 // 挂载naive组件的方法至window, 以便在路由钩子函数和请求函数里面调用
 function registerNaiveTools() {
   window.$loadingBar = useLoadingBar()
@@ -44,10 +65,9 @@ const NaiveProviderContent = defineComponent({
 <template>
   <n-config-provider
     abstract
-    :theme="props.theme"
-    :theme-overrides="props.themeOverrides"
-    :locale="props.locale"
-    :date-locale="props.dateLocale"
+    :theme="theme"
+    :locale="locale"
+    :date-locale="dateLocale"
   >
     <NLoadingBarProvider>
       <NDialogProvider>

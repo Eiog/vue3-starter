@@ -9,10 +9,17 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    DarkModeToggle: typeof import('./../components/DarkModeToggle.vue')['default']
     Default: typeof import('./../layouts/default.vue')['default']
     DefaultMenu: typeof import('./../components/DefaultMenu.vue')['default']
     DefineInput: typeof import('./../components/DefineInput.vue')['default']
+    Dependent: typeof import('./../components/Dependent.vue')['default']
+    DependentIcons: typeof import('./../components/DependentIcons.vue')['default']
+    Dependents: typeof import('./../components/Dependents.vue')['default']
+    Example: typeof import('./../components/Example.vue')['default']
+    Examples: typeof import('./../components/Examples.vue')['default']
     Hello: typeof import('./../components/Hello.vue')['default']
+    HelloWorld: typeof import('./../components/HelloWorld.vue')['default']
     NaiveProvider: typeof import('./../components/NaiveProvider.vue')['default']
     NButton: typeof import('naive-ui')['NButton']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
@@ -25,6 +32,7 @@ declare module '@vue/runtime-core' {
     SvgIcon: typeof import('./../components/SvgIcon.vue')['default']
     VanButton: typeof import('vant/es')['Button']
     VanConfigProvider: typeof import('vant/es')['ConfigProvider']
+    VuetiyProvider: typeof import('./../components/VuetiyProvider.vue')['default']
     VueUseMotion: typeof import('./../components/VueUseMotion.vue')['default']
   }
 }

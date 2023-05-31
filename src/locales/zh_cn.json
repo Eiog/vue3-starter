@@ -1,4 +1,6 @@
 {
-  "welcome": "欢迎使用unlit模板",
-  "hello": "你好！ 世界！"
+  "Hello": "你好 世界 !",
+  "Welcome": "欢迎使用这个模板",
+  "Examples": "示例",
+  "Dependents": "依赖"
 }

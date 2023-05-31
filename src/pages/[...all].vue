@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  404
+  <h1>Page Not Found</h1>
 </template>
 
 <style scoped lang="less"></style>

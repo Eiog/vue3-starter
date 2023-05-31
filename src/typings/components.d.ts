@@ -9,6 +9,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    BackToHome: typeof import('./../components/BackToHome.vue')['default']
     DarkModeToggle: typeof import('./../components/DarkModeToggle.vue')['default']
     Default: typeof import('./../layouts/default.vue')['default']
     DefaultMenu: typeof import('./../components/DefaultMenu.vue')['default']
@@ -25,11 +26,14 @@ declare module '@vue/runtime-core' {
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NGlobalStyle: typeof import('naive-ui')['NGlobalStyle']
     NPopover: typeof import('naive-ui')['NPopover']
+    NSpace: typeof import('naive-ui')['NSpace']
     NTooltip: typeof import('naive-ui')['NTooltip']
     RouterEntry: typeof import('./../components/RouterEntry.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./../components/SvgIcon.vue')['default']
+    ToggleDarkMode: typeof import('./../components/ToggleDarkMode.vue')['default']
+    ToggleLanguage: typeof import('./../components/ToggleLanguage.vue')['default']
     VanButton: typeof import('vant/es')['Button']
     VanConfigProvider: typeof import('vant/es')['ConfigProvider']
     VuetiyProvider: typeof import('./../components/VuetiyProvider.vue')['default']

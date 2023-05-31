@@ -30,21 +30,22 @@ useHead({
   margin: 0;
   padding: 0;
 }
-html{
-  overflow: hidden !important;
-}
-html,
-body,
-#app {
+html,body{
   width: 100%;
   height: 100%;
+  overflow: auto !important;
+  background:linear-gradient(to bottom,#d6dbdc,#FFFFFF);
+  color: #1a1a1a;
+}
+
+#app {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  overflow: auto;
   align-items: center;
-  background:linear-gradient(to bottom,#d6dbdc,#FFFFFF);
 }
-.dark #app{
-  background-color: #000000;
+.dark html,.dark body{
+  background:linear-gradient(to bottom,#383838,#000000);
+  color: #dadada;
 }
 </style>

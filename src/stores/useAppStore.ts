@@ -59,7 +59,7 @@ export const useAppStore = defineStore(
       }
     })
     const { locale } = useI18n()
-    const language = ref<'zh_cn' | 'en_us'>('zh_cn')
+    const language = ref<'zh_cn' | 'en_us'>(locale.value as any)
     watch(language, language => (locale.value = language))
     const naiveLocale = computed(() =>
       language.value === 'zh_cn' ? zhCN : enUS,

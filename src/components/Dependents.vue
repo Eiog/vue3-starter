@@ -1,4 +1,5 @@
 <script setup lang='ts'>
+const { t } = useI18n()
 const map: { name: string; desc: string; icon: string; link: string }[] = [
   {
     name: 'Vite',
@@ -54,10 +55,10 @@ const map: { name: string; desc: string; icon: string; link: string }[] = [
 <template>
   <div class="w-full flex-col gap-10">
     <h1 class="text-6xl flex-center">
-      Dependents
+      {{ t('Dependents') }}
     </h1>
     <div class="w-full gap-3 grid grid-cols-3 <lg:(grid-cols-2) <sm:(grid-cols-1)">
-      <a v-for="(item, index) in map" :key="index" :href="item.link" target="_blank" rel="noopener noreferrer" class="h-30 flex-y-center gap-3 shadow-lg bg-white/80 rounded-lg p-x-3 p-y-1 cursor-pointer transition hover:(border-red)">
+      <a v-for="(item, index) in map" :key="index" :href="item.link" target="_blank" rel="noopener noreferrer" class="h-30 flex-y-center gap-3 shadow-lg bg-white/80 dark:(bg-white/10) rounded-lg p-x-3 p-y-1 cursor-pointer transition hover:(border-red)">
         <div class="w-16 h-16 rounded-md flex-center flex-shrink-0">
           <img class="w-14 h-14" :src="item.icon" :alt="item.desc">
         </div>

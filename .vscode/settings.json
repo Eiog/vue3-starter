@@ -14,5 +14,6 @@
   },
   "files.associations": {
     "*.css": "postcss"
-  }
+  },
+  "typescript.preferences.autoImportFileExcludePatterns": ["vue-router"]
 }

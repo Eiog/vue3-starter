@@ -14,12 +14,13 @@ import LinkAttributes from 'markdown-it-link-attributes'
 import Shiki from 'markdown-it-shiki'
 import Icons from 'unplugin-icons/vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
-import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
 import WebfontDownload from 'vite-plugin-webfont-dl'
 import Inspector from 'unplugin-vue-inspector/vite'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 import vuetify from 'vite-plugin-vuetify'
+import VueRouter from 'unplugin-vue-router/vite'
+import { VueRouterAutoImports } from 'unplugin-vue-router'
 import mockApp from './api'
 
 // https://vitejs.dev/config/
@@ -58,8 +59,12 @@ export default defineConfig(({ command, mode }) => {
   return {
     plugins: [
       mock(),
-      // https://github.com/hannoeru/vite-plugin-pages
-      Pages(),
+      // https://github.com/posva/unplugin-vue-router
+      VueRouter({
+        extensions: ['.vue', '.md'],
+        dts: 'src/typings/typed-router.d.ts',
+        importMode: 'async',
+      }),
       // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
       Layouts(),
       createSvgIconsPlugin({
@@ -73,6 +78,7 @@ export default defineConfig(({ command, mode }) => {
         script: {
           defineModel: true,
         },
+        include: [/\.vue$/, /\.md$/],
       }),
       vueJsx(),
       // https://github.com/vuetifyjs/vuetify
@@ -97,7 +103,7 @@ export default defineConfig(({ command, mode }) => {
           '@vueuse/core',
           '@vueuse/head',
           'pinia',
-          'vue-router',
+          VueRouterAutoImports,
           'vue-i18n',
           {
             'naive-ui': [

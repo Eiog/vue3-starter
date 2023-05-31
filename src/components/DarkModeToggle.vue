@@ -1,11 +1,11 @@
 <script setup lang='ts'>
-const value = defineModel<boolean>('value', { default: false })
-const darkStyle = computed(() => {
+// const value = defineModel<boolean>('value', { default: false })
+// const darkStyle = computed(() => {
 
-})
-const lightStyle = computed(() => {
+// })
+// const lightStyle = computed(() => {
 
-})
+// })
 </script>
 
 <template>

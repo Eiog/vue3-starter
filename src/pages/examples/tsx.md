@@ -1,3 +1,19 @@
+---
+title: Tsx Demo
+---
+
+<script setup>
+import {HelloTsx} from '~/components/HelloTsx'
+definePage({
+  name: 'tsx-demo',
+})
+</script>
+
+# Tsx Demo
+
+<HelloTsx :value="10"/>
+
+```tsx
 export const HelloTsx = defineComponent({
   name: 'HelloTsx',
   props: {
@@ -30,3 +46,4 @@ export const HelloTsx = defineComponent({
     )
   },
 })
+```

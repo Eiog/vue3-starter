@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import Unocss from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
-import { NaiveUiResolver, VantResolver, VueUseComponentsResolver, VueUseDirectiveResolver } from 'unplugin-vue-components/resolvers'
+import { NaiveUiResolver, VantResolver, VueUseComponentsResolver, VueUseDirectiveResolver, Vuetify3Resolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { VitePWA } from 'vite-plugin-pwa'
@@ -18,7 +18,6 @@ import Layouts from 'vite-plugin-vue-layouts'
 import WebfontDownload from 'vite-plugin-webfont-dl'
 import Inspector from 'unplugin-vue-inspector/vite'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
-import vuetify from 'vite-plugin-vuetify'
 import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import mockApp from './api'
@@ -81,8 +80,8 @@ export default defineConfig(({ command, mode }) => {
         include: [/\.vue$/, /\.md$/],
       }),
       vueJsx(),
-      // https://github.com/vuetifyjs/vuetify
-      vuetify({ autoImport: true }),
+      // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin
+      // vuetify({ autoImport: true }),
       // https://github.com/feat-agency/vite-plugin-webfont-dl
       WebfontDownload(),
       // https://github.com/webfansplz/vite-plugin-vue-inspector
@@ -128,6 +127,7 @@ export default defineConfig(({ command, mode }) => {
         resolvers: [
           NaiveUiResolver(),
           VantResolver(),
+          Vuetify3Resolver(),
           VueUseComponentsResolver(),
           VueUseDirectiveResolver(),
         ],

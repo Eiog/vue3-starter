@@ -11,6 +11,7 @@ definePage({
 
 # Naive Ui
 ## Button
+
 <div class="p-3 bg-white rounded-md flex flex-wrap gap-3" >
   <n-button>Default</n-button>
   <n-button type="tertiary">

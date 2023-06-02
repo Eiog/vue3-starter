@@ -11,9 +11,12 @@ definePage({
 
 # Tsx Demo
 
-<HelloTsx :value="10"/>
+<div class="flex-center">
+  <HelloTsx :value="10"/>
+</div>
 
 ```tsx
+// HelloTsx.tsx
 export const HelloTsx = defineComponent({
   name: 'HelloTsx',
   props: {

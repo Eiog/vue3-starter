@@ -5,6 +5,7 @@ import { setupRouter } from './router'
 import { setupHead } from './usehead'
 import { setupDirectives } from './directives'
 import { setupAssets } from './assets'
+import { setupVuetify } from './vuetify'
 
 export function useModules(app: App) {
   setupRouter(app)
@@ -12,5 +13,6 @@ export function useModules(app: App) {
   setupI18n(app)
   setupHead(app)
   setupDirectives(app)
+  setupVuetify(app)
   setupAssets()
 }

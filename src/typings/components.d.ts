@@ -36,6 +36,11 @@ declare module '@vue/runtime-core' {
     ToggleLanguage: typeof import('./../components/ToggleLanguage.vue')['default']
     VanButton: typeof import('vant/es')['Button']
     VanConfigProvider: typeof import('vant/es')['ConfigProvider']
+    VBtn: typeof import('vuetify/components')['VBtn']
+    VCard: typeof import('vuetify/components')['VCard']
+    VCardActions: typeof import('vuetify/components')['VCardActions']
+    VCardText: typeof import('vuetify/components')['VCardText']
+    VDialog: typeof import('vuetify/components')['VDialog']
     VuetiyProvider: typeof import('./../components/VuetiyProvider.vue')['default']
     VueUseMotion: typeof import('./../components/VueUseMotion.vue')['default']
   }

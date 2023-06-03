@@ -11,7 +11,11 @@
     "update-deps": "taze -w && pnpm i",
     "type": "vue-tsc --noEmit",
     "start": "node ./app.js",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "commit": "git pull && pnpm lint:fix && git add -A && pnpm cz && git push",
+    "pre-commit": "git pull && pnpm lint-staged && pnpm cz && git push",
+    "cz": "czg",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@better-scroll/core": "^2.5.1",
@@ -50,12 +54,17 @@
     "@vitest/ui": "^0.31.1",
     "@vue-macros/volar": "^0.10.2",
     "@vue/test-utils": "^2.3.2",
+    "commitlint": "^17.6.5",
     "crypto-js": "^4.1.1",
+    "cz-git": "^1.6.1",
+    "czg": "^1.6.1",
     "eslint": "^8.41.0",
     "express": "^4.18.2",
     "http-proxy-middleware": "^2.0.6",
+    "husky": "^8.0.3",
     "jsdom": "^22.1.0",
     "less": "^4.1.3",
+    "lint-staged": "^13.2.2",
     "markdown-it-link-attributes": "^4.0.1",
     "markdown-it-shiki": "^0.9.0",
     "naive-ui": "^2.34.4",
@@ -84,5 +93,14 @@
     "vite-plugin-webfont-dl": "^3.7.4",
     "vitest": "^0.31.1",
     "vue-tsc": "^1.6.5"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint . --fix",
+      "git add"
+    ]
   }
 }

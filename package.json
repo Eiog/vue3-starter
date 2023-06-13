@@ -13,6 +13,8 @@
     "start": "node ./app.js",
     "preview": "vite preview",
     "cz": "czg",
+    "commit":"git pull && git add -A && pnpm cz && git push",
+    "preinstall": "npx only-allow pnpm",
     "postinstall": "npx simple-git-hooks"
   },
   "dependencies": {
@@ -36,7 +38,7 @@
     "vuetify": "^3.3.3"
   },
   "devDependencies": {
-    "@eiog/eslint-config": "^0.0.1",
+    "@eiog/eslint-config": "^0.0.2",
     "@eiog/ts-config": "^0.0.3",
     "@iconify-json/ri": "^1.1.9",
     "@iconify-json/twemoji": "^1.1.11",
@@ -44,7 +46,7 @@
     "@plugin-web-update-notification/vite": "^1.6.4",
     "@types/crypto-js": "^4.1.1",
     "@types/express": "^4.17.17",
-    "@types/node": "^20.3.0",
+    "@types/node": "^20.3.1",
     "@types/nprogress": "^0.2.0",
     "@vitejs/plugin-vue": "^4.2.3",
     "@vitejs/plugin-vue-jsx": "^3.0.1",

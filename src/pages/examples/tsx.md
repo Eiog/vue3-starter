@@ -4,9 +4,7 @@ title: Tsx Demo
 
 <script setup>
 import {HelloTsx} from '~/components/HelloTsx'
-definePage({
-  name: 'tsx-demo',
-})
+
 </script>
 
 # Tsx Demo

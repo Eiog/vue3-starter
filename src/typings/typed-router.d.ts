@@ -43,7 +43,7 @@ declare module 'vue-router/auto/routes' {
     '/[...all]': RouteRecordInfo<'/[...all]', '/:all(.*)', { all: ParamValue<true> }, { all: ParamValue<false> }>,
     '/about': RouteRecordInfo<'/about', '/about', Record<never, never>, Record<never, never>>,
     'naive-ui-demo': RouteRecordInfo<'naive-ui-demo', '/examples/naive-ui', Record<never, never>, Record<never, never>>,
-    'tsx-demo': RouteRecordInfo<'tsx-demo', '/examples/tsx', Record<never, never>, Record<never, never>>,
+    '/examples/tsx': RouteRecordInfo<'/examples/tsx', '/examples/tsx', Record<never, never>, Record<never, never>>,
     'vuetify-demo': RouteRecordInfo<'vuetify-demo', '/examples/vuetify', Record<never, never>, Record<never, never>>,
   }
 }

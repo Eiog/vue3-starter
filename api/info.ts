@@ -1,8 +1,8 @@
-import type { Request, Response } from 'express'
+import type { VercelRequest, VercelResponse } from '@vercel/node'
 
 export default function handler(
-  req: Request,
-  res: Response,
+  req: VercelRequest,
+  res: VercelResponse,
 ) {
   const cityHeader = req.headers['x-vercel-ip-city'] as string
   const city = cityHeader ? decodeURIComponent(cityHeader) : '-'

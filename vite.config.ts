@@ -20,7 +20,6 @@ import Inspector from 'unplugin-vue-inspector/vite'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
-import mockApp from './api/_app'
 
 // https://vitejs.dev/config/
 const vendorLibs: { match: string[]; output: string }[] = [
@@ -58,10 +57,10 @@ export default defineConfig(({ command, mode }) => {
 
   return {
     plugins: [
-      mock({
-        base: '/api',
-        handler: mockApp,
-      }),
+      // mock({
+      //   base: '/api',
+      //   handler: mockApp,
+      // }),
       // https://github.com/posva/unplugin-vue-router
       VueRouter({
         extensions: ['.vue', '.md'],

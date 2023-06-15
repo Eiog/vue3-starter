@@ -6,7 +6,7 @@ definePage({
   name: 'index-page',
 })
 // eslint-disable-next-line no-console
-get('/api').then(res => console.log(res))
+get('/info').then(res => console.log(res))
 </script>
 
 <template>

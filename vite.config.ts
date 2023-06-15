@@ -1,5 +1,5 @@
 import { resolve } from 'node:path'
-import type { Plugin } from 'vite'
+import type { Connect, Plugin } from 'vite'
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -20,7 +20,7 @@ import Inspector from 'unplugin-vue-inspector/vite'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
-import mockApp from './api'
+import mockApp from './api/_app'
 
 // https://vitejs.dev/config/
 const vendorLibs: { match: string[]; output: string }[] = [
@@ -42,12 +42,13 @@ function configManualChunk(id: string) {
     return matchItem ? matchItem.output : null
   }
 }
-function mock(): Plugin {
+function mock({ base, handler }: { base: string; handler: Connect.HandleFunction }): Plugin {
   return {
-    name: 'mock',
+    name: 'vite-plugin-mock',
+    apply: 'serve',
     configureServer: async (server) => {
     // mount mock server, `/api` is the base url
-      server.middlewares.use('/api', mockApp)
+      server.middlewares.use(base, handler)
     },
   }
 }
@@ -57,7 +58,10 @@ export default defineConfig(({ command, mode }) => {
 
   return {
     plugins: [
-      mock(),
+      mock({
+        base: '/api',
+        handler: mockApp,
+      }),
       // https://github.com/posva/unplugin-vue-router
       VueRouter({
         extensions: ['.vue', '.md'],
@@ -205,13 +209,13 @@ export default defineConfig(({ command, mode }) => {
       open: false, // 自动打开浏览器
       cors: true, // 跨域设置允许
       strictPort: true, // 如果端口已占用直接退出
-      proxy: {
-        '/api': {
-          target: 'https://mock.apifox.cn/m1/476417-0-default',
-          changeOrigin: true,
-          rewrite: path => path.replace(/^\/api/, ''),
-        },
-      },
+      // proxy: {
+      //   '/api': {
+      //     target: 'https://mock.apifox.cn/m1/476417-0-default',
+      //     changeOrigin: true,
+      //     rewrite: path => path.replace(/^\/api/, ''),
+      //   },
+      // },
     },
     build: {
       minify: 'esbuild',

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "dev:vercel":"vercel dev --listen 5678",
+    "dev:vercel": "vercel dev --listen 5678",
     "build": "vue-tsc --noEmit && vite build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

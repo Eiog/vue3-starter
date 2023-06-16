@@ -13,3 +13,4 @@ dist-ssr
 *.local
 src/typings/auto-import.d.ts
 src/typings/components.d.ts
+.vercel

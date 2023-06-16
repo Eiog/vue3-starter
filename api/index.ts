@@ -1,7 +1,10 @@
 import express from 'express'
 
 const app = express()
-app.get('/', (req, res) => {
-  res.send('Hello World!')
+const router = express.Router()
+app.use('/api', router)
+router.get('/express', (req, res) => {
+  res.send({ express: 'Hello from Express.js' })
 })
+
 export default app

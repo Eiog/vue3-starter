@@ -4,5 +4,5 @@ export default function handler(
   req: VercelRequest,
   res: VercelResponse,
 ) {
-  res.send('handler')
+  res.send('hello')
 }

@@ -5,8 +5,10 @@ defineOptions({
 definePage({
   name: 'index-page',
 })
-// eslint-disable-next-line no-console
-get('/info').then(res => console.log(res))
+
+const { data } = useRequest(
+  useAlovaInstance.Get('/info', {}),
+)
 </script>
 
 <template>
@@ -14,6 +16,7 @@ get('/info').then(res => console.log(res))
     <HelloWorld />
     <Examples />
     <Dependents />
+    {{ data }}
   </div>
 </template>
 

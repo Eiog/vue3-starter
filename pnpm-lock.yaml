@@ -26,6 +26,9 @@ dependencies:
   '@vueuse/motion':
     specifier: ^2.0.0
     version: 2.0.0(rollup@2.79.1)(vue@3.3.4)
+  alova:
+    specifier: ^2.6.2
+    version: 2.6.2
   axios:
     specifier: ^1.4.0
     version: 1.4.0
@@ -4667,6 +4670,11 @@ packages:
       require-from-string: 2.0.2
       uri-js: 4.4.1
     dev: true
+
+  /alova@2.6.2:
+    resolution: {integrity: sha512-cbNdLt8E4XKamtJU2iFemi+m1dxauxlL5LiApizoKt8nIEPYlkqdqRe4pT3Vsh0Ncv4P5R4AvO3nU6Avy4jQcw==}
+    engines: {node: '>= 0.12.0'}
+    dev: false
 
   /ansi-escapes@4.3.2:
     resolution: {integrity: sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ==}

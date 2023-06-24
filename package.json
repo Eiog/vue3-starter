@@ -26,6 +26,7 @@
     "@vueuse/core": "^10.1.2",
     "@vueuse/head": "^1.1.26",
     "@vueuse/motion": "^2.0.0",
+    "alova": "^2.6.2",
     "axios": "^1.4.0",
     "colord": "^2.9.3",
     "echarts": "^5.4.2",

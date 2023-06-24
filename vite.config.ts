@@ -115,6 +115,11 @@ export default defineConfig(({ command, mode }) => {
               'useLoadingBar',
             ],
           },
+          {
+            alova: [
+              'useRequest',
+            ],
+          },
         ],
         dirs: ['src/hooks', 'src/composables', 'src/stores', 'src/utils'],
         dts: 'src/typings/auto-import.d.ts',

@@ -63,11 +63,13 @@ function mock({ base, handler }: { base: string; handler: Connect.HandleFunction
 export default defineConfig(({ command, mode }) => {
   const { VITE_APP_NAME, VITE_APP_DESCRIPTION, VITE_DEV_PORT } = loadEnv(mode, process.cwd(), '')
   const isElectron = mode === 'electron'
+  const isTauri = mode === 'tauri'
   const isServe = command === 'serve'
   const isBuild = command === 'build'
   const sourcemap = isServe || !!process.env.VSCODE_DEBUG
-
-  rmSync('dist-electron', { recursive: true, force: true })
+  const debug = !!process.env.VSCODE_DEBUG || !!process.env.TAURI_DEBUG
+  if (isElectron)
+    rmSync('dist-electron', { recursive: true, force: true })
   // eslint-disable-next-line multiline-ternary
   const electronPlugin = isElectron ? [
     electron([
@@ -191,6 +193,12 @@ export default defineConfig(({ command, mode }) => {
               'useRequest',
             ],
           },
+          {
+            '@tauri-apps/api/app': ['getName', 'getVersion', 'getTauriVersion'],
+            '@tauri-apps/api/shell': ['Command'],
+            '@tauri-apps/api/os': ['platform'],
+            '@tauri-apps/api/notification': ['sendNotification', 'requestPermission', 'isPermissionGranted'],
+          },
         ],
         dirs: ['src/hooks', 'src/composables', 'src/stores', 'src/utils'],
         dts: 'src/typings/auto-import.d.ts',
@@ -279,6 +287,7 @@ export default defineConfig(({ command, mode }) => {
       }),
       ...electronPlugin,
     ],
+    clearScreen: true,
     server: {
       port: Number(VITE_DEV_PORT),
       host: true, // host设置为true才可以使用network的形式，以ip访问项目
@@ -293,8 +302,10 @@ export default defineConfig(({ command, mode }) => {
       //   },
       // },
     },
+    envPrefix: ['VITE_', 'TAURI_'],
     build: {
-      minify: 'esbuild',
+      minify: debug ? false : 'esbuild',
+      sourcemap: debug,
       brotliSize: false,
       // 消除打包大小超过500kb警告
       chunkSizeWarningLimit: 2000,

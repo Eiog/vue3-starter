@@ -1,0 +1,6 @@
+dist
+dist-ssr
+dist-electron
+release
+.vercel
+node_modules

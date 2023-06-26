@@ -21,7 +21,9 @@
     "src/**/*.ts",
     "src/**/*.d.ts",
     "src/**/*.tsx",
-    "src/**/*.vue"
+    "src/**/*.vue",
+    "electron/**/*.ts",
+    "electron/**/*.d.ts"
   ],
   "exclude": [
     "node_modules",

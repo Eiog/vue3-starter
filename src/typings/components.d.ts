@@ -14,6 +14,7 @@ declare module 'vue' {
     DefineInput: typeof import('./../components/DefineInput.vue')['default']
     Dependents: typeof import('./../components/Dependents.vue')['default']
     Examples: typeof import('./../components/Examples.vue')['default']
+    HeaderBar: typeof import('./../components/HeaderBar.vue')['default']
     Hello: typeof import('./../components/Hello.vue')['default']
     HelloWorld: typeof import('./../components/HelloWorld.vue')['default']
     NaiveProvider: typeof import('./../components/NaiveProvider.vue')['default']

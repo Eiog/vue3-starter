@@ -1,4 +1,5 @@
 import { resolve } from 'node:path'
+import { rmSync } from 'node:fs'
 import type { Connect, Plugin } from 'vite'
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -21,6 +22,11 @@ import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import Inspect from 'vite-plugin-inspect'
+
+// eslint-disable-next-line import/default
+import electron from 'vite-plugin-electron'
+import renderer from 'vite-plugin-electron-renderer'
+
 import { vercelMock } from './plugin/vitePluginMockVercel'
 
 // https://vitejs.dev/config/
@@ -53,10 +59,75 @@ function mock({ base, handler }: { base: string; handler: Connect.HandleFunction
     },
   }
 }
-// eslint-disable-next-line unused-imports/no-unused-vars
+
 export default defineConfig(({ command, mode }) => {
   const { VITE_APP_NAME, VITE_APP_DESCRIPTION, VITE_DEV_PORT } = loadEnv(mode, process.cwd(), '')
+  const isElectron = mode === 'electron'
+  const isServe = command === 'serve'
+  const isBuild = command === 'build'
+  const sourcemap = isServe || !!process.env.VSCODE_DEBUG
 
+  rmSync('dist-electron', { recursive: true, force: true })
+  // eslint-disable-next-line multiline-ternary
+  const electronPlugin = isElectron ? [
+    electron([
+      {
+      // Main-Process entry file of the Electron App.
+        entry: 'electron/main/index.ts',
+        onstart(options) {
+          if (process.env.VSCODE_DEBUG) {
+            // eslint-disable-next-line no-console
+            console.log(
+            /* For `.vscode/.debug.script.mjs` */ '[startup] Electron App',
+            )
+          }
+          else {
+            options.startup()
+          }
+        },
+        vite: {
+          build: {
+            sourcemap,
+            minify: isBuild,
+            outDir: 'dist-electron/main',
+            rollupOptions: {
+              external: [],
+            // external: Object.keys(
+            //   'dependencies' in pkg ? pkg.dependencies : {},
+            // ),
+            },
+          },
+        },
+      },
+      {
+        entry: 'electron/preload/index.ts',
+        onstart(options) {
+        // Notify the Renderer-Process to reload the page when the Preload-Scripts build is complete,
+        // instead of restarting the entire Electron App.
+          options.reload()
+        },
+        vite: {
+          build: {
+            sourcemap: sourcemap ? 'inline' : undefined, // #332
+            minify: isBuild,
+            outDir: 'dist-electron/preload',
+            rollupOptions: {
+              external: ['@electron-toolkit/preload'],
+            // external: Object.keys(
+            //   'dependencies' in pkg ? pkg.dependencies : {},
+            // ),
+            },
+          },
+        },
+      },
+    ]),
+    renderer({
+      resolve: {
+        serialport: { type: 'cjs' },
+        got: { type: 'esm' },
+      },
+    }),
+  ] : []
   return {
     plugins: [
       Inspect(),
@@ -206,6 +277,7 @@ export default defineConfig(({ command, mode }) => {
           navigateFallback: 'index.html',
         },
       }),
+      ...electronPlugin,
     ],
     server: {
       port: Number(VITE_DEV_PORT),

@@ -1,4 +1,6 @@
 <script setup lang='ts'>
+// import { ipcRenderer } from 'electron'
+
 defineOptions({
   name: 'IndexPage',
 })
@@ -9,6 +11,8 @@ definePage({
 const { data } = useRequest(
   useAlovaInstance.Get('/info', {}),
 )
+
+// console.log(ipcRenderer)
 </script>
 
 <template>

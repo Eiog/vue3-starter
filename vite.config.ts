@@ -21,7 +21,7 @@ import Inspector from 'unplugin-vue-inspector/vite'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
-import Inspect from 'vite-plugin-inspect'
+import VueDevTools from 'vite-plugin-vue-devtools'
 
 // eslint-disable-next-line import/default
 import electron from 'vite-plugin-electron'
@@ -132,7 +132,7 @@ export default defineConfig(({ command, mode }) => {
   ] : []
   return {
     plugins: [
-      Inspect(),
+      VueDevTools(),
       vercelMock(),
       // https://github.com/posva/unplugin-vue-router
       VueRouter({

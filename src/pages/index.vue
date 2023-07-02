@@ -9,7 +9,7 @@ definePage({
 })
 
 const { data } = useRequest(
-  useAlovaInstance.Get('/info', {}),
+  useAlova.Get('/info', {}),
 )
 
 // console.log(ipcRenderer)

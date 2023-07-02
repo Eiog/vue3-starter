@@ -55,7 +55,7 @@ const _config: AxiosRequestConfig = {
     'Content-Type': 'application/json',
   },
 }
-const useAxios: UseAxios = (url, data, option) => {
+export const useReactiveAxios: UseAxios = (url, data, option) => {
   let controller = new AbortController()
   const pending = ref(true)
   const error = ref(false)
@@ -172,5 +172,29 @@ const useAxios: UseAxios = (url, data, option) => {
     },
   }
 }
+export type UseRefGet<REQ = any, RES = any> = (
+  url: string,
+  data?: REQ,
+) => UseAxiosReturns<REQ, RES>
 
-export default useAxios
+export const useRefGet: UseRefGet = (url, data) => {
+  return useReactiveAxios(url, data, {
+    config: {
+      baseURL: import.meta.env.VITE_API_BASEURL || '/',
+    },
+    before: (config) => {
+      return config
+    },
+  })
+}
+
+export type UseRefPost<REQ = any, RES = any> = (
+  url: string,
+  data?: REQ,
+) => UseAxiosReturns<REQ, RES>
+
+export const useRefPost: UseRefPost = (url, data) => {
+  return useReactiveAxios(url, data, {
+    method: 'post',
+  })
+}

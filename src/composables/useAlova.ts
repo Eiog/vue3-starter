@@ -2,7 +2,7 @@ import { createAlova } from 'alova'
 import GlobalFetch from 'alova/GlobalFetch'
 import VueHook from 'alova/vue'
 
-export const useAlovaInstance = createAlova({
+export const useAlova = createAlova({
   baseURL: import.meta.env.VITE_API_BASEURL || '',
 
   // VueHook用于创建ref状态，包括请求状态loading、响应数据data、请求错误对象error等

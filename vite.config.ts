@@ -1,6 +1,5 @@
 import { resolve } from 'node:path'
 import { rmSync } from 'node:fs'
-import type { Connect, Plugin } from 'vite'
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -17,7 +16,6 @@ import Icons from 'unplugin-icons/vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import Layouts from 'vite-plugin-vue-layouts'
 import WebfontDownload from 'vite-plugin-webfont-dl'
-import Inspector from 'unplugin-vue-inspector/vite'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
@@ -30,35 +28,6 @@ import renderer from 'vite-plugin-electron-renderer'
 import { vercelMock } from './plugin/vitePluginMockVercel'
 
 // https://vitejs.dev/config/
-const vendorLibs: { match: string[]; output: string }[] = [
-  {
-    match: ['naive-ui'],
-    output: 'naive-ui',
-  },
-]
-// 分包
-function configManualChunk(id: string) {
-  if (/[\\/]node_modules[\\/]/.test(id)) {
-    const matchItem = vendorLibs.find((item) => {
-      const reg = new RegExp(
-        `[\\/]node_modules[\\/]_?(${item.match.join('|')})(.*)`,
-        'ig',
-      )
-      return reg.test(id)
-    })
-    return matchItem ? matchItem.output : null
-  }
-}
-function mock({ base, handler }: { base: string; handler: Connect.HandleFunction }): Plugin {
-  return {
-    name: 'vite-plugin-mock',
-    apply: 'serve',
-    configureServer: async (server) => {
-    // mount mock server, `/api` is the base url
-      server.middlewares.use(base, handler)
-    },
-  }
-}
 
 export default defineConfig(({ command, mode }) => {
   const { VITE_APP_NAME, VITE_APP_DESCRIPTION, VITE_DEV_PORT } = loadEnv(mode, process.cwd(), '')
@@ -132,40 +101,40 @@ export default defineConfig(({ command, mode }) => {
   ] : []
   return {
     plugins: [
-      VueDevTools(),
+      VueDevTools(), // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
+
       vercelMock(),
-      // https://github.com/posva/unplugin-vue-router
+
       VueRouter({
         extensions: ['.vue', '.md'],
         dts: 'src/typings/typed-router.d.ts',
         importMode: 'async',
-      }),
-      // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
-      Layouts(),
+      }), // https://github.com/posva/unplugin-vue-router
+
+      Layouts(), // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
+
       createSvgIconsPlugin({
         iconDirs: [resolve(process.cwd(), 'src/assets/icons')],
         symbolId: 'icon-[dir]-[name]',
-      }),
+      }), // https://github.com/vbenjs/vite-plugin-svg-icons
+
       webUpdateNotice({
         logVersion: true,
-      }),
+      }), // https://github.com/GreatAuk/plugin-web-update-notification
+
       vue({
         script: {
           defineModel: true,
         },
         include: [/\.vue$/, /\.md$/],
-      }),
-      vueJsx(),
-      // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin
-      // vuetify({ autoImport: true }),
-      // https://github.com/feat-agency/vite-plugin-webfont-dl
-      WebfontDownload(),
-      // https://github.com/webfansplz/vite-plugin-vue-inspector
-      Inspector({
-        toggleButtonVisibility: 'never',
-      }),
-      Icons({ compiler: 'vue3' }),
-      // https://github.com/antfu/unplugin-auto-import
+      }), // https://github.com/vitejs/vite-plugin-vue
+
+      vueJsx(), // https://github.com/vitejs/vite-plugin-vue
+
+      WebfontDownload(), // https://github.com/feat-agency/vite-plugin-webfont-dl
+
+      Icons({ compiler: 'vue3' }), // https://github.com/antfu/unplugin-icons
+
       AutoImport({
         /* options */
         include: [
@@ -203,8 +172,8 @@ export default defineConfig(({ command, mode }) => {
         dirs: ['src/hooks', 'src/composables', 'src/stores', 'src/utils'],
         dts: 'src/typings/auto-import.d.ts',
         vueTemplate: true,
-      }),
-      // https://github.com/antfu/unplugin-vue-components
+      }), // https://github.com/antfu/unplugin-auto-import
+
       Components({
         dirs: ['src/components', 'src/layouts'],
         extensions: ['vue', 'md'],
@@ -218,18 +187,18 @@ export default defineConfig(({ command, mode }) => {
           VueUseComponentsResolver(),
           VueUseDirectiveResolver(),
         ],
-      }),
-      // https://github.com/antfu/unocss
-      // see unocss.config.ts for config
-      Unocss(),
+      }), // https://github.com/antfu/unplugin-vue-components
+
+      Unocss(), // https://github.com/antfu/unocss
+
       // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
       VueI18nPlugin({
         runtimeOnly: true,
         compositionOnly: true,
         fullInstall: true,
         include: resolve(__dirname, './src/locales/**'),
-      }),
-      // https://github.com/antfu/vite-plugin-vue-markdown
+      }), // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
+
       Markdown({
         wrapperClasses: 'prose prose-sm m-auto text-left',
         headEnabled: true,
@@ -249,8 +218,8 @@ export default defineConfig(({ command, mode }) => {
             },
           })
         },
-      }),
-      // https://github.com/antfu/vite-plugin-pwa
+      }), // https://github.com/antfu/vite-plugin-vue-markdown
+
       VitePWA({
         registerType: 'autoUpdate',
         includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
@@ -284,7 +253,7 @@ export default defineConfig(({ command, mode }) => {
           type: 'module',
           navigateFallback: 'index.html',
         },
-      }),
+      }), // https://github.com/antfu/vite-plugin-pwa
       ...electronPlugin,
     ],
     clearScreen: true,

@@ -24,6 +24,8 @@ declare module 'vue' {
     RouterEntry: typeof import('./../components/RouterEntry.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Starport: typeof import('vue-starport')['Starport']
+    StarportCarrier: typeof import('vue-starport')['StarportCarrier']
     SvgIcon: typeof import('./../components/SvgIcon.vue')['default']
     ToggleDarkMode: typeof import('./../components/ToggleDarkMode.vue')['default']
     ToggleLanguage: typeof import('./../components/ToggleLanguage.vue')['default']

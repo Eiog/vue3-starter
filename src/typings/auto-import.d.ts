@@ -64,7 +64,7 @@ declare global {
   const inject: typeof import('vue')['inject']
   const isArray: typeof import('../utils/useTypeOf')['isArray']
   const isBoolean: typeof import('../utils/useTypeOf')['isBoolean']
-  const isDark: typeof import('../composables/dark')['isDark']
+  const isDark: typeof import('../composables/useDark')['isDark']
   const isDate: typeof import('../utils/useTypeOf')['isDate']
   const isDefined: typeof import('@vueuse/core')['isDefined']
   const isFile: typeof import('../utils/useTypeOf')['isFile']
@@ -112,7 +112,7 @@ declare global {
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const platform: typeof import('@tauri-apps/api/os')['platform']
   const post: typeof import('../utils/useHttp')['post']
-  const preferredDark: typeof import('../composables/dark')['preferredDark']
+  const preferredDark: typeof import('../composables/useDark')['preferredDark']
   const provide: typeof import('vue')['provide']
   const reactify: typeof import('@vueuse/core')['reactify']
   const reactifyObject: typeof import('@vueuse/core')['reactifyObject']
@@ -151,7 +151,7 @@ declare global {
   const toRef: typeof import('vue')['toRef']
   const toRefs: typeof import('vue')['toRefs']
   const toValue: typeof import('vue')['toValue']
-  const toggleDark: typeof import('../composables/dark')['toggleDark']
+  const toggleDark: typeof import('../composables/useDark')['toggleDark']
   const triggerRef: typeof import('vue')['triggerRef']
   const tryOnBeforeMount: typeof import('@vueuse/core')['tryOnBeforeMount']
   const tryOnBeforeUnmount: typeof import('@vueuse/core')['tryOnBeforeUnmount']
@@ -162,6 +162,7 @@ declare global {
   const unrefElement: typeof import('@vueuse/core')['unrefElement']
   const until: typeof import('@vueuse/core')['until']
   const useActiveElement: typeof import('@vueuse/core')['useActiveElement']
+  const useAlova: typeof import('../composables/useAlova')['useAlova']
   const useAlovaInstance: typeof import('../composables/useAlovaInstance')['useAlovaInstance']
   const useAnimate: typeof import('@vueuse/core')['useAnimate']
   const useAppStore: typeof import('../stores/useAppStore')['useAppStore']
@@ -180,7 +181,7 @@ declare global {
   const useAsyncQueue: typeof import('@vueuse/core')['useAsyncQueue']
   const useAsyncState: typeof import('@vueuse/core')['useAsyncState']
   const useAttrs: typeof import('vue')['useAttrs']
-  const useAxios: typeof import('../composables/useAxios')['default']
+  const useAxios: typeof import('../composables/useReactiveAxios')['default']
   const useBScroll: typeof import('../composables/useBScroll')['useBScroll']
   const useBase64: typeof import('@vueuse/core')['useBase64']
   const useBattery: typeof import('@vueuse/core')['useBattery']
@@ -286,7 +287,10 @@ declare global {
   const usePreferredReducedMotion: typeof import('@vueuse/core')['usePreferredReducedMotion']
   const usePrevious: typeof import('@vueuse/core')['usePrevious']
   const useRafFn: typeof import('@vueuse/core')['useRafFn']
+  const useReactiveAxios: typeof import('../composables/useReactiveAxios')['useReactiveAxios']
+  const useRefGet: typeof import('../composables/useReactiveAxios')['useRefGet']
   const useRefHistory: typeof import('@vueuse/core')['useRefHistory']
+  const useRefPost: typeof import('../composables/useReactiveAxios')['useRefPost']
   const useRequest: typeof import('alova')['useRequest']
   const useResizeObserver: typeof import('@vueuse/core')['useResizeObserver']
   const useRoute: typeof import('vue-router/auto')['useRoute']
@@ -428,7 +432,7 @@ declare module 'vue' {
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isArray: UnwrapRef<typeof import('../utils/useTypeOf')['isArray']>
     readonly isBoolean: UnwrapRef<typeof import('../utils/useTypeOf')['isBoolean']>
-    readonly isDark: UnwrapRef<typeof import('../composables/dark')['isDark']>
+    readonly isDark: UnwrapRef<typeof import('../composables/useDark')['isDark']>
     readonly isDate: UnwrapRef<typeof import('../utils/useTypeOf')['isDate']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
     readonly isFile: UnwrapRef<typeof import('../utils/useTypeOf')['isFile']>
@@ -476,7 +480,7 @@ declare module 'vue' {
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly platform: UnwrapRef<typeof import('@tauri-apps/api/os')['platform']>
     readonly post: UnwrapRef<typeof import('../utils/useHttp')['post']>
-    readonly preferredDark: UnwrapRef<typeof import('../composables/dark')['preferredDark']>
+    readonly preferredDark: UnwrapRef<typeof import('../composables/useDark')['preferredDark']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>
     readonly reactifyObject: UnwrapRef<typeof import('@vueuse/core')['reactifyObject']>
@@ -514,7 +518,7 @@ declare module 'vue' {
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
     readonly toValue: UnwrapRef<typeof import('vue')['toValue']>
-    readonly toggleDark: UnwrapRef<typeof import('../composables/dark')['toggleDark']>
+    readonly toggleDark: UnwrapRef<typeof import('../composables/useDark')['toggleDark']>
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly tryOnBeforeMount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeMount']>
     readonly tryOnBeforeUnmount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeUnmount']>
@@ -525,7 +529,7 @@ declare module 'vue' {
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
-    readonly useAlovaInstance: UnwrapRef<typeof import('../composables/useAlovaInstance')['useAlovaInstance']>
+    readonly useAlova: UnwrapRef<typeof import('../composables/useAlova')['useAlova']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
     readonly useAppStore: UnwrapRef<typeof import('../stores/useAppStore')['useAppStore']>
     readonly useArrayDifference: UnwrapRef<typeof import('@vueuse/core')['useArrayDifference']>
@@ -543,7 +547,6 @@ declare module 'vue' {
     readonly useAsyncQueue: UnwrapRef<typeof import('@vueuse/core')['useAsyncQueue']>
     readonly useAsyncState: UnwrapRef<typeof import('@vueuse/core')['useAsyncState']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
-    readonly useAxios: UnwrapRef<typeof import('../composables/useAxios')['default']>
     readonly useBScroll: UnwrapRef<typeof import('../composables/useBScroll')['useBScroll']>
     readonly useBase64: UnwrapRef<typeof import('@vueuse/core')['useBase64']>
     readonly useBattery: UnwrapRef<typeof import('@vueuse/core')['useBattery']>
@@ -598,7 +601,6 @@ declare module 'vue' {
     readonly useFullscreen: UnwrapRef<typeof import('@vueuse/core')['useFullscreen']>
     readonly useGamepad: UnwrapRef<typeof import('@vueuse/core')['useGamepad']>
     readonly useGeolocation: UnwrapRef<typeof import('@vueuse/core')['useGeolocation']>
-    readonly useGet: UnwrapRef<typeof import('../composables/useGet')['default']>
     readonly useHead: UnwrapRef<typeof import('@vueuse/head')['useHead']>
     readonly useI18n: UnwrapRef<typeof import('vue-i18n')['useI18n']>
     readonly useIdle: UnwrapRef<typeof import('@vueuse/core')['useIdle']>
@@ -640,7 +642,6 @@ declare module 'vue' {
     readonly usePointer: UnwrapRef<typeof import('@vueuse/core')['usePointer']>
     readonly usePointerLock: UnwrapRef<typeof import('@vueuse/core')['usePointerLock']>
     readonly usePointerSwipe: UnwrapRef<typeof import('@vueuse/core')['usePointerSwipe']>
-    readonly usePost: UnwrapRef<typeof import('../composables/usePost')['default']>
     readonly usePreferredColorScheme: UnwrapRef<typeof import('@vueuse/core')['usePreferredColorScheme']>
     readonly usePreferredContrast: UnwrapRef<typeof import('@vueuse/core')['usePreferredContrast']>
     readonly usePreferredDark: UnwrapRef<typeof import('@vueuse/core')['usePreferredDark']>
@@ -648,7 +649,10 @@ declare module 'vue' {
     readonly usePreferredReducedMotion: UnwrapRef<typeof import('@vueuse/core')['usePreferredReducedMotion']>
     readonly usePrevious: UnwrapRef<typeof import('@vueuse/core')['usePrevious']>
     readonly useRafFn: UnwrapRef<typeof import('@vueuse/core')['useRafFn']>
+    readonly useReactiveAxios: UnwrapRef<typeof import('../composables/useReactiveAxios')['useReactiveAxios']>
+    readonly useRefGet: UnwrapRef<typeof import('../composables/useReactiveAxios')['useRefGet']>
     readonly useRefHistory: UnwrapRef<typeof import('@vueuse/core')['useRefHistory']>
+    readonly useRefPost: UnwrapRef<typeof import('../composables/useReactiveAxios')['useRefPost']>
     readonly useRequest: UnwrapRef<typeof import('alova')['useRequest']>
     readonly useResizeObserver: UnwrapRef<typeof import('@vueuse/core')['useResizeObserver']>
     readonly useRoute: UnwrapRef<typeof import('vue-router/auto')['useRoute']>
@@ -784,7 +788,7 @@ declare module '@vue/runtime-core' {
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isArray: UnwrapRef<typeof import('../utils/useTypeOf')['isArray']>
     readonly isBoolean: UnwrapRef<typeof import('../utils/useTypeOf')['isBoolean']>
-    readonly isDark: UnwrapRef<typeof import('../composables/dark')['isDark']>
+    readonly isDark: UnwrapRef<typeof import('../composables/useDark')['isDark']>
     readonly isDate: UnwrapRef<typeof import('../utils/useTypeOf')['isDate']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
     readonly isFile: UnwrapRef<typeof import('../utils/useTypeOf')['isFile']>
@@ -832,7 +836,7 @@ declare module '@vue/runtime-core' {
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly platform: UnwrapRef<typeof import('@tauri-apps/api/os')['platform']>
     readonly post: UnwrapRef<typeof import('../utils/useHttp')['post']>
-    readonly preferredDark: UnwrapRef<typeof import('../composables/dark')['preferredDark']>
+    readonly preferredDark: UnwrapRef<typeof import('../composables/useDark')['preferredDark']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>
     readonly reactifyObject: UnwrapRef<typeof import('@vueuse/core')['reactifyObject']>
@@ -870,7 +874,7 @@ declare module '@vue/runtime-core' {
     readonly toRef: UnwrapRef<typeof import('vue')['toRef']>
     readonly toRefs: UnwrapRef<typeof import('vue')['toRefs']>
     readonly toValue: UnwrapRef<typeof import('vue')['toValue']>
-    readonly toggleDark: UnwrapRef<typeof import('../composables/dark')['toggleDark']>
+    readonly toggleDark: UnwrapRef<typeof import('../composables/useDark')['toggleDark']>
     readonly triggerRef: UnwrapRef<typeof import('vue')['triggerRef']>
     readonly tryOnBeforeMount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeMount']>
     readonly tryOnBeforeUnmount: UnwrapRef<typeof import('@vueuse/core')['tryOnBeforeUnmount']>
@@ -881,7 +885,7 @@ declare module '@vue/runtime-core' {
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
-    readonly useAlovaInstance: UnwrapRef<typeof import('../composables/useAlovaInstance')['useAlovaInstance']>
+    readonly useAlova: UnwrapRef<typeof import('../composables/useAlova')['useAlova']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
     readonly useAppStore: UnwrapRef<typeof import('../stores/useAppStore')['useAppStore']>
     readonly useArrayDifference: UnwrapRef<typeof import('@vueuse/core')['useArrayDifference']>
@@ -899,7 +903,6 @@ declare module '@vue/runtime-core' {
     readonly useAsyncQueue: UnwrapRef<typeof import('@vueuse/core')['useAsyncQueue']>
     readonly useAsyncState: UnwrapRef<typeof import('@vueuse/core')['useAsyncState']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
-    readonly useAxios: UnwrapRef<typeof import('../composables/useAxios')['default']>
     readonly useBScroll: UnwrapRef<typeof import('../composables/useBScroll')['useBScroll']>
     readonly useBase64: UnwrapRef<typeof import('@vueuse/core')['useBase64']>
     readonly useBattery: UnwrapRef<typeof import('@vueuse/core')['useBattery']>
@@ -954,7 +957,6 @@ declare module '@vue/runtime-core' {
     readonly useFullscreen: UnwrapRef<typeof import('@vueuse/core')['useFullscreen']>
     readonly useGamepad: UnwrapRef<typeof import('@vueuse/core')['useGamepad']>
     readonly useGeolocation: UnwrapRef<typeof import('@vueuse/core')['useGeolocation']>
-    readonly useGet: UnwrapRef<typeof import('../composables/useGet')['default']>
     readonly useHead: UnwrapRef<typeof import('@vueuse/head')['useHead']>
     readonly useI18n: UnwrapRef<typeof import('vue-i18n')['useI18n']>
     readonly useIdle: UnwrapRef<typeof import('@vueuse/core')['useIdle']>
@@ -996,7 +998,6 @@ declare module '@vue/runtime-core' {
     readonly usePointer: UnwrapRef<typeof import('@vueuse/core')['usePointer']>
     readonly usePointerLock: UnwrapRef<typeof import('@vueuse/core')['usePointerLock']>
     readonly usePointerSwipe: UnwrapRef<typeof import('@vueuse/core')['usePointerSwipe']>
-    readonly usePost: UnwrapRef<typeof import('../composables/usePost')['default']>
     readonly usePreferredColorScheme: UnwrapRef<typeof import('@vueuse/core')['usePreferredColorScheme']>
     readonly usePreferredContrast: UnwrapRef<typeof import('@vueuse/core')['usePreferredContrast']>
     readonly usePreferredDark: UnwrapRef<typeof import('@vueuse/core')['usePreferredDark']>
@@ -1004,7 +1005,10 @@ declare module '@vue/runtime-core' {
     readonly usePreferredReducedMotion: UnwrapRef<typeof import('@vueuse/core')['usePreferredReducedMotion']>
     readonly usePrevious: UnwrapRef<typeof import('@vueuse/core')['usePrevious']>
     readonly useRafFn: UnwrapRef<typeof import('@vueuse/core')['useRafFn']>
+    readonly useReactiveAxios: UnwrapRef<typeof import('../composables/useReactiveAxios')['useReactiveAxios']>
+    readonly useRefGet: UnwrapRef<typeof import('../composables/useReactiveAxios')['useRefGet']>
     readonly useRefHistory: UnwrapRef<typeof import('@vueuse/core')['useRefHistory']>
+    readonly useRefPost: UnwrapRef<typeof import('../composables/useReactiveAxios')['useRefPost']>
     readonly useRequest: UnwrapRef<typeof import('alova')['useRequest']>
     readonly useResizeObserver: UnwrapRef<typeof import('@vueuse/core')['useResizeObserver']>
     readonly useRoute: UnwrapRef<typeof import('vue-router/auto')['useRoute']>

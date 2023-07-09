@@ -98,6 +98,7 @@
     "unplugin-auto-import": "^0.16.4",
     "unplugin-icons": "^0.16.3",
     "unplugin-vue-components": "^0.25.1",
+    "unplugin-vue-cssvars": "2.0.0-beta.0",
     "unplugin-vue-inspector": "^0.2.5",
     "unplugin-vue-router": "^0.6.4",
     "vercel": "^31.0.1",

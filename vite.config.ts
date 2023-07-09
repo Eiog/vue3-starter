@@ -20,6 +20,7 @@ import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import VueDevTools from 'vite-plugin-vue-devtools'
+import { viteVueCSSVars } from 'unplugin-vue-cssvars'
 
 // eslint-disable-next-line import/default
 import electron from 'vite-plugin-electron'
@@ -130,6 +131,12 @@ export default defineConfig(({ command, mode }) => {
       }), // https://github.com/vitejs/vite-plugin-vue
 
       vueJsx(), // https://github.com/vitejs/vite-plugin-vue
+
+      viteVueCSSVars({
+        include: [/.vue/],
+        includeCompile: ['**/**.scss'],
+        server: false,
+      }), // https://github.com/baiwusanyu-c/unplugin-vue-cssvars
 
       WebfontDownload(), // https://github.com/feat-agency/vite-plugin-webfont-dl
 

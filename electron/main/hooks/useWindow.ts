@@ -13,13 +13,13 @@ function useWindow(isPackaged = true): BrowserWindow {
   const url = process.env.VITE_DEV_SERVER_URL
   const indexHtml = join(process.env.DIST, 'index.html')
   const mainWindow = new BrowserWindow({
-    width: 1020,
-    minWidth: 1020,
-    height: 670,
+    width: 1600,
+    minWidth: 1200,
+    height: 900,
     minHeight: 670,
-    show: false,
+    show: true,
     autoHideMenuBar: true,
-    frame: false,
+    frame: true,
     ...(process.platform === 'linux'
       ? {
           icon: join(process.env.PUBLIC, 'favicon.ico'),

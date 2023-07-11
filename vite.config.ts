@@ -26,6 +26,7 @@ import { viteVueCSSVars } from 'unplugin-vue-cssvars'
 import electron from 'vite-plugin-electron'
 import renderer from 'vite-plugin-electron-renderer'
 
+import virtual from 'vite-plugin-virtual'
 import { vercelMock } from './plugin/vitePluginMockVercel'
 
 // https://vitejs.dev/config/
@@ -103,6 +104,10 @@ export default defineConfig(({ command, mode }) => {
   return {
     plugins: [
       VueDevTools(), // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
+
+      virtual({
+        'virtual:module': 'export default { mode: \'web\' }',
+      }), // https://github.com/patak-dev/vite-plugin-virtual
 
       vercelMock(),
 

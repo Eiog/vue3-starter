@@ -17,6 +17,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import Layouts from 'vite-plugin-vue-layouts'
 import WebfontDownload from 'vite-plugin-webfont-dl'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
+import { vitePluginVersionMark } from 'vite-plugin-version-mark'
 import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import VueDevTools from 'vite-plugin-vue-devtools'
@@ -127,6 +128,17 @@ export default defineConfig(({ command, mode }) => {
       webUpdateNotice({
         logVersion: true,
       }), // https://github.com/GreatAuk/plugin-web-update-notification
+
+      vitePluginVersionMark({
+        // name: 'test-app',
+        // version: '0.0.1',
+        // command: 'git describe --tags',
+        ifGitSHA: true,
+        ifShortSHA: true,
+        ifMeta: true,
+        ifLog: true,
+        ifGlobal: true,
+      }), // https://github.com/ZhongxuYang/vite-plugin-version-mark
 
       vue({
         script: {

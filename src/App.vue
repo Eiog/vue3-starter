@@ -16,6 +16,7 @@ useHead({
     },
   ],
 })
+useTrack(1)
 </script>
 
 <template>

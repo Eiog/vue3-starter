@@ -14,7 +14,7 @@ import { getSatusColor } from './helps'
 export const useAppStore = defineStore(
   'appStore',
   () => {
-    const darkMode = ref(false)
+    const darkMode = useDark()
     const useOsDark = ref(false)
     const useDarkMode = computed(() => {
       if (useOsDark.value)

@@ -1,11 +1,5 @@
 <script setup lang='ts'>
 const { darkMode } = storeToRefs(useAppStore())
-
-function toggleDark(e: MouseEvent) {
-  useToggleDark(e, (dark) => {
-    darkMode.value = !dark
-  })
-}
 </script>
 
 <template>

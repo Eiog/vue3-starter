@@ -57,22 +57,22 @@ axiosInstance.interceptors.response.use(
       const code = response.status
       if (code === 401)
         // eslint-disable-next-line no-console
-        console.log(code)
-      if (code === 400) {
-        window.$message.error(response.data.msg)
-      }
-      else {
-        window.$notification.error({
-          title: STATUS_TEXT[code] || `${code}错误`,
-          content: response.data.msg,
-          duration: 3000,
-        })
-      }
+        console.log(code, STATUS_TEXT[code] || `${code}错误`)
+      // if (code === 400) {
+      //   window.$message.error(response.data.msg)
+      // }
+      // else {
+      //   window.$notification.error({
+      //     title: STATUS_TEXT[code] || `${code}错误`,
+      //     content: response.data.msg,
+      //     duration: 3000,
+      //   })
+      // }
 
       return Promise.reject(response.data)
     }
     if (request) {
-      window.$notification.error({ title: '出错了~', duration: 3000 })
+      // window.$notification.error({ title: '出错了~', duration: 3000 })
       return Promise.reject(error)
     }
   },

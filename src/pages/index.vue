@@ -21,6 +21,17 @@ const { data } = useRequest(
     <Examples />
     <Dependents />
     {{ data }}
+    <div class="flex-center gap-1">
+      <NButton v-use-track:exposure>
+        ExposureTrack
+      </NButton>
+      <NButton v-use-track:click>
+        ClickTrack
+      </NButton>
+      <NButton v-use-track:long-press>
+        LongPressTrack
+      </NButton>
+    </div>
   </div>
 </template>
 

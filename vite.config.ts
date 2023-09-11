@@ -28,7 +28,7 @@ import electron from 'vite-plugin-electron'
 import renderer from 'vite-plugin-electron-renderer'
 
 import virtual from 'vite-plugin-virtual'
-import { vercelMock } from './plugin/vitePluginMockVercel'
+import { VitePluginMock } from './plugin'
 
 // https://vitejs.dev/config/
 
@@ -110,7 +110,7 @@ export default defineConfig(({ command, mode }) => {
         'virtual:module': 'export default { mode: \'web\' }',
       }), // https://github.com/patak-dev/vite-plugin-virtual
 
-      vercelMock(),
+      VitePluginMock(),
 
       VueRouter({
         extensions: ['.vue', '.md'],

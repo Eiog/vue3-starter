@@ -2,7 +2,10 @@ import type { Router } from 'vue-router'
 import type { App } from 'vue'
 
 import { createRouter, createWebHistory } from 'vue-router'
-import { routes } from 'vue-router/auto/routes'
+import { setupLayouts } from 'virtual:generated-layouts'
+import generatedRoutes from '~pages'
+
+const routes = setupLayouts(generatedRoutes)
 
 export function setupRouter(app: App) {
   const router: Router = createRouter({
@@ -11,5 +14,6 @@ export function setupRouter(app: App) {
     routes,
   })
   useRouteGuard(router)
+
   app.use(router)
 }

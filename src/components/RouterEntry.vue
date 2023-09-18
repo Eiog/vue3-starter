@@ -1,12 +1,12 @@
 <script setup lang="ts"></script>
 
 <template>
-  <router-view v-slot="{ Component }">
+  <router-view v-slot="{ Component, route }">
     <template v-if="Component">
       <transition mode="out-in">
         <keep-alive>
           <Suspense>
-            <component :is="Component" />
+            <component :is="Component" :key="route" />
             <template #fallback>
               Suspense 正在加载...
             </template>

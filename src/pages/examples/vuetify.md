@@ -1,12 +1,10 @@
 ---
 title: Vuetify Demo
+name: vuetify-demo
 ---
 
 <script setup>
 import {ref} from 'vue'
-definePage({
-  name: 'vuetify-demo',
-})
 const dialog = ref(false)
 </script>
 

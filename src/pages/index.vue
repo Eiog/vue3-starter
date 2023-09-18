@@ -4,10 +4,9 @@
 defineOptions({
   name: 'IndexPage',
 })
-definePage({
-  name: 'index-page',
+useHead({
+  title: '首页',
 })
-
 const { data } = useRequest(
   useAlova.Get('/info', {}),
 )
@@ -40,6 +39,7 @@ const { data } = useRequest(
 </style>
 
 <route lang="yaml">
+name: index-page
 meta:
   layout: default
   title: Hello World !

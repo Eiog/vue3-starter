@@ -1,12 +1,10 @@
 ---
 title: NaiveUi Demo
+name: naive-ui-demo
 ---
 
 <script setup>
 import NaiveProvider from '~/components/NaiveProvider.vue'
-definePage({
-  name: 'naive-ui-demo',
-})
 </script>
 
 # Naive Ui

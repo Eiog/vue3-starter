@@ -20,9 +20,7 @@ useTrack(1)
 </script>
 
 <template>
-  <default>
-    <router-entry />
-  </default>
+  <RouterView />
 </template>
 
 <style>

@@ -1,7 +1,7 @@
 <script setup lang='ts'>
-import { routes } from 'vue-router/auto/routes'
+import routes from '~pages'
 
-const map = routes.filter(f => f.path === '/examples').map(m => m.children).flat().map(m => ({ ...m, path: `/examples/${m?.path}` })) as { name: string; path: string }[]
+const map = routes.filter(f => f.path.startsWith('/examples'))
 
 const { t } = useI18n()
 </script>

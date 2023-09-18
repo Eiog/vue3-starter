@@ -18,10 +18,10 @@ import Layouts from 'vite-plugin-vue-layouts'
 import WebfontDownload from 'vite-plugin-webfont-dl'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 import { vitePluginVersionMark } from 'vite-plugin-version-mark'
-import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import { viteVueCSSVars } from 'unplugin-vue-cssvars'
+import Pages from 'vite-plugin-pages'
 
 // eslint-disable-next-line import/default
 import electron from 'vite-plugin-electron'
@@ -33,7 +33,7 @@ import { VitePluginMock } from './plugin'
 // https://vitejs.dev/config/
 
 export default defineConfig(({ command, mode }) => {
-  const { VITE_APP_NAME, VITE_APP_DESCRIPTION, VITE_DEV_PORT } = loadEnv(mode, process.cwd(), '')
+  const { VITE_APP_NAME, VITE_APP_DESCRIPTION, VITE_DEV_PORT, VITE_API_BASE_PREFIX, VITE_API_BASE_URL } = loadEnv(mode, process.cwd(), '')
   const isElectron = mode === 'electron'
   const isTauri = mode === 'tauri'
   const isServe = command === 'serve'
@@ -110,12 +110,10 @@ export default defineConfig(({ command, mode }) => {
         'virtual:module': 'export default { mode: \'web\' }',
       }), // https://github.com/patak-dev/vite-plugin-virtual
 
-      VitePluginMock(),
+      VitePluginMock({ prefix: VITE_API_BASE_PREFIX }),
 
-      VueRouter({
-        extensions: ['.vue', '.md'],
-        dts: 'src/typings/typed-router.d.ts',
-        importMode: 'async',
+      Pages({
+        extensions: ['vue', 'md'],
       }), // https://github.com/posva/unplugin-vue-router
 
       Layouts(), // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
@@ -287,13 +285,13 @@ export default defineConfig(({ command, mode }) => {
       open: false, // 自动打开浏览器
       cors: true, // 跨域设置允许
       strictPort: true, // 如果端口已占用直接退出
-      // proxy: {
-      //   '/api': {
-      //     target: 'https://mock.apifox.cn/m1/476417-0-default',
-      //     changeOrigin: true,
-      //     rewrite: path => path.replace(/^\/api/, ''),
-      //   },
-      // },
+      proxy: {
+        [VITE_API_BASE_PREFIX]: {
+          target: VITE_API_BASE_URL,
+          changeOrigin: true,
+          rewrite: path => path.replace(/^\`${VITE_API_BASE_PREFIX}`/, ''),
+        },
+      },
     },
     envPrefix: ['VITE_', 'TAURI_'],
     build: {

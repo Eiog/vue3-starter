@@ -8,7 +8,7 @@ useHead({
   title: '首页',
 })
 const { data } = useRequest(
-  useAlova.Get('/info', {}),
+  useAlova.Get('/api/info', {}),
 )
 
 // console.log(ipcRenderer)

@@ -7,7 +7,7 @@ import type {
 } from 'axios'
 import axios from 'axios'
 
-const BASE_PREFIX = import.meta.env.VITE_API_BASEURL || ''
+const BASE_PREFIX = import.meta.env.VITE_API_BASE_PREFIX || ''
 const STATUS_TEXT: { [key: number]: string } = {
   200: '200请求成功',
   400: '400请求错误',

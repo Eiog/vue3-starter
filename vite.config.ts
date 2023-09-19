@@ -9,7 +9,7 @@ import { NaiveUiResolver, VantResolver, VueUseComponentsResolver, VueUseDirectiv
 import AutoImport from 'unplugin-auto-import/vite'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { VitePWA } from 'vite-plugin-pwa'
-import Markdown from 'vite-plugin-vue-markdown'
+import Markdown from 'unplugin-vue-markdown/vite'
 import LinkAttributes from 'markdown-it-link-attributes'
 import Shiki from 'markdown-it-shiki'
 import Icons from 'unplugin-icons/vite'
@@ -18,10 +18,10 @@ import Layouts from 'vite-plugin-vue-layouts'
 import WebfontDownload from 'vite-plugin-webfont-dl'
 import { webUpdateNotice } from '@plugin-web-update-notification/vite'
 import { vitePluginVersionMark } from 'vite-plugin-version-mark'
-import { VueRouterAutoImports } from 'unplugin-vue-router'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import { viteVueCSSVars } from 'unplugin-vue-cssvars'
 import Pages from 'vite-plugin-pages'
+import postcssPresetEnv from 'postcss-preset-env'
 
 // eslint-disable-next-line import/default
 import electron from 'vite-plugin-electron'
@@ -169,7 +169,7 @@ export default defineConfig(({ command, mode }) => {
           '@vueuse/core',
           '@vueuse/head',
           'pinia',
-          VueRouterAutoImports,
+          'vue-router',
           'vue-i18n',
           {
             'naive-ui': [
@@ -328,6 +328,11 @@ export default defineConfig(({ command, mode }) => {
       modules: {
         localsConvention: 'camelCase',
         scopeBehaviour: 'local',
+      },
+      postcss: {
+        plugins: [
+          postcssPresetEnv(),
+        ],
       },
     },
   }

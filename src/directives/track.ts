@@ -31,7 +31,7 @@ export const useTrack = {
       onExposure(target, () => {
         // eslint-disable-next-line no-console
         console.log('exposured')
-        post('/track/exposure', { event: 'exposure', ...data }).then((res) => {
+        post('/track', { event: 'exposure', ...data }).then((res) => {
           // eslint-disable-next-line no-console
           console.log(res)
         })
@@ -41,7 +41,7 @@ export const useTrack = {
       clickEvent = target.addEventListener('click', () => {
         // eslint-disable-next-line no-console
         console.log('click')
-        post('/track/click', { event: 'click', ...data }).then((res) => {
+        post('/track', { event: 'click', ...data }).then((res) => {
           // eslint-disable-next-line no-console
           console.log(res)
         })
@@ -56,7 +56,7 @@ export const useTrack = {
         if ((now - startTime) > 500) {
           // eslint-disable-next-line no-console
           console.log('log-press')
-          post('/track/long-press', { event: 'long-press', ...data }).then((res) => {
+          post('/track', { event: 'long-press', ...data }).then((res) => {
           // eslint-disable-next-line no-console
             console.log(res)
           })

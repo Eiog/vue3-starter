@@ -1,4 +1,4 @@
-import { useApp, useIpcMain, useStore, useTray, useVueDevTools } from './hooks'
+import { useApp, useAutoUpdater, useIpcMain, useStore, useTray, useVueDevTools } from './hooks'
 
 async function init() {
   const { app, mainWindow } = await useApp()
@@ -6,5 +6,6 @@ async function init() {
   useVueDevTools(app, mainWindow)
   useIpcMain(app, mainWindow, tray)
   useStore()
+  useAutoUpdater(app)
 }
 init()

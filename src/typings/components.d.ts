@@ -10,7 +10,6 @@ declare module 'vue' {
     BackToHome: typeof import('./../components/BackToHome.vue')['default']
     DarkModeToggle: typeof import('./../components/DarkModeToggle.vue')['default']
     Default: typeof import('./../layouts/default.vue')['default']
-    DefaultMenu: typeof import('./../components/DefaultMenu.vue')['default']
     DefineInput: typeof import('./../components/DefineInput.vue')['default']
     Dependents: typeof import('./../components/Dependents.vue')['default']
     Examples: typeof import('./../components/Examples.vue')['default']

@@ -27,7 +27,7 @@ function useWindow(isPackaged = true): BrowserWindow {
       : {}),
     webPreferences: {
       preload,
-      webSecurity: false,
+      webSecurity: true,
       devTools: !isPackaged,
       nodeIntegration: true,
       contextIsolation: false,

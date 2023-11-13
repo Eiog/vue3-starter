@@ -47,6 +47,7 @@
     "vant": "^4.7.3",
     "vue": "^3.3.8",
     "vue-chemistry": "^0.2.2",
+    "vue-hooks-plus": "^1.8.6",
     "vue-i18n": "^9.6.5",
     "vue-router": "^4.2.5",
     "vue-starport": "^0.4.0",

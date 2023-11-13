@@ -18,7 +18,7 @@ let clickEvent: any = null
 let mouseDownEvent: any = null
 let mouseUpEvent: any = null
 let startTime = 0
-export const useTrack = {
+export const track = {
   mounted(target: HTMLElement, binding: DirectiveBinding<BindingValue | string>) {
     const arg = binding.arg as Args
     const data = {

@@ -8,7 +8,7 @@ useHead({
   title: '首页',
 })
 const { data } = useRequest(
-  useAlova.Get('/api/info', {}),
+  useAlova.Get('/info', {}),
 )
 
 // console.log(ipcRenderer)
@@ -21,13 +21,13 @@ const { data } = useRequest(
     <Dependents />
     {{ data }}
     <div class="flex-center gap-1">
-      <NButton v-use-track:exposure>
+      <NButton v-track:exposure>
         ExposureTrack
       </NButton>
-      <NButton v-use-track:click>
+      <NButton v-track:click>
         ClickTrack
       </NButton>
-      <NButton v-use-track:long-press>
+      <NButton v-track:long-press>
         LongPressTrack
       </NButton>
     </div>

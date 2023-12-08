@@ -1,0 +1,11 @@
+{
+  "name": "vue3-starter",
+  "uuid": "cd56bd60-b789-4b0d-be34-fd249075b849",
+  "debug": {
+    "entry": "http://localhost:5678",
+    "resource": "public"
+  },
+  "build": {
+    "resource": "dist"
+  }
+}

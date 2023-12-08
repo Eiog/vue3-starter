@@ -27,7 +27,7 @@ import postcssPresetEnv from 'postcss-preset-env'
 import electron from 'vite-plugin-electron'
 import renderer from 'vite-plugin-electron-renderer'
 
-import virtual from 'vite-plugin-virtual'
+import { writeJsonFile } from 'write-json-file'
 import { VitePluginMock } from './plugin'
 
 // https://vitejs.dev/config/
@@ -40,8 +40,11 @@ export default defineConfig(({ command, mode }) => {
   const isBuild = command === 'build'
   const sourcemap = isServe || !!process.env.VSCODE_DEBUG
   const debug = !!process.env.VSCODE_DEBUG || !!process.env.TAURI_DEBUG
-  if (isElectron)
+  if (isElectron) {
     rmSync('dist-electron', { recursive: true, force: true })
+    writeJsonFile('dist-electron/package.json', { type: 'commonjs' })
+  }
+
   // eslint-disable-next-line multiline-ternary
   const electronPlugin = isElectron ? [
     electron([
@@ -76,8 +79,8 @@ export default defineConfig(({ command, mode }) => {
       {
         entry: 'electron/preload/index.ts',
         onstart(options) {
-        // Notify the Renderer-Process to reload the page when the Preload-Scripts build is complete,
-        // instead of restarting the entire Electron App.
+          // Notify the Renderer-Process to reload the page when the Preload-Scripts build is complete,
+          // instead of restarting the entire Electron App.
           options.reload()
         },
         vite: {
@@ -106,9 +109,9 @@ export default defineConfig(({ command, mode }) => {
     plugins: [
       VueDevTools(), // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
 
-      virtual({
-        'virtual:module': 'export default { mode: \'web\' }',
-      }), // https://github.com/patak-dev/vite-plugin-virtual
+      // virtual({
+      //   'virtual:module': 'export default { mode: \'web\' }',
+      // }), // https://github.com/patak-dev/vite-plugin-virtual Vite5 type=module 报错
 
       VitePluginMock({ prefix: VITE_API_BASE_PREFIX }),
 
@@ -192,7 +195,6 @@ export default defineConfig(({ command, mode }) => {
           },
         ],
         dirs: ['src/hooks', 'src/composables', 'src/stores', 'src/utils'],
-        dts: 'src/typings/auto-import.d.ts',
         vueTemplate: true,
       }), // https://github.com/antfu/unplugin-auto-import
 
@@ -201,7 +203,6 @@ export default defineConfig(({ command, mode }) => {
         extensions: ['vue', 'md'],
         deep: true,
         include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-        dts: 'src/typings/components.d.ts',
         resolvers: [
           NaiveUiResolver(),
           VantResolver(),
@@ -301,12 +302,12 @@ export default defineConfig(({ command, mode }) => {
       // 消除打包大小超过500kb警告
       chunkSizeWarningLimit: 2000,
       // 在生产环境移除console.log
-      terserOptions: {
-        compress: {
-          drop_console: true,
-          drop_debugger: true,
-        },
-      },
+      // terserOptions: {
+      //   compress: {
+      //     drop_console: true,
+      //     drop_debugger: true,
+      //   },
+      // },
       assetsDir: 'static/assets',
       // 静态资源打包到dist下的不同目录
       rollupOptions: {

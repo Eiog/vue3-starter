@@ -1,7 +1,7 @@
 {
   "name": "vue3-starter",
-  "version": "0.0.1",
   "type": "module",
+  "version": "0.0.1",
   "private": true,
   "description": "vue3-starter template",
   "author": "Eiog",

@@ -14,5 +14,3 @@ dist-electron
 release
 *.local
 .vercel
-auto-imports.d.ts
-components.d.ts

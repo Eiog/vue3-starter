@@ -20,6 +20,7 @@ useHead({
 
 <template>
   <RouterView />
+  <NotivueProvider />
 </template>
 
 <style>

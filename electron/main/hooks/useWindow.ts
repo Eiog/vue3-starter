@@ -2,14 +2,8 @@ import { join } from 'node:path'
 import { BrowserWindow, shell } from 'electron'
 import { is } from '@electron-toolkit/utils'
 
-process.env.DIST_ELECTRON = join(__dirname, '..')
-process.env.DIST = join(process.env.DIST_ELECTRON, '../dist')
-process.env.PUBLIC = process.env.VITE_DEV_SERVER_URL
-  ? join(process.env.DIST_ELECTRON, '../public')
-  : process.env.DIST
-
 function useWindow(isPackaged = true): BrowserWindow {
-  const preload = join(__dirname, '../preload/index.js')
+  const preload = join(process.env.DIST_ELECTRON, './preload/index.js')
   const url = process.env.VITE_DEV_SERVER_URL
   const indexHtml = join(process.env.DIST, 'index.html')
   const mainWindow = new BrowserWindow({

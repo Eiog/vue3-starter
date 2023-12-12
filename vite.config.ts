@@ -24,7 +24,8 @@ import Pages from 'vite-plugin-pages'
 import postcssPresetEnv from 'postcss-preset-env'
 
 // eslint-disable-next-line import/default
-import electron from 'vite-plugin-electron'
+import electron from 'vite-electron-plugin'
+import { loadViteEnv } from 'vite-electron-plugin/plugin'
 import renderer from 'vite-plugin-electron-renderer'
 
 import { writeJsonFile } from 'write-json-file'
@@ -35,10 +36,6 @@ import { VitePluginMock } from './plugin'
 export default defineConfig(({ command, mode }) => {
   const { VITE_APP_NAME, VITE_APP_DESCRIPTION, VITE_DEV_PORT, VITE_API_BASE_PREFIX, VITE_API_BASE_URL } = loadEnv(mode, process.cwd(), '')
   const isElectron = mode === 'electron'
-  const isTauri = mode === 'tauri'
-  const isServe = command === 'serve'
-  const isBuild = command === 'build'
-  const sourcemap = isServe || !!process.env.VSCODE_DEBUG
   const debug = !!process.env.VSCODE_DEBUG || !!process.env.TAURI_DEBUG
   if (isElectron) {
     rmSync('dist-electron', { recursive: true, force: true })
@@ -47,63 +44,19 @@ export default defineConfig(({ command, mode }) => {
 
   // eslint-disable-next-line multiline-ternary
   const electronPlugin = isElectron ? [
-    electron([
-      {
-      // Main-Process entry file of the Electron App.
-        entry: 'electron/main/index.ts',
-        onstart(options) {
-          if (process.env.VSCODE_DEBUG) {
-            // eslint-disable-next-line no-console
-            console.log(
-            /* For `.vscode/.debug.script.mjs` */ '[startup] Electron App',
-            )
-          }
-          else {
-            options.startup()
-          }
-        },
-        vite: {
-          build: {
-            sourcemap,
-            minify: isBuild,
-            outDir: 'dist-electron/main',
-            rollupOptions: {
-              external: [],
-            // external: Object.keys(
-            //   'dependencies' in pkg ? pkg.dependencies : {},
-            // ),
-            },
-          },
-        },
-      },
-      {
-        entry: 'electron/preload/index.ts',
-        onstart(options) {
-          // Notify the Renderer-Process to reload the page when the Preload-Scripts build is complete,
-          // instead of restarting the entire Electron App.
-          options.reload()
-        },
-        vite: {
-          build: {
-            sourcemap: sourcemap ? 'inline' : undefined, // #332
-            minify: isBuild,
-            outDir: 'dist-electron/preload',
-            rollupOptions: {
-              external: ['@electron-toolkit/preload'],
-            // external: Object.keys(
-            //   'dependencies' in pkg ? pkg.dependencies : {},
-            // ),
-            },
-          },
-        },
-      },
-    ]),
+    electron({
+      include: [
+        'electron',
+        // 'common.ts',
+      ],
+      plugins: [loadViteEnv()],
+    }), // https://github.com/caoxiemeihao/vite-electron-plugin
     renderer({
       resolve: {
         serialport: { type: 'cjs' },
         got: { type: 'esm' },
       },
-    }),
+    }), // https://github.com/electron-vite/vite-plugin-electron-renderer
   ] : []
   return {
     plugins: [
@@ -174,19 +127,6 @@ export default defineConfig(({ command, mode }) => {
           'pinia',
           'vue-router',
           'vue-i18n',
-          {
-            'naive-ui': [
-              'useDialog',
-              'useMessage',
-              'useNotification',
-              'useLoadingBar',
-            ],
-          },
-          {
-            alova: [
-              'useRequest',
-            ],
-          },
           {
             '@tauri-apps/api/app': ['getName', 'getVersion', 'getTauriVersion'],
             '@tauri-apps/api/shell': ['Command'],

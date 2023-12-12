@@ -6,6 +6,7 @@ import { setupHead } from './usehead'
 import { setupDirectives } from './directives'
 import { setupAssets } from './assets'
 import { setupVuetify } from './vuetify'
+import { setupNotivue } from './notivue'
 
 export function useModules(app: App) {
   setupRouter(app)
@@ -14,5 +15,6 @@ export function useModules(app: App) {
   setupHead(app)
   setupDirectives(app)
   setupVuetify(app)
+  setupNotivue(app)
   setupAssets()
 }

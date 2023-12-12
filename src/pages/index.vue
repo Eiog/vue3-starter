@@ -1,5 +1,6 @@
 <script setup lang='ts'>
 // import { ipcRenderer } from 'electron'
+import { useRequest } from 'vue-hooks-plus'
 
 defineOptions({
   name: 'IndexPage',
@@ -7,11 +8,12 @@ defineOptions({
 useHead({
   title: '首页',
 })
-const { data } = useRequest(
-  useAlova.Get('/info', {}),
-)
+const { data } = useRequest(() => get('/info'))
 
 // console.log(ipcRenderer)
+onMounted(() => {
+  window.$notivue.info({ message: 'Hello World!', duration: 5000 })
+})
 </script>
 
 <template>

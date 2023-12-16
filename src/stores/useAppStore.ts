@@ -3,11 +3,7 @@ import type { Ref } from 'vue'
 import type { GlobalThemeOverrides } from 'naive-ui'
 import {
   darkTheme,
-  dateEnUS,
-  dateZhCN,
-  enUS,
   useOsTheme,
-  zhCN,
 } from 'naive-ui'
 import { getSatusColor } from './helps'
 
@@ -59,14 +55,14 @@ export const useAppStore = defineStore(
       }
     })
     const { locale } = useI18n()
-    const language = ref<'zh_cn' | 'en_us'>(locale.value as any)
+    const language = ref<'cn' | 'en'>(locale.value as any)
     watch(language, language => (locale.value = language))
-    const naiveLocale = computed(() =>
-      language.value === 'zh_cn' ? zhCN : enUS,
-    )
-    const naiveDateLocale = computed(() =>
-      language.value === 'zh_cn' ? dateZhCN : dateEnUS,
-    )
+    const changeLanguage = (lang?: 'cn' | 'en') => {
+      if (lang)
+        language.value = lang
+      else
+        language.value = language.value === 'cn' ? 'en' : 'cn'
+    }
     return {
       language,
       darkMode,
@@ -75,13 +71,12 @@ export const useAppStore = defineStore(
       themeColor,
       naiveThemeMode,
       naiveThemeOverrides,
-      naiveLocale,
-      naiveDateLocale,
+      changeLanguage,
     }
   },
   {
     persist: {
-      key: '__app__',
+      key: '__AppStore__',
       paths: [''],
     },
   },

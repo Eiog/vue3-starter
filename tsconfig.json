@@ -14,7 +14,8 @@
       "naive-ui/volar",
       "vite-plugin-svg-icons/client",
       "vite-plugin-vue-layouts/client",
-      "@intlify/unplugin-vue-i18n/messages"
+      "@intlify/unplugin-vue-i18n/messages",
+      "element-plus/global"
     ]
   },
   "include": [

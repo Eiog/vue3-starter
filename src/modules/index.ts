@@ -7,6 +7,7 @@ import { setupDirectives } from './directives'
 import { setupAssets } from './assets'
 import { setupVuetify } from './vuetify'
 import { setupNotivue } from './notivue'
+import { setupPrimeVue } from './primevue'
 
 export function useModules(app: App) {
   setupRouter(app)
@@ -16,5 +17,6 @@ export function useModules(app: App) {
   setupDirectives(app)
   setupVuetify(app)
   setupNotivue(app)
+  setupPrimeVue(app)
   setupAssets()
 }

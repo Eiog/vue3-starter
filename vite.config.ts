@@ -5,7 +5,16 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import Unocss from 'unocss/vite'
 import Components from 'unplugin-vue-components/vite'
-import { NaiveUiResolver, VantResolver, VueUseComponentsResolver, VueUseDirectiveResolver, Vuetify3Resolver } from 'unplugin-vue-components/resolvers'
+import {
+  ElementPlusResolver,
+  NaiveUiResolver,
+  PrimeVueResolver,
+  VantResolver,
+  VueUseComponentsResolver,
+  VueUseDirectiveResolver,
+  Vuetify3Resolver,
+} from 'unplugin-vue-components/resolvers'
+import NutUIResolver from '@nutui/auto-import-resolver'
 import AutoImport from 'unplugin-auto-import/vite'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { VitePWA } from 'vite-plugin-pwa'
@@ -97,6 +106,7 @@ export default defineConfig(({ command, mode }) => {
       vue({
         script: {
           defineModel: true,
+          propsDestructure: true,
         },
         include: [/\.vue$/, /\.md$/],
       }), // https://github.com/vitejs/vite-plugin-vue
@@ -136,6 +146,7 @@ export default defineConfig(({ command, mode }) => {
         ],
         dirs: ['src/hooks', 'src/composables', 'src/stores', 'src/utils'],
         vueTemplate: true,
+        resolvers: [ElementPlusResolver()],
       }), // https://github.com/antfu/unplugin-auto-import
 
       Components({
@@ -149,6 +160,9 @@ export default defineConfig(({ command, mode }) => {
           Vuetify3Resolver(),
           VueUseComponentsResolver(),
           VueUseDirectiveResolver(),
+          PrimeVueResolver({ prefix: 'P' }),
+          ElementPlusResolver(),
+          NutUIResolver(),
         ],
       }), // https://github.com/antfu/unplugin-vue-components
 

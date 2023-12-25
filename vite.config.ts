@@ -35,7 +35,6 @@ import postcssPresetEnv from 'postcss-preset-env'
 // eslint-disable-next-line import/default
 import electron from 'vite-electron-plugin'
 import { loadViteEnv } from 'vite-electron-plugin/plugin'
-import renderer from 'vite-plugin-electron-renderer'
 
 import { writeJsonFile } from 'write-json-file'
 import { VitePluginMock } from './plugin'
@@ -60,12 +59,12 @@ export default defineConfig(({ command, mode }) => {
       ],
       plugins: [loadViteEnv()],
     }), // https://github.com/caoxiemeihao/vite-electron-plugin
-    renderer({
-      resolve: {
-        serialport: { type: 'cjs' },
-        got: { type: 'esm' },
-      },
-    }), // https://github.com/electron-vite/vite-plugin-electron-renderer
+    // renderer({
+    //   resolve: {
+    //     serialport: { type: 'cjs' },
+    //     got: { type: 'esm' },
+    //   },
+    // }), // https://github.com/electron-vite/vite-plugin-electron-renderer
   ] : []
   return {
     plugins: [

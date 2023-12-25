@@ -24,7 +24,7 @@ function useWindow(isPackaged = true): BrowserWindow {
       webSecurity: true,
       devTools: !isPackaged,
       nodeIntegration: true,
-      contextIsolation: false,
+      contextIsolation: true,
     },
   })
   mainWindow.on('ready-to-show', () => {

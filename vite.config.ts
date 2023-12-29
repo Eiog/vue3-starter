@@ -1,26 +1,10 @@
 import { resolve } from 'node:path'
-import { rmSync } from 'node:fs'
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import Unocss from 'unocss/vite'
-import Components from 'unplugin-vue-components/vite'
-import {
-  ElementPlusResolver,
-  NaiveUiResolver,
-  PrimeVueResolver,
-  VantResolver,
-  VueUseComponentsResolver,
-  VueUseDirectiveResolver,
-  Vuetify3Resolver,
-} from 'unplugin-vue-components/resolvers'
-import NutUIResolver from '@nutui/auto-import-resolver'
-import AutoImport from 'unplugin-auto-import/vite'
+
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
-import { VitePWA } from 'vite-plugin-pwa'
-import Markdown from 'unplugin-vue-markdown/vite'
-import LinkAttributes from 'markdown-it-link-attributes'
-import Shiki from 'markdown-it-shiki'
 import Icons from 'unplugin-icons/vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import Layouts from 'vite-plugin-vue-layouts'
@@ -32,40 +16,17 @@ import { viteVueCSSVars } from 'unplugin-vue-cssvars'
 import Pages from 'vite-plugin-pages'
 import postcssPresetEnv from 'postcss-preset-env'
 
-// eslint-disable-next-line import/default
-import electron from 'vite-electron-plugin'
-import { loadViteEnv } from 'vite-electron-plugin/plugin'
-
-import { writeJsonFile } from 'write-json-file'
 import { VitePluginMock } from './plugin'
+
+import { VitePluginAutoImport, VitePluginComponents, VitePluginElectron, VitePluginMarkdown, VitePluginPWA } from './config'
 
 // https://vitejs.dev/config/
 
 export default defineConfig(({ command, mode }) => {
-  const { VITE_APP_NAME, VITE_APP_DESCRIPTION, VITE_DEV_PORT, VITE_API_BASE_PREFIX, VITE_API_BASE_URL } = loadEnv(mode, process.cwd(), '')
+  const { VITE_DEV_PORT, VITE_API_BASE_PREFIX, VITE_API_BASE_URL } = loadEnv(mode, process.cwd(), '')
   const isElectron = mode === 'electron'
   const debug = !!process.env.VSCODE_DEBUG || !!process.env.TAURI_DEBUG
-  if (isElectron) {
-    rmSync('dist-electron', { recursive: true, force: true })
-    writeJsonFile('dist-electron/package.json', { type: 'commonjs' })
-  }
 
-  // eslint-disable-next-line multiline-ternary
-  const electronPlugin = isElectron ? [
-    electron({
-      include: [
-        'electron',
-        // 'common.ts',
-      ],
-      plugins: [loadViteEnv()],
-    }), // https://github.com/caoxiemeihao/vite-electron-plugin
-    // renderer({
-    //   resolve: {
-    //     serialport: { type: 'cjs' },
-    //     got: { type: 'esm' },
-    //   },
-    // }), // https://github.com/electron-vite/vite-plugin-electron-renderer
-  ] : []
   return {
     plugins: [
       VueDevTools(), // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
@@ -122,49 +83,8 @@ export default defineConfig(({ command, mode }) => {
 
       Icons({ compiler: 'vue3' }), // https://github.com/antfu/unplugin-icons
 
-      AutoImport({
-        /* options */
-        include: [
-          /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
-          /\.vue$/,
-          /\.vue\?vue/, // .vue
-        ],
-        imports: [
-          'vue',
-          '@vueuse/core',
-          '@vueuse/head',
-          'pinia',
-          'vue-router',
-          'vue-i18n',
-          {
-            '@tauri-apps/api/app': ['getName', 'getVersion', 'getTauriVersion'],
-            '@tauri-apps/api/shell': ['Command'],
-            '@tauri-apps/api/os': ['platform'],
-            '@tauri-apps/api/notification': ['sendNotification', 'requestPermission', 'isPermissionGranted'],
-          },
-        ],
-        dirs: ['src/hooks', 'src/composables', 'src/stores', 'src/utils'],
-        vueTemplate: true,
-        resolvers: [ElementPlusResolver()],
-      }), // https://github.com/antfu/unplugin-auto-import
-
-      Components({
-        dirs: ['src/components', 'src/layouts'],
-        extensions: ['vue', 'md'],
-        deep: true,
-        include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
-        resolvers: [
-          NaiveUiResolver(),
-          VantResolver(),
-          Vuetify3Resolver(),
-          VueUseComponentsResolver(),
-          VueUseDirectiveResolver(),
-          PrimeVueResolver({ prefix: 'P' }),
-          ElementPlusResolver(),
-          NutUIResolver(),
-        ],
-      }), // https://github.com/antfu/unplugin-vue-components
-
+      ...VitePluginAutoImport(),
+      ...VitePluginComponents(),
       Unocss(), // https://github.com/antfu/unocss
 
       // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
@@ -175,62 +95,9 @@ export default defineConfig(({ command, mode }) => {
         include: resolve(__dirname, './src/locales/**'),
       }), // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
 
-      Markdown({
-        wrapperClasses: 'prose prose-sm m-auto text-left',
-        headEnabled: true,
-        markdownItSetup(md) {
-          // https://prismjs.com/
-          md.use(Shiki, {
-            theme: {
-              light: 'vitesse-light',
-              dark: 'vitesse-dark',
-            },
-          })
-          md.use(LinkAttributes, {
-            matcher: (link: string) => /^https?:\/\//.test(link),
-            attrs: {
-              target: '_blank',
-              rel: 'noopener',
-            },
-          })
-        },
-      }), // https://github.com/antfu/vite-plugin-vue-markdown
-
-      VitePWA({
-        registerType: 'autoUpdate',
-        includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
-        manifest: {
-          name: VITE_APP_NAME,
-          short_name: VITE_APP_NAME,
-          description: VITE_APP_DESCRIPTION,
-          theme_color: '#ffffff',
-          icons: [
-            {
-              src: '/pwa-192x192.png',
-              sizes: '192x192',
-              type: 'image/png',
-            },
-            {
-              src: '/pwa-512x512.png',
-              sizes: '512x512',
-              type: 'image/png',
-            },
-            {
-              src: '/pwa-512x512.png',
-              sizes: '512x512',
-              type: 'image/png',
-              purpose: 'any maskable',
-            },
-          ],
-        },
-        devOptions: {
-          enabled: process.env.SW_DEV === 'true',
-          /* when using generateSW the PWA plugin will switch to classic */
-          type: 'module',
-          navigateFallback: 'index.html',
-        },
-      }), // https://github.com/antfu/vite-plugin-pwa
-      ...electronPlugin,
+      ...VitePluginMarkdown(),
+      ...VitePluginPWA({ command, mode }),
+      ...isElectron ? VitePluginElectron({ command, mode }) : [],
     ],
     clearScreen: true,
     server: {

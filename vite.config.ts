@@ -4,7 +4,6 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import Unocss from 'unocss/vite'
 
-import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import Icons from 'unplugin-icons/vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import Layouts from 'vite-plugin-vue-layouts'
@@ -18,7 +17,7 @@ import postcssPresetEnv from 'postcss-preset-env'
 
 import { VitePluginMock } from './plugin'
 
-import { VitePluginAutoImport, VitePluginComponents, VitePluginElectron, VitePluginMarkdown, VitePluginPWA } from './config'
+import { VitePluginAutoImport, VitePluginComponents, VitePluginElectron, VitePluginI18n, VitePluginMarkdown, VitePluginPWA } from './config'
 
 // https://vitejs.dev/config/
 
@@ -82,19 +81,10 @@ export default defineConfig(({ command, mode }) => {
       WebfontDownload(), // https://github.com/feat-agency/vite-plugin-webfont-dl
 
       Icons({ compiler: 'vue3' }), // https://github.com/antfu/unplugin-icons
-
+      Unocss(), // https://github.com/antfu/unocss
       ...VitePluginAutoImport(),
       ...VitePluginComponents(),
-      Unocss(), // https://github.com/antfu/unocss
-
-      // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
-      VueI18nPlugin({
-        runtimeOnly: true,
-        compositionOnly: true,
-        fullInstall: true,
-        include: resolve(__dirname, './src/locales/**'),
-      }), // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
-
+      ...VitePluginI18n(),
       ...VitePluginMarkdown(),
       ...VitePluginPWA({ command, mode }),
       ...isElectron ? VitePluginElectron({ command, mode }) : [],

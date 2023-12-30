@@ -4,4 +4,6 @@ import { useModules } from '~/modules'
 
 const app = createApp(App)
 useModules(app)
-app.mount('#app')
+app.mount('#app').$nextTick(() => {
+  window.postMessage({ client: 'mounted' }, '*')
+})

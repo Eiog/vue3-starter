@@ -28,7 +28,7 @@ export default defineConfig(({ command, mode }) => {
 
   return {
     plugins: [
-      VueDevTools(), // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
+      VueDevTools(), // https://devtools-next.vuejs.org/
 
       // virtual({
       //   'virtual:module': 'export default { mode: \'web\' }',

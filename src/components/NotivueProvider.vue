@@ -1,5 +1,9 @@
 <script setup lang='ts'>
-import { Notifications, Notivue } from 'notivue'
+import { Notifications, Notivue, push } from 'notivue'
+
+onMounted(() => {
+  window.$notivue = push
+})
 </script>
 
 <template>

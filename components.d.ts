@@ -16,6 +16,7 @@ declare module 'vue' {
     Dependents: typeof import('./src/components/Dependents.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
+    ElectronApi: typeof import('./src/components/demos/ElectronApi.vue')['default']
     ElementPlusProvider: typeof import('./src/components/ElementPlusProvider.vue')['default']
     Examples: typeof import('./src/components/Examples.vue')['default']
     HeaderBar: typeof import('./src/components/HeaderBar.vue')['default']

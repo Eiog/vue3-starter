@@ -8,5 +8,6 @@ import 'notivue/animations.css'
 
 // Only needed if using built-in animations
 export function setupNotivue(app: App) {
-  window.$notivue = createNotivue(app)
+  const notivue = createNotivue()
+  app.use(notivue)
 }

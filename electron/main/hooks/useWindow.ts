@@ -31,11 +31,6 @@ function useWindow(isPackaged = true): BrowserWindow {
     mainWindow.show()
   })
 
-  mainWindow.webContents.setWindowOpenHandler((details) => {
-    shell.openExternal(details.url)
-    return { action: 'deny' }
-  })
-
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
   if (is.dev && url)

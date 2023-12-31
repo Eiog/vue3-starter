@@ -3,6 +3,7 @@
   "extends": "@eiog/ts-config/tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "jsxImportSource": "vue",
     "paths": {
       "~/*": [
         "src/*"

@@ -274,6 +274,9 @@ devDependencies:
   vite-electron-plugin:
     specifier: ^0.8.3
     version: 0.8.3(acorn@8.11.3)(vite-plugin-electron-renderer@0.14.5)
+  vite-plugin-debug:
+    specifier: ^1.0.1
+    version: 1.0.1
   vite-plugin-electron:
     specifier: 0.15.5
     version: 0.15.5(vite-plugin-electron-renderer@0.14.5)
@@ -15379,6 +15382,10 @@ packages:
       - sugarss
       - supports-color
       - terser
+    dev: true
+
+  /vite-plugin-debug@1.0.1:
+    resolution: {integrity: sha512-php2qOvaWtESUUjhsWiHwRbIPWRylY0fuV2iWdwHlGqo3rwELdAT7RPxh+movu1H+mgr5lqRBMFZn4OjTt/rEg==}
     dev: true
 
   /vite-plugin-electron-renderer@0.14.5:

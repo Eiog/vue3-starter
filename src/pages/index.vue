@@ -9,7 +9,7 @@ useHead({
   title: '首页',
 })
 const { data } = useRequest(() => get('/info'))
-
+get('/hello')
 // console.log(ipcRenderer)
 onMounted(() => {
   window.$notivue.info({ message: 'Hello World!', duration: 5000 })

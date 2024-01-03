@@ -14,7 +14,7 @@ import VueDevTools from 'vite-plugin-vue-devtools'
 import { viteVueCSSVars } from 'unplugin-vue-cssvars'
 import Pages from 'vite-plugin-pages'
 import postcssPresetEnv from 'postcss-preset-env'
-
+import VitePluginDebug from 'vite-plugin-debug'
 import { VitePluginMock } from './plugin'
 
 import { VitePluginAutoImport, VitePluginComponents, VitePluginElectron, VitePluginI18n, VitePluginMarkdown, VitePluginPWA } from './config'
@@ -29,7 +29,7 @@ export default defineConfig(({ command, mode }) => {
   return {
     plugins: [
       VueDevTools(), // https://devtools-next.vuejs.org/
-
+      VitePluginDebug(), // https://github.com/hu3dao/vite-plugin-debug/blob/master/README.zh-CN.md
       // virtual({
       //   'virtual:module': 'export default { mode: \'web\' }',
       // }), // https://github.com/patak-dev/vite-plugin-virtual Vite5 type=module 报错
@@ -96,13 +96,15 @@ export default defineConfig(({ command, mode }) => {
       open: false, // 自动打开浏览器
       cors: true, // 跨域设置允许
       strictPort: true, // 如果端口已占用直接退出
-      proxy: {
-        [VITE_API_BASE_PREFIX]: {
-          target: VITE_API_BASE_URL,
-          changeOrigin: true,
-          rewrite: path => path.replace(/^\`${VITE_API_BASE_PREFIX}`/, ''),
-        },
-      },
+      proxy: VITE_API_BASE_URL === ''
+        ? undefined
+        : {
+            [VITE_API_BASE_PREFIX]: {
+              target: VITE_API_BASE_URL,
+              changeOrigin: true,
+              rewrite: path => path.replace(/^\`${VITE_API_BASE_PREFIX}`/, ''),
+            },
+          },
     },
     envPrefix: ['VITE_', 'TAURI_'],
     build: {

@@ -20,6 +20,9 @@ async function openNewWindow() {
   const result = await window.$nodeApi.openNewWindow({ path: 'examples/vuetify' })
   console.log(result)
 }
+function openDevTools() {
+  window.$nodeApi.openDevTools()
+}
 </script>
 
 <template>
@@ -40,13 +43,16 @@ async function openNewWindow() {
       <button class="btn btn-primary" @click="openNewWindow">
         <span>open new window</span>
       </button>
+      <button class="btn btn-primary" @click="openDevTools">
+        <span>open dev tools</span>
+      </button>
     </div>
     <div>
       <a target="_blank" href="https://www.baidu.com">http://www.baidu.com</a>
     </div>
   </div>
   <div v-else>
-    not electron environment
+    <p>Not in electron</p>
   </div>
 </template>
 

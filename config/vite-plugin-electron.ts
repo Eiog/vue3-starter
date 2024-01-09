@@ -1,11 +1,10 @@
 import { rmSync } from 'node:fs'
 import type { ConfigEnv, PluginOption } from 'vite'
 
-// eslint-disable-next-line import/default
-import electron from 'vite-plugin-electron'
-import renderer from 'vite-plugin-electron-renderer'
+import electron from 'vite-plugin-electron/simple'
 import { notBundle } from 'vite-plugin-electron/plugin'
-import { writeJsonFile } from 'write-json-file'
+
+// import { writeJsonFile } from 'write-json-file'
 import pkg from '../package.json'
 
 export function VitePluginElectron({ command }: ConfigEnv): PluginOption[] {
@@ -13,10 +12,10 @@ export function VitePluginElectron({ command }: ConfigEnv): PluginOption[] {
   const isBuild = command === 'build'
   const sourcemap = isServe || !!process.env.VSCODE_DEBUG
   rmSync('dist-electron', { recursive: true, force: true })
-  writeJsonFile('dist-electron/package.json', { type: 'commonjs' })
+  // writeJsonFile('dist-electron/package.json', { type: 'commonjs' })
   return [
-    electron([
-      {
+    electron({
+      main: {
         // Main process entry file of the Electron App.
         entry: 'electron/main/index.ts',
         onstart({ startup }) {
@@ -25,12 +24,13 @@ export function VitePluginElectron({ command }: ConfigEnv): PluginOption[] {
             console.log(/* For `.vscode/.debug.script.mjs` */'[startup] Electron App')
 
           else
+          // ['--inspect=5858', '.', '--no-sandbox']
             startup()
         },
         vite: {
           build: {
             sourcemap,
-            minify: isBuild,
+            minify: false,
             outDir: 'dist-electron/main',
             rollupOptions: {
               // Some third-party Node.js libraries may not be built correctly by Vite, especially `C/C++` addons,
@@ -47,8 +47,8 @@ export function VitePluginElectron({ command }: ConfigEnv): PluginOption[] {
           ],
         },
       },
-      {
-        entry: 'electron/preload/index.ts',
+      preload: {
+        input: 'electron/preload/index.ts',
         onstart({ reload }) {
           // Notify the Renderer process to reload the page when the Preload scripts build is complete,
           // instead of restarting the entire Electron App.
@@ -56,11 +56,11 @@ export function VitePluginElectron({ command }: ConfigEnv): PluginOption[] {
         },
         vite: {
           build: {
-            sourcemap: sourcemap ? 'inline' : undefined, // #332
-            minify: isBuild,
+            sourcemap,
+            minify: false,
             outDir: 'dist-electron/preload',
             rollupOptions: {
-              external: Object.keys('dependencies' in pkg ? pkg.dependencies : {}),
+              external: [...Object.keys('dependencies' in pkg ? pkg.dependencies : {}), 'jsmediatags'],
             },
           },
           plugins: [
@@ -68,8 +68,10 @@ export function VitePluginElectron({ command }: ConfigEnv): PluginOption[] {
           ],
         },
       },
-    ]), // https://github.com/electron-vite/vite-plugin-electron
+      renderer: {},
+    }),
+
+    // https://github.com/electron-vite/vite-plugin-electron
     // Use Node.js API in the Renderer process
-    renderer(), // https://github.com/electron-vite/vite-plugin-electron-renderer
   ]
 }

@@ -45,7 +45,7 @@ function useIpcMain(app: App, mainWindow: BrowserWindow, tray: Tray) {
   })
   ipcMain.handle('open-new-window', (_, arg?: { path?: string;width?: number;height?: number }) => {
     return new Promise((resolve, reject) => {
-      const preload = join(process.env.DIST_ELECTRON, './preload/index.js')
+      const preload = process.env.PRELOAD_JS
       const url = process.env.VITE_DEV_SERVER_URL
       const indexHtml = join(process.env.DIST, 'index.html')
 
@@ -69,6 +69,9 @@ function useIpcMain(app: App, mainWindow: BrowserWindow, tray: Tray) {
   ipcMain.handle('show-notification', (_, arg) => {
     const notification = new Notification(arg)
     notification.show()
+  })
+  ipcMain.on('open-dev-tools', () => {
+    mainWindow.webContents.openDevTools()
   })
 }
 export default useIpcMain

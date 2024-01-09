@@ -1,10 +1,12 @@
 <script setup lang="ts">
+const currentPath = computed(() => useRoute().path)
 </script>
 
 <template>
   <header class="w-full h-16 flex-center">
     <nav class="w-screen-lg flex-y-center justify-end gap-3 <lg:(w-full p-x-10)">
       <BackToHome class="m-r-auto" />
+      <div>currentPath: {{ currentPath }}</div>
       <ToggleDarkMode />
       <ToggleLanguage />
     </nav>

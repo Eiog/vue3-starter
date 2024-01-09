@@ -8,7 +8,7 @@
   "asar": true,
   "icon": "public/icon.png",
   "directories": {
-    "output": "release/${version}"
+    "output": "release/${productName}_${version}"
   },
   "files": [
     "dist-electron",

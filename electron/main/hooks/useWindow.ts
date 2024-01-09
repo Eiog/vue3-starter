@@ -1,9 +1,8 @@
 import { join } from 'node:path'
 import { BrowserWindow, shell } from 'electron'
-import { is } from '@electron-toolkit/utils'
 
-function useWindow(isPackaged = true): BrowserWindow {
-  const preload = join(process.env.DIST_ELECTRON, './preload/index.js')
+function useWindow(): BrowserWindow {
+  const preload = process.env.PRELOAD_JS
   const url = process.env.VITE_DEV_SERVER_URL
   const indexHtml = join(process.env.DIST, 'index.html')
   const mainWindow = new BrowserWindow({
@@ -22,7 +21,7 @@ function useWindow(isPackaged = true): BrowserWindow {
     webPreferences: {
       preload,
       webSecurity: true,
-      devTools: !isPackaged,
+      devTools: true,
       nodeIntegration: true,
       contextIsolation: true,
     },
@@ -33,11 +32,14 @@ function useWindow(isPackaged = true): BrowserWindow {
 
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
-  if (is.dev && url)
+  if (process.env.VITE_DEV_SERVER_URL) { // electron-vite-vue#298
     mainWindow.loadURL(url)
-
-  else
+    // Open devTool if the app is not packaged
+    mainWindow.webContents.openDevTools()
+  }
+  else {
     mainWindow.loadFile(indexHtml)
+  }
 
   // Test actively push message to the Electron-Renderer
   mainWindow.webContents.on('did-finish-load', () => {

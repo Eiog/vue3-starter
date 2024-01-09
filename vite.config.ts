@@ -22,7 +22,7 @@ import { VitePluginAutoImport, VitePluginComponents, VitePluginElectron, VitePlu
 // https://vitejs.dev/config/
 
 export default defineConfig(({ command, mode }) => {
-  const { VITE_DEV_PORT, VITE_API_BASE_PREFIX, VITE_API_BASE_URL } = loadEnv(mode, process.cwd(), '')
+  const { VITE_DEV_PORT, VITE_API_BASE_PREFIX, VITE_API_BASE_URL, VITE_BASE } = loadEnv(mode, process.cwd(), '')
   const isElectron = mode === 'electron'
   const debug = !!process.env.VSCODE_DEBUG || !!process.env.TAURI_DEBUG
 
@@ -38,7 +38,7 @@ export default defineConfig(({ command, mode }) => {
 
       Pages({
         extensions: ['vue', 'md'],
-      }), // https://github.com/posva/unplugin-vue-router
+      }), // https://github.com/hannoeru/vite-plugin-pages
 
       Layouts(), // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
 
@@ -90,6 +90,7 @@ export default defineConfig(({ command, mode }) => {
       ...isElectron ? VitePluginElectron({ command, mode }) : [],
     ],
     clearScreen: true,
+    base: VITE_BASE ?? '/',
     server: {
       port: Number(VITE_DEV_PORT),
       host: true, // host设置为true才可以使用network的形式，以ip访问项目

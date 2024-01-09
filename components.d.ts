@@ -8,8 +8,6 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     BackToHome: typeof import('./src/components/BackToHome.vue')['default']
-    Button: typeof import('primevue/button')['default']
-    copy: typeof import('./src/components/NutProvider copy.vue')['default']
     DarkModeToggle: typeof import('./src/components/DarkModeToggle.vue')['default']
     Default: typeof import('./src/layouts/default.vue')['default']
     DefineInput: typeof import('./src/components/DefineInput.vue')['default']
@@ -31,7 +29,6 @@ declare module 'vue' {
     NutConfigProvider: typeof import('@nutui/nutui')['ConfigProvider']
     NutProvider: typeof import('./src/components/NutProvider.vue')['default']
     PButton: typeof import('primevue/button')['default']
-    PriButton: typeof import('primevue/button')['default']
     RouterEntry: typeof import('./src/components/RouterEntry.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
@@ -43,9 +40,6 @@ declare module 'vue' {
     VanButton: typeof import('vant/es')['Button']
     VanConfigProvider: typeof import('vant/es')['ConfigProvider']
     VantProvider: typeof import('./src/components/VantProvider.vue')['default']
-    VarButton: typeof import('@varlet/ui')['_ButtonComponent']
-    VarletProvider: typeof import('./src/components/VarletProvider.vue')['default']
-    VarProvider: typeof import('@varlet/ui')['_ProviderComponent']
     VBtn: typeof import('vuetify/components')['VBtn']
     VCard: typeof import('vuetify/components')['VCard']
     VCardActions: typeof import('vuetify/components')['VCardActions']

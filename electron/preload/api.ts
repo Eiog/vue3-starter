@@ -2,7 +2,7 @@ import { readFile } from 'node:fs'
 import type { Buffer } from 'node:buffer'
 import type { MessageBoxOptions, MessageBoxReturnValue, NotificationConstructorOptions, OpenDialogOptions, OpenDialogReturnValue, SaveDialogOptions, SaveDialogReturnValue } from 'electron'
 import { ipcRenderer } from 'electron'
-import jsmediatags from 'jsmediatags'
+import { read } from 'jsmediatags'
 
 import type { FileTypeResult } from 'file-type'
 import { fileTypeFromBuffer } from 'file-type'
@@ -25,7 +25,7 @@ export const api = {
   },
   getMediaTags: (path: string): Promise<Object> => {
     return new Promise((resolve, reject) => {
-      jsmediatags.read(path, {
+      read(path, {
         onSuccess: (tag: {}) => {
           resolve(tag)
         },
@@ -48,5 +48,8 @@ export const api = {
   },
   getFileType: async (buffer: Buffer): Promise<FileTypeResult | undefined> => {
     return fileTypeFromBuffer(buffer)
+  },
+  openDevTools: () => {
+    ipcRenderer.send('open-dev-tools')
   },
 }

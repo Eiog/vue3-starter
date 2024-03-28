@@ -59,6 +59,7 @@ declare global {
   const getVersion: typeof import('@tauri-apps/api/app')['getVersion']
   const h: typeof import('vue')['h']
   const http: typeof import('./src/utils/useHttp')['http']
+  const hyphenToCamelCase: typeof import('./src/utils/useString')['hyphenToCamelCase']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
   const injectLocal: typeof import('@vueuse/core')['injectLocal']
@@ -425,6 +426,7 @@ declare module 'vue' {
     readonly getVersion: UnwrapRef<typeof import('@tauri-apps/api/app')['getVersion']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly http: UnwrapRef<typeof import('./src/utils/useHttp')['http']>
+    readonly hyphenToCamelCase: UnwrapRef<typeof import('./src/utils/useString')['hyphenToCamelCase']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly injectLocal: UnwrapRef<typeof import('@vueuse/core')['injectLocal']>
@@ -779,6 +781,7 @@ declare module '@vue/runtime-core' {
     readonly getVersion: UnwrapRef<typeof import('@tauri-apps/api/app')['getVersion']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly http: UnwrapRef<typeof import('./src/utils/useHttp')['http']>
+    readonly hyphenToCamelCase: UnwrapRef<typeof import('./src/utils/useString')['hyphenToCamelCase']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly injectLocal: UnwrapRef<typeof import('@vueuse/core')['injectLocal']>

@@ -103,7 +103,7 @@ export default defineConfig(({ command, mode }) => {
             [VITE_API_BASE_PREFIX]: {
               target: VITE_API_BASE_URL,
               changeOrigin: true,
-              rewrite: path => path.replace(/^\`${VITE_API_BASE_PREFIX}`/, ''),
+              rewrite: path => path.replace(new RegExp(`^${VITE_API_BASE_PREFIX}`), ''),
             },
           },
     },
